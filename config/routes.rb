@@ -1,9 +1,36 @@
+  class SubdomainConstraint
+    def self.matches?(request)
+      subdomains = %w( www admin )
+      request.subdomain.present? && !subdomains.include?(request.subdomain)
+    end
+  end
+
+  class MaindomainConstraint
+    def self.matches?(request)
+      subdomains = %w( www admin )
+      !request.subdomain.present? || subdomains.include?(request.subdomain)
+    end
+  end
+
 Rails.application.routes.draw do
+  constraints SubdomainConstraint do
+    devise_for :users
+    authenticated :user do
+    end
+    
+    root 'pages#show', as: :week_root
+  end
+
+  constraints MaindomainConstraint do
+    devise_for :admins
+    resources :weeks
+    root 'pages#index'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
