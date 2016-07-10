@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     devise_for :users
     authenticated :user do
     end
-    
     root 'pages#show', as: :week_root
   end
 
