@@ -1,3 +1,7 @@
+
+
+
+
   class SubdomainConstraint
     def self.matches?(request)
       subdomains = %w( www admin )
@@ -13,6 +17,12 @@
   end
 
 Rails.application.routes.draw do
+  get 'users/index'
+  devise_scope :user do
+    get 'users/sign_in' =>'devise/sessions#new'
+  end
+ 
+
   constraints SubdomainConstraint do
     devise_for :users
     authenticated :user do
