@@ -1,4 +1,4 @@
-	source 'https://rubygems.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -71,7 +71,6 @@ group :development do
   gem 'quiet_assets'
 
   gem 'meta_request'
-
 end
 
 group :production do
