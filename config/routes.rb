@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   constraints SubdomainConstraint do
     devise_for :users
     authenticated :user do
+      root 'weeks#index', as: :weeks_auth_root
     end
     root 'pages#show', as: :week_root
   end
