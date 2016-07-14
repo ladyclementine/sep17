@@ -17,16 +17,11 @@
   end
 
 Rails.application.routes.draw do
-  get 'users/index'
-  devise_scope :user do
-    get 'users/sign_in' =>'devise/sessions#new'
-  end
+ 
  
 
   constraints SubdomainConstraint do
-    devise_for :users
-    authenticated :user do
-    end
+   
     
     root 'pages#show', as: :week_root
   end
