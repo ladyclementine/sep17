@@ -1,10 +1,9 @@
-require 'rails/generators/erb'
-require 'rails/generators/resource_helpers'
+require 'rails/generators/erb/scaffold/scaffold_generator'
 
 module Erb # :nodoc:
-  module Generators # :nodoc:
-    class ScaffoldGenerator < Base # :nodoc:
-      include Rails::Generators::ResourceHelpers
+  module Generators
+    class ScaffoldGenerator < Erb::Generators::ScaffoldGenerator
+      source_root File.expand_path(File.join('..', 'templates'), __FILE__)
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
