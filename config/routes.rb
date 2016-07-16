@@ -1,23 +1,33 @@
-  class SubdomainConstraint
-    def self.matches?(request)
-      subdomains = %w( www admin )
-      request.subdomain.present? && !subdomains.include?(request.subdomain)
-    end
+class SubdomainConstraint
+  def self.matches?(request)
+    subdomains = %w( www admin )
+    request.subdomain.present? && !subdomains.include?(request.subdomain)
   end
+end
 
-  class MaindomainConstraint
-    def self.matches?(request)
-      subdomains = %w( www admin )
-      !request.subdomain.present? || subdomains.include?(request.subdomain)
-    end
+class MaindomainConstraint
+  def self.matches?(request)
+    subdomains = %w( www admin )
+    !request.subdomain.present? || subdomains.include?(request.subdomain)
   end
+end
+
+
 
 Rails.application.routes.draw do
+ 
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    registrations:'users/registrations',
+    unlocks:'users/unlocks',
+    omniauth:'users/omniauths'
+  }
+  get 'profiles/index'
+  root 'profiles#index', as: :authenticate_root 
+
   constraints SubdomainConstraint do
-    devise_for :users
-    authenticated :user do
-      root 'weeks#index', as: :weeks_auth_root
-    end
     root 'pages#show', as: :week_root
   end
 
