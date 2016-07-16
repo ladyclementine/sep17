@@ -9177,6 +9177,7 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
 
 
+<<<<<<< HEAD
 
 
 Started GET "/" for 127.0.0.1 at 2016-07-15 21:48:45 -0300
@@ -9185,6 +9186,264 @@ Processing by ProfilesController#index as HTML
   [1m[35mUser Load (1.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
   Rendered profiles/index.html.erb within layouts/application (0.8ms)
 Completed 200 OK in 3639ms (Views: 3420.4ms | ActiveRecord: 4.0ms)
+=======
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddConfirmableToDevise (20160711214808)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (33.0ms)[0m  [1mALTER TABLE "users" ADD "confirmation_token" character varying[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "confirmed_at" timestamp
+  [1m[36m (8.5ms)[0m  [1mALTER TABLE "users" ADD "confirmation_sent_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "unconfirmed_email" character varying
+  [1m[36m (46.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35mSQL (14.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160711214808"]]
+  [1m[36m (15.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSchedules (20160716002424)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (39.2ms)[0m  [1mCREATE TABLE "schedules" ("id" serial primary key, "start_time" timestamp, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160716002424"]]
+  [1m[36m (16.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admins'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admins_weeks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'schedules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'weeks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (0.3ms)[0m  SELECT "public"."weeks"."subdomain" FROM "public"."weeks"
+  [1m[36m (0.2ms)[0m  [1mSELECT "public"."weeks"."subdomain" FROM "public"."weeks"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to AddConfirmableToDevise (20160711214808)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (13.4ms)[0m  ALTER TABLE "users" ADD "confirmation_token" character varying
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "confirmed_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "confirmation_sent_at" timestamp
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "unconfirmed_email" character varying[0m
+  [1m[35m (37.0ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160711214808"]]
+  [1m[35m (17.8ms)[0m  COMMIT
+Migrating to CreateSchedules (20160716002424)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (41.5ms)[0m  CREATE TABLE "schedules" ("id" serial primary key, "start_time" timestamp, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160716002424"]]
+  [1m[35m (18.8ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddConfirmableToDevise (20160711214808)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD "confirmation_token" character varying[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "confirmed_at" timestamp
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "confirmation_sent_at" timestamp[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "unconfirmed_email" character varying
+  [1m[36m (44.4ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160711214808"]]
+  [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSchedules (20160716002424)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (51.7ms)[0m  [1mCREATE TABLE "schedules" ("id" serial primary key, "start_time" timestamp, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160716002424"]]
+  [1m[36m (16.9ms)[0m  [1mCOMMIT[0m
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (121.9ms)[0m  CREATE TABLE "admins" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (47.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_admins_on_email" ON "admins" USING btree ("email")[0m
+  [1m[35m (48.7ms)[0m  CREATE UNIQUE INDEX  "index_admins_on_reset_password_token" ON "admins" USING btree ("reset_password_token")
+  [1m[36m (7.3ms)[0m  [1mCREATE TABLE "admins_weeks" ("week_id" integer, "admin_id" integer) [0m
+  [1m[35m (51.9ms)[0m  CREATE TABLE "schedules" ("id" serial primary key, "start_time" timestamp, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (104.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying) [0m
+  [1m[35m (49.2ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users" USING btree ("confirmation_token")
+  [1m[36m (61.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (48.0ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (96.0ms)[0m  [1mCREATE TABLE "weeks" ("id" serial primary key, "name" character varying, "subdomain" character varying, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (57.9ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (59.8ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.9ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160716002424')[0m
+  [1m[35m (10.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160709192933')
+  [1m[36m (10.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160709192436')[0m
+  [1m[35m (9.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160709221400')
+  [1m[36m (10.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160709204913')[0m
+  [1m[35m (10.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160711214808')
+  [1m[36mSQL (0.7ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (96.5ms)[0m  CREATE TABLE "admins" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (71.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_admins_on_email" ON "admins" USING btree ("email")[0m
+  [1m[35m (47.1ms)[0m  CREATE UNIQUE INDEX  "index_admins_on_reset_password_token" ON "admins" USING btree ("reset_password_token")
+  [1m[36m (7.2ms)[0m  [1mCREATE TABLE "admins_weeks" ("week_id" integer, "admin_id" integer) [0m
+  [1m[35m (50.6ms)[0m  CREATE TABLE "schedules" ("id" serial primary key, "start_time" timestamp, "end_time" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (135.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying) [0m
+  [1m[35m (47.2ms)[0m  CREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users" USING btree ("confirmation_token")
+  [1m[36m (58.7ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (48.2ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (107.1ms)[0m  [1mCREATE TABLE "weeks" ("id" serial primary key, "name" character varying, "subdomain" character varying, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (40.0ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (59.5ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (1.0ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (7.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160716002424')[0m
+  [1m[35m (10.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160709192933')
+  [1m[36m (9.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160709192436')[0m
+  [1m[35m (9.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160709221400')
+  [1m[36m (10.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160709204913')[0m
+  [1m[35m (10.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160711214808')
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  SELECT "public"."weeks"."subdomain" FROM "public"."weeks"
+  [1m[36m (0.4ms)[0m  [1mSELECT "public"."weeks"."subdomain" FROM "public"."weeks"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (7.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admins'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (6.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'admins_weeks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (6.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'schedules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'weeks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (0.4ms)[0m  SELECT "public"."weeks"."subdomain" FROM "public"."weeks"
+  [1m[36m (0.3ms)[0m  [1mSELECT "public"."weeks"."subdomain" FROM "public"."weeks"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:48:01 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProfilesController#index as HTML
+Completed 401 Unauthorized in 124ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-07-15 21:48:02 -0300
+Processing by Users::SessionsController#new as HTML
+  Rendered users/shared/_links.html.erb (2.0ms)
+  Rendered users/sessions/new.html.erb within layouts/application (42.1ms)
+Completed 200 OK in 1781ms (Views: 1757.3ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-07-15 21:48:08 -0300
+Processing by Users::RegistrationsController#new as HTML
+  Rendered users/shared/_links.html.erb (0.6ms)
+  Rendered users/registrations/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 68ms (Views: 66.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2016-07-15 21:48:20 -0300
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"R3XWCjbJIN0NezAm7iMBsDE/H+Zay1q8ED5ynGij/8yQfpEnoWEF5dszjSduYSzsyuqqVBCD2PecdvgugasVGA==", "user"=>{"email"=>"rodrigotnoronha@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'rodrigotnoronha@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "rodrigotnoronha@gmail.com"], ["encrypted_password", "$2a$11$ZHAZ8X/ZGwFHRrbvsNYNteaNOsCqIhKhOSYAOjJMdTarTqfB7Njj."], ["created_at", "2016-07-16 00:48:21.241858"], ["updated_at", "2016-07-16 00:48:21.241858"]]
+  [1m[36m (21.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["last_sign_in_at", "2016-07-16 00:48:21.269181"], ["current_sign_in_at", "2016-07-16 00:48:21.269181"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-07-16 00:48:21.270469"], ["id", 1]]
+  [1m[35m (5.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 511ms (ActiveRecord: 29.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:48:21 -0300
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered profiles/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 82ms (Views: 78.0ms | ActiveRecord: 0.4ms)
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 ActionController::RoutingError (No route matches [GET] "/assets/images/users/avatar-1.jpg"):
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
@@ -9213,9 +9472,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/images/users/ava
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9246,9 +9511,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9279,9 +9550,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9312,18 +9589,32 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
 
+<<<<<<< HEAD
 Started GET "/" for 127.0.0.1 at 2016-07-15 21:48:52 -0300
 Processing by ProfilesController#index as HTML
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
   Rendered profiles/index.html.erb within layouts/application (0.0ms)
 Completed 200 OK in 33ms (Views: 32.1ms | ActiveRecord: 0.1ms)
+=======
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:52:35 -0300
+Processing by ProfilesController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered profiles/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 92ms (Views: 87.9ms | ActiveRecord: 0.5ms)
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 ActionController::RoutingError (No route matches [GET] "/assets/images/users/avatar-1.jpg"):
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
@@ -9352,9 +9643,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/images/users/ava
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9385,9 +9682,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9418,9 +9721,15 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
@@ -9451,13 +9760,20 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
 
+<<<<<<< HEAD
 Started GET "/" for 127.0.0.1 at 2016-07-15 22:15:11 -0300
 Processing by ProfilesController#index as HTML
   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
@@ -9465,6 +9781,11 @@ Processing by ProfilesController#index as HTML
 Completed 200 OK in 43ms (Views: 41.4ms | ActiveRecord: 0.1ms)
 
 ActionController::RoutingError (No route matches [GET] "/assets/images/users/avatar-1.jpg"):
+=======
+Started GET "/index.html" for 127.0.0.1 at 2016-07-15 21:52:43 -0300
+
+ActionController::RoutingError (No route matches [GET] "/index.html"):
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
   rack-contrib (1.4.0) lib/rack/contrib/response_headers.rb:17:in `call'
   meta_request (0.4.0) lib/meta_request/middlewares/headers.rb:16:in `call'
@@ -9491,6 +9812,7 @@ ActionController::RoutingError (No route matches [GET] "/assets/images/users/ava
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
@@ -9498,6 +9820,31 @@ ActionController::RoutingError (No route matches [GET] "/assets/images/users/ava
 
 
 ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-Design-Iconic-Font.woff2"):
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (30.0ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (16.9ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (33.5ms)
+
+
+Started GET "/index.html" for 127.0.0.1 at 2016-07-15 21:52:43 -0300
+
+ActionController::RoutingError (No route matches [GET] "/index.html"):
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
   rack-contrib (1.4.0) lib/rack/contrib/response_headers.rb:17:in `call'
   meta_request (0.4.0) lib/meta_request/middlewares/headers.rb:16:in `call'
@@ -9524,11 +9871,32 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
 
 
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.9ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (29.2ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (16.5ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /home/rodrigotnoronha/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (33.7ms)
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-Design-Iconic-Font.woff"):
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
@@ -9557,6 +9925,7 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
@@ -9564,6 +9933,22 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
 
 
 ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-Design-Iconic-Font.ttf"):
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:54:30 -0300
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered profiles/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 579ms (Views: 576.3ms | ActiveRecord: 0.3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/users/avatar-1.jpg"):
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
   rack-contrib (1.4.0) lib/rack/contrib/response_headers.rb:17:in `call'
   meta_request (0.4.0) lib/meta_request/middlewares/headers.rb:16:in `call'
@@ -9590,13 +9975,20 @@ ActionController::RoutingError (No route matches [GET] "/assets/fonts/Material-D
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
 
 
 
 
+<<<<<<< HEAD
 Started GET "/" for 127.0.0.1 at 2016-07-15 22:15:31 -0300
 Processing by ProfilesController#index as HTML
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
@@ -9607,6 +9999,15 @@ Completed 200 OK in 37ms (Views: 35.1ms | ActiveRecord: 0.1ms)
 Started GET "/images/users/avatar-1.jpg" for 127.0.0.1 at 2016-07-15 22:15:31 -0300
 
 ActionController::RoutingError (No route matches [GET] "/images/users/avatar-1.jpg"):
+=======
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:55:06 -0300
+Processing by ProfilesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered profiles/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 69ms (Views: 65.8ms | ActiveRecord: 0.3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/images/users/avatar-1.jpg"):
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
   actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
   rack-contrib (1.4.0) lib/rack/contrib/response_headers.rb:17:in `call'
   meta_request (0.4.0) lib/meta_request/middlewares/headers.rb:16:in `call'
@@ -9633,6 +10034,7 @@ ActionController::RoutingError (No route matches [GET] "/images/users/avatar-1.j
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+<<<<<<< HEAD
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
   /usr/local/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
   /usr/local/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
@@ -9707,3 +10109,17 @@ ActionController::RoutingError (No route matches [GET] "/images/avatar-1.jpg"):
   Rendered /usr/local/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
   Rendered /usr/local/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
   Rendered /usr/local/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (24.6ms)
+=======
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/rodrigotnoronha/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-15 21:56:14 -0300
+Processing by ProfilesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered profiles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 81ms (Views: 76.4ms | ActiveRecord: 0.7ms)
+>>>>>>> 090cfcb96fd7c2c0c515e422a6b431cdb194e578
