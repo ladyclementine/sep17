@@ -7,9 +7,5 @@ class PagesController < ApplicationController
 
   def show
   end
-
-  private
-  def set_current_week
-    @current_week = Week.find_by(subdomain: Apartment::Tenant.current)
-  end
+  
 end
