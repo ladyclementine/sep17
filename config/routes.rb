@@ -14,27 +14,28 @@ end
 
 
 
-Rails.application.routes.draw do
- 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    confirmations: 'users/confirmations',
-    passwords: 'users/passwords',
-    registrations:'users/registrations',
-    unlocks:'users/unlocks',
-    omniauth:'users/omniauths'
-  }
-  get 'profiles/index'
-  root 'profiles#index', as: :authenticate_root 
+Rails.application.routes.draw do 
 
+  resources :events
+  resources :tests
+  resources :tests
+  resources :tests
   constraints SubdomainConstraint do
     root 'pages#show', as: :week_root
   end
 
   constraints MaindomainConstraint do
     devise_for :admins
+    devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      confirmations: 'users/confirmations',
+      passwords: 'users/passwords',
+      registrations:'users/registrations'
+    }
+    get 'profiles/index'
+    root 'profiles#index', as: :authenticate_root
     resources :weeks
-    root 'pages#index'
+      root 'pages#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

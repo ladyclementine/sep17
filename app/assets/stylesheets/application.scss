@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree ./core
+ *= require_tree ./plugins
  *= require_self
  */
 @import "font-awesome-sprockets";

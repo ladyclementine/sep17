@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that'll be compiled into application, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -13,4 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree ./core
+//= require core/bootstrap
+//= require plugins/datatables/jquery.dataTables.min
+//= require plugins/datatables/dataTables.bootstrap
+//= require plugins/datatables/dataTables.buttons.min
+//= require plugins/datatables/buttons.bootstrap.min
+//= require plugins/datatables/jszip.min
+//= require plugins/datatables/vfs_fonts
+//= require plugins/datatables/buttons.html5.min
+//= require plugins/datatables/buttons.print.min
+//= require plugins/datatables/dataTables.fixedHeader.min
+//= require plugins/datatables/dataTables.keyTable.min
+//= require plugins/datatables/dataTables.responsive.min
+//= require plugins/datatables/responsive.bootstrap.min
+//= require plugins/datatables/dataTables.scroller.min
+
+jQuery(window).bind("load", function() {
+  $('#datatable').dataTable();
+
+  console.log(window + "Load!");
+});
