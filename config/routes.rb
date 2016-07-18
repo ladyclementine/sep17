@@ -16,12 +16,8 @@ end
 
 Rails.application.routes.draw do 
 
-  resources :events
-  resources :tests
-  resources :tests
-  resources :tests
   constraints SubdomainConstraint do
-    root 'pages#show', as: :week_root
+    root 'pages#show', as: :week_subdomain_root
   end
 
   constraints MaindomainConstraint do
@@ -33,9 +29,14 @@ Rails.application.routes.draw do
       registrations:'users/registrations'
     }
     get 'profiles/index'
-    root 'profiles#index', as: :authenticate_root
-    resources :weeks
-      root 'pages#index'
+    # root 'profiles#index', as: :authenticate_root
+    
+    authenticate :admin do
+      resources :weeks
+      resources :events
+    end
+
+    root 'pages#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
