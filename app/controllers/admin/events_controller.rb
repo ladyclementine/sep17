@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
   before_action :set_current_week
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 

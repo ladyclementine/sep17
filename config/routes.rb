@@ -21,19 +21,38 @@ Rails.application.routes.draw do
   end
 
   constraints MaindomainConstraint do
-    devise_for :admins
+
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       confirmations: 'users/confirmations',
       passwords: 'users/passwords',
       registrations:'users/registrations'
     }
-    get 'profiles/index'
-    # root 'profiles#index', as: :authenticate_root
-    
-    authenticate :admin do
-      resources :weeks
-      resources :events
+    authenticate :user do
+      root 'profiles#index', as: :authenticated_user_root
+    end
+
+    namespace :admin do
+      devise_for :devise, controllers: {
+        sessions: 'devise/sessions',
+        confirmations: 'devise/confirmations',
+        passwords: 'devise/passwords',
+        registrations:'devise/registrations'
+      },
+      path: 'auth',
+      path_names: {
+        sign_in: 'login',
+        sign_out: 'logout',
+        password: 'secret',
+        confirmation: 'verification',
+        unlock: 'unblock',
+        registration: 'register',
+        sign_up: 'registration'
+     }
+      authenticate :admin do
+        resources :weeks
+        resources :events
+      end
     end
 
     root 'pages#index'
