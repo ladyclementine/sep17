@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
- <title>SemanaDeTecnologia</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-        
+        <title>SemanaDeTecnologia</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
     </head>
     <body>
-
-
         <div class="account-pages"></div>
         <div class="clearfix"></div>
         <div class="wrapper-page">
@@ -17,24 +14,28 @@
                 <a href="index.html" class="logo"><span>LOGO<span></span></span></a>
                 <h5 class="text-muted m-t-0 font-600">SEMANA DO FULANO</h5>
             </div>
-          <div class="m-t-40 card-box">
+            <div class="m-t-40 card-box">
                 <div class="text-center">
-                    <h4 class="text-uppercase font-bold m-b-0">Entrar</h4>
-                    <h5>  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <%- end -%>  </h3>
+                    
+                    <h5>
+                        <%- flash.each do |name, msg| -%>
+                        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                        <%- end -%>  
+                    </h5>
                 </div>
-
-                <%= yield %>
-
-           </div>
-
+                <div class="panel-body">
+                    <%= yield %>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p class="text-muted">Não tem cadastro?   <%= link_to "Inscreva-se", {controller: "registrations", action: "new"}, class: "text-primary m-l-5" %></p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      <script>
+        <script>
             var resizefunc = [];
         </script>
-
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
@@ -46,9 +47,8 @@
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/jquery.nicescroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
-
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
-  </body>
+    </body>
 </html>
