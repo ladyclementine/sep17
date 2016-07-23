@@ -59,10 +59,9 @@ Rails.application.routes.draw do
       authenticated :admin_admin do
         resources :weeks
         resources :events
-
-        root 'events#index', as: :authenticated_root
       end
-      
+
+      root 'events#index'
     end
 
     root 'pages#index'
