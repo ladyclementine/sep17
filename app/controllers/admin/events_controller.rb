@@ -1,6 +1,4 @@
-class Admin::Admin::EventsController < ApplicationController
-  before_action :authenticate_admin_admin!
-  # before_action :set_current_week
+class Admin::EventsController < Admin::BaseController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   # GET /events
   def index
