@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require core/bootstrap
+//= require core/jquery.app
 //= require plugins/datatables/jquery.dataTables.min
 //= require plugins/datatables/dataTables.bootstrap
 //= require plugins/datatables/dataTables.buttons.min
@@ -30,6 +31,4 @@
 
 jQuery(window).bind("load", function() {
   $('#datatable').dataTable();
-
-  console.log(window + "Load!");
 });
