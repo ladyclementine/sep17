@@ -1,10 +1,10 @@
-class Admin::EventsController < ApplicationController
-  before_action :set_current_week
+class Admin::Admin::EventsController < ApplicationController
+  before_action :authenticate_admin_admin!
+  # before_action :set_current_week
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
   # GET /events
   def index
-    @events = Event.all
+    @events = Admin::Event.all
   end
 
   # GET /events/1
@@ -13,7 +13,7 @@ class Admin::EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @event = Admin::Event.new
   end
 
   # GET /events/1/edit
@@ -22,10 +22,10 @@ class Admin::EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+    @event = Admin::Event.new(event_params)
 
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      redirect_to @event, notice: 'Admin::Event was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::EventsController < ApplicationController
   # PATCH/PUT /events/1
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: 'Admin::Event was successfully updated.'
     else
       render :edit
     end
@@ -43,13 +43,13 @@ class Admin::EventsController < ApplicationController
   # DELETE /events/1
   def destroy
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_url, notice: 'Admin::Event was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      @event = Admin::Event.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

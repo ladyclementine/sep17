@@ -12,7 +12,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="m-b-30">
-                  <%= link_to(new_event_path, class:'btn btn-primary waves-effect waves-light') do %>
+                  <%= link_to(new_admin_event_path, class:'btn btn-primary waves-effect waves-light') do %>
                     New Event <i class="fa fa-plus"></i>
                   <% end %>
                 </div>
@@ -37,9 +37,9 @@
                                         <td><%= event.description %></td>
                                         <td><%= event.facilitator %></td>
                                         <td class="actions">
-                      <%= link_to 'Show', event %>
-                      <%= link_to 'Edit', edit_event_path(event) %>
-                      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <%= link_to 'Show', admin_event_path(event) %>
+                      <%= link_to 'Edit', edit_admin_event_path(event) %>
+                      <%= link_to 'Destroy', admin_event_path(event), method: :delete, data: { confirm: 'Are you sure?' } %>
                     </td>
                   </tr>
                   <% end %>

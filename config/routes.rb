@@ -12,9 +12,7 @@ class MaindomainConstraint
   end
 end
 
-
-
-Rails.application.routes.draw do 
+Rails.application.routes.draw do
 
   constraints SubdomainConstraint do
     root 'pages#show', as: :week_subdomain_root
@@ -27,19 +25,28 @@ Rails.application.routes.draw do
       confirmations: 'users/confirmations',
       passwords: 'users/passwords',
       registrations:'users/registrations'
+    },
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      password: 'secret',
+      confirmation: 'verification',
+      unlock: 'unblock',
+      registration: 'register',
+      sign_up: 'registration'
     }
-    authenticate :user do
+    authenticated :user do
       root 'profiles#index', as: :authenticated_user_root
     end
 
     namespace :admin do
-      devise_for :devise, controllers: {
+      devise_for :admin, controllers: {
         sessions: 'devise/sessions',
         confirmations: 'devise/confirmations',
         passwords: 'devise/passwords',
         registrations:'devise/registrations'
       },
-      path: 'auth',
+      path: '',
       path_names: {
         sign_in: 'login',
         sign_out: 'logout',
@@ -48,11 +55,14 @@ Rails.application.routes.draw do
         unlock: 'unblock',
         registration: 'register',
         sign_up: 'registration'
-     }
-      authenticate :admin do
+      }
+      authenticated :admin_admin do
         resources :weeks
         resources :events
+
+        root 'events#index', as: :authenticated_root
       end
+      
     end
 
     root 'pages#index'
