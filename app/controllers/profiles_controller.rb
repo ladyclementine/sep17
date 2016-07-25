@@ -8,8 +8,8 @@ class ProfilesController < ApplicationController
   end
 
   def week
-@user = current_user
-  end
+    @user = current_user
+   end
 
   def weekUser
   end
