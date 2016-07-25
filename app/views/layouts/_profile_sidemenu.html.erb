@@ -9,8 +9,11 @@
             <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-view-list"></i> <span> Minha semana </span> </span></a>
         </li>
         <li>
-            <a href="calendar.html" class="waves-effect"><i class="zmdi zmdi-calendar"></i><span> Programação </span></a>
+           <%= link_to "Esqueceu a senha?", {controller: "profiles", action: "week"}, class: "waves-effect" do %>
+               <i class = "zmdi zmdi-calendar"></i>
+            <% end -%>
         </li>
+
         <li>
             <a href="inbox.html" class="waves-effect"><i class="zmdi zmdi-email"></i><span class="label label-purple pull-right">New</span><span> Mail </span></a>
         </li>

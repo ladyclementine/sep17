@@ -1,5 +1,7 @@
 
 <h4 class="text-uppercase text-center font-bold m-b-0">Esqueceu a senha ?</h4>
+
+
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal m-t-20'}, html: { method: :post }) do |f| %>
 <%= devise_error_messages! %>
 <div class="field">
