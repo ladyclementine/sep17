@@ -42,7 +42,7 @@ jQuery(window).bind("load", function() {
   $('#datatable').dataTable();
 
   var openLeftBtn = $(".open-left");
-
+  var menuItem = $("#sidebar-menu a");
   function openLeftBar() {
     $("#wrapper").toggleClass("enlarged");
     $("#wrapper").addClass("forced");
@@ -66,9 +66,38 @@ jQuery(window).bind("load", function() {
       $('.slimscrollleft').getNiceScroll().resize();
     }
   }
+
+  function menuItemClick() {
+    if (!$("#wrapper").hasClass("enlarged")) {
+      if ($(this).parent().hasClass("has_sub")) {}
+      if (!$(this).hasClass("subdrop")) {
+        // hide any open menus and remove all other classes
+        $("ul", $(this).parents("ul:first")).slideUp(350);
+        $("a", $(this).parents("ul:first")).removeClass("subdrop");
+        $("#sidebar-menu .pull-right i").removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+        // open our new menu and add the open class
+        $(this).next("ul").slideDown(350);
+        $(this).addClass("subdrop");
+        $(".drop-arrow i", $(this).parents(".has_sub:first")).removeClass("zmdi-chevron-right").addClass("zmdi-chevron-down");
+        $(".drop-arrow i", $(this).siblings("ul")).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+      } else if ($(this).hasClass("subdrop")) {
+        $(this).removeClass("subdrop");
+        $(this).next("ul").slideUp(350);
+        $(".drop-arrow i", $(this).parent()).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+      }
+    }
+    $('.slimscrollleft').getNiceScroll().resize();
+  }
   openLeftBtn.on("click", function (e) {
     openLeftBar();
   });
+  menuItem.on("click", function (e) {
+    console.log("Item clicado!")
+    menuItemClick();
+  });
+
+  $("#sidebar-menu ul li.has_sub a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
+
 });
 
 var resizefunc = [];
