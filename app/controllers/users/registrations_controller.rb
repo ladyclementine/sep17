@@ -1,6 +1,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   
   layout 'devise_layout'
+
+
+
+
+   before_filter :configure_sign_up_params, only: [:create]
+
+  protected
+
+  def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :course, :semester, :birthday, :university])
+  end
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 

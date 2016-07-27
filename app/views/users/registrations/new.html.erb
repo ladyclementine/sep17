@@ -62,9 +62,12 @@
 
 <div class="form-group text-center m-t-30">
     <div class="col-xs-12">
+
         <%= button_tag "cadastrar!", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", type:"submit"  %>
     </div>
 </div>
+
+<% end %>
 <div class="row">
     <div class="col-sm-12 text-center">
         <p class="text-muted">Já tem cadastro?   <%= link_to "Log in", {controller: "sessions", action: "new"}, class: "text-primary m-l-5" %></p>
@@ -72,6 +75,6 @@
 </div>
 
   
-<% end %>
+
 
 
