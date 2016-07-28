@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
 	
   def index
   	@user = current_user
+    @events = Event.all
+    #@events = @week.events.order("vari[avel horario")-TROCAR DEPOIS
   end
 
   def week

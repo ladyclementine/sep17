@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724144750) do
+ActiveRecord::Schema.define(version: 20160728150646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,14 +45,21 @@ ActiveRecord::Schema.define(version: 20160724144750) do
     t.string   "facilitator"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "week_id"
+    t.string   "type"
   end
+
+  add_index "events", ["week_id"], name: "index_events_on_week_id", using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "event_id"
   end
+
+  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -91,4 +98,6 @@ ActiveRecord::Schema.define(version: 20160724144750) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "events", "weeks"
+  add_foreign_key "schedules", "events"
 end
