@@ -1,0 +1,8 @@
+
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <% @eventsDays.each do |days| %>
+        <li>
+            <a href="#<%= days %>" class="waves-effect waves-custom"class="waves-effect waves-custom" data-toggle="tab"> <%= days %> </a></li>
+        <% end %>  
+    </ul>
+    
