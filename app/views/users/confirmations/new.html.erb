@@ -1,6 +1,6 @@
-<h2>Resend confirmation instructions</h2>
+<h2>Enviar confimarção!</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, html: {class: 'form-horizontal m-t-20'}) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -9,7 +9,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+    <%= f.submit "Reenviar instruções para o email acima!" %>
   </div>
 <% end %>
 

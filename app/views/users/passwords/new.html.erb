@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<h4 class="text-uppercase text-center font-bold m-b-0">Esqueceu a senha ?</h4>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal m-t-20'}, html: { method: :post }) do |f| %>
+<%= devise_error_messages! %>
+<div class="field">
+    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+</div>
+<h6>Digite seu email para solicitar recuperação de senha</h6>
+<div class="form-group text-center m-t-30">
+    <div class="col-xs-12">
+        <%= button_tag "Recuperar senha!", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", type:"submit"  %>
+    </div>
+</div>
+<div class="form-group m-t-30 m-b-0">
+    <div class="col-sm-12">
+        <p class="text-muted"> <%= link_to "Log in", {controller: "sessions", action: "new"}, class: "text-primary m-l-5" %></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <p class="text-muted">Não tem cadastro?   <%= link_to "Inscreva-se", {controller: "registrations", action: "new"}, class: "text-primary m-l-5" %></p>
+    </div>
+</div>
 <% end %>
-
-<%= render "users/shared/links" %>
