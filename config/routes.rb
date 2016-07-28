@@ -12,28 +12,58 @@ class MaindomainConstraint
   end
 end
 
-
-
 Rails.application.routes.draw do
- 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    confirmations: 'users/confirmations',
-    passwords: 'users/passwords',
-    registrations:'users/registrations',
-    unlocks:'users/unlocks',
-    omniauth:'users/omniauths'
-  }
-  get 'profiles/index'
-  root 'profiles#index', as: :authenticate_root 
 
   constraints SubdomainConstraint do
-    root 'pages#show', as: :week_root
+    root 'pages#show', as: :week_subdomain_root
   end
 
   constraints MaindomainConstraint do
-    devise_for :admins
-    resources :weeks
+
+    devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      confirmations: 'users/confirmations',
+      passwords: 'users/passwords',
+      registrations:'users/registrations'
+    },
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      password: 'secret',
+      confirmation: 'verification',
+      unlock: 'unblock',
+      registration: 'register',
+      sign_up: 'registration'
+    }
+    authenticated :user do
+      root 'profiles#index', as: :authenticated_user_root
+    end
+
+    namespace :admin do
+      devise_for :admin, controllers: {
+        sessions: 'devise/sessions',
+        confirmations: 'devise/confirmations',
+        passwords: 'devise/passwords',
+        registrations:'devise/registrations'
+      },
+      path: '',
+      path_names: {
+        sign_in: 'login',
+        sign_out: 'logout',
+        password: 'secret',
+        confirmation: 'verification',
+        unlock: 'unblock',
+        registration: 'register',
+        sign_up: 'registration'
+      }
+      authenticated :admin_admin do
+        resources :weeks
+        resources :events
+      end
+
+      root 'events#index'
+    end
+
     root 'pages#index'
   end
 

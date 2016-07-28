@@ -1,0 +1,38 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left side-menu">
+  <div class="sidebar-inner slimscrollleft">
+    <!-- User -->
+    <div class="user-box">
+      <h5><%= current_admin_admin.email %></h5>
+      <ul class="list-inline">
+        <li>
+          <a href="#" >
+            <i class="zmdi zmdi-settings"></i>
+          </a>
+        </li>
+        <li>
+          <%= link_to destroy_admin_admin_session_path, method: :delete do%>
+            <i class="zmdi zmdi-power"></i>
+          <% end %>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End User -->
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <ul>
+        <li class="text-muted menu-title">Navegação</li>
+        <li>
+          <%= link_to admin_events_path do %>
+            <i class="zmdi zmdi-view-dashboard"></i> <span> Eventos </span>
+          <% end %>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <!-- Sidebar -->
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!-- Left Sidebar End -->

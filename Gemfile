@@ -40,24 +40,10 @@ gem 'cancancan'
 
 gem 'pg'
 
+gem 'thin'
+
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'rspec-rails', '~> 3.4'
-  gem 'factory_girl_rails'
-
-end
-
-group :test do
-  gem 'faker'
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'launchy'
-  gem 'shoulda-matchers', '~> 3.1'
-end
-
-
-group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -71,6 +57,23 @@ group :development do
   gem 'quiet_assets'
 
   gem 'meta_request'
+
+  gem 'faker'
+
+  gem 'capybara'
+  
+  gem 'guard-rspec'
+  
+  gem 'launchy'
+  
+  gem 'shoulda-matchers', '~> 3.1'
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  gem 'rspec-rails', '~> 3.4'
+  
+  gem 'factory_girl_rails'
 end
 
 group :production do

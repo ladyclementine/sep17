@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Semana de Tecnologia</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag params[:controller], 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body class="fixed-left">
+    <div id="wrapper">
+      <%= render 'admin/topbar' %>
+      <%= render 'admin/sidemenu' %> 
+      <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+          <div class="container">     
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
