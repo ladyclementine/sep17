@@ -1,14 +1,21 @@
 
-    <div >
-      <ul class="tabs" class="nav nav-tabs" data-tabs="tabs">
-       <li class="tab col s3"><a class="waves-effect waves-custom" href="#d">oi</a></li>
-      <% @eventsDays.each do |days|%>
-        <li class="tab col s3"><a class="waves-effect waves-custom" href="#<%=days%>"><%= days %></a></li>
-                
-        <%end%>
-      </ul>
+ <div id="content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+
+        <li><a href="#as"class="waves-effect waves-custom" data-toggle="tab">Programação</a></li>
+        <li><a href="#green"class="waves-effect waves-custom" data-toggle="tab">Palestras</a></li>
+       
+    </ul>
+    <div id="my-tab-content" class="tab-content">
+       
+        <div class="tab-pane fade" id="as">
+           <p>fghhghgf<p>
+ 
+        </div>
+      
+        <div class="tab-pane fade" id="green">
+            <h1>Blue</h1>
+            <p>blue blue blue blue blue</p>
+        </div>
     </div>
-    <% @eventsDays.each do |days|%>
-    <div id="<%=days%>" class="col s12">Test 1</div>
-    <%end %>
-     <div id="d" class="col s12">Test 3</div>    
+</div>
