@@ -1,18 +1,19 @@
 
  <div id="content">
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-
-        <li><a href="#as"class="waves-effect waves-custom" data-toggle="tab">Programação</a></li>
+          <% @eventsDays.each do |days| %> 
+        <li><a href="#<%=days%>"class="waves-effect waves-custom" data-toggle="tab"><%=days%></a></li>
+         <% end -%>
         <li><a href="#green"class="waves-effect waves-custom" data-toggle="tab">Palestras</a></li>
        
     </ul>
     <div id="my-tab-content" class="tab-content">
-       
-        <div class="tab-pane fade" id="as">
+       <% @eventsDays.each do |days| %> 
+        <div class="tab-pane fade" id="<%=days%>">
            <p>fghhghgf<p>
  
         </div>
-      
+      <% end -%>
         <div class="tab-pane fade" id="green">
             <h1>Blue</h1>
             <p>blue blue blue blue blue</p>
