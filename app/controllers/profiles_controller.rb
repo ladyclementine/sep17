@@ -8,7 +8,8 @@ class ProfilesController < ApplicationController
     @events = Event.all
     @eventsDays = Event.days
     @eventsHash = Event.appointments
-    #@events = @week.events.order("vari[avel horario")-TROCAR DEPOIS
+
+   
   end
 
   def week

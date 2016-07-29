@@ -1,53 +1,55 @@
 
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
                     <div class="container">
 
-                        <!-- SECTION FILTER
-                        ================================================== -->
-                      
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="timeline">
 
- <div id="content">
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-        <li class="active"><a class="waves-effect waves-custom"href="#red" data-toggle="tab">Bem-vindo!</a></li>
-        <li><a href="#prog"class="waves-effect waves-custom" data-toggle="tab">Programação</a></li>
-        <li><a href="#yellow"class="waves-effect waves-custom" data-toggle="tab">Mini-cursos</a></li>
-        <li><a href="#g"class="waves-effect waves-custom"class="waves-effect waves-custom" data-toggle="tab">Palestras</a></li>
-       
-    </ul>
-    <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active fade in" id="red">
-           
-        </div>
-        <div class="tab-pane fade" id="prog">
-           <%=render 'profiles/prog'%>
- 
-        </div>
-        <div class="tab-pane fade" id="yellow">
-             <%=render 'profiles/workshops'%>
-        </div>
-        <div class="tab-pane fade" id="g">
-             <%=render 'profiles/palestras'%>
-        </div>
-        <div class="tab-pane fade" id="blue">
-            <h1>Blue</h1>
-            <p>blue blue blue blue blue</p>
-        </div>
-    </div>
-</div>
+                                <% @eventsDays.each do |days| %>
+                                    <article class="timeline-item alt">
+                                        <div class="text-right">
+                                            <div class="time-show first">
+                                                <a href="#" class="btn btn-custom w-lg"><%= days %></a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                     <% @eventsHash[days].each do |events| %>
+                                    <article class="timeline-item alt">
+                                        <div class="timeline-desk">
+                                            <div class="panel">
+                                                <div class="panel-body">
+                                                    <span class="arrow-alt"></span>
+                                                    <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
+                                                    <h4 class="text-danger">1 hour ago</h4>
+                                                    <p class="timeline-date text-muted"><small><%=events.start_time%></small></p>
+                                                    <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                      <% end %>
+                                    <% end %>
 
-   
-           
-                       </div>
-               
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
 
-                <footer class="footer text-right">
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
                     2016 © Adminto.
                 </footer>
 
             </div>
-
-
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
 
 

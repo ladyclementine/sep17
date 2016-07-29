@@ -23,21 +23,19 @@ class Event < ActiveRecord::Base
       days = self.days
       events = []
 
-      days.each do |day| 
-         self.all.each do |event|
-            event.schedules.each do |schedule|
-                events << event if day == schedule.start_time.to_date
-
-         end
-      end 
-      eventsDay[day] = events
+      days.each do |day|
+        self.all.each do |event|
+          event.schedules.each do |schedule|
+            events << schedule if day == schedule.start_time.to_date
+          end
+        end
+        eventsDay[day] = events
       end
+      eventsDay
       
-      eventsDay 
+        
    end
-
-
-
+  
 
 
    #retorna os horários em ordem 
