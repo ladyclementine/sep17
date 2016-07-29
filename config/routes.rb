@@ -35,30 +35,31 @@ Rails.application.routes.draw do
       registration: 'register',
       sign_up: 'registration'
     }
+    devise_for :admin, controllers: {
+      sessions: 'admin/devise/sessions',
+      confirmations: 'admin/devise/confirmations',
+      passwords: 'admin/devise/passwords',
+      registrations:'admin/devise/registrations'
+    },
+    path: 'admin',
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      password: 'secret',
+      confirmation: 'verification',
+      unlock: 'unblock',
+      registration: 'register',
+      sign_up: 'registration'
+    }
     authenticated :user do
       root 'profiles#index', as: :authenticated_user_root
     end
 
     namespace :admin do
-      devise_for :admin, controllers: {
-        sessions: 'devise/sessions',
-        confirmations: 'devise/confirmations',
-        passwords: 'devise/passwords',
-        registrations:'devise/registrations'
-      },
-      path: '',
-      path_names: {
-        sign_in: 'login',
-        sign_out: 'logout',
-        password: 'secret',
-        confirmation: 'verification',
-        unlock: 'unblock',
-        registration: 'register',
-        sign_up: 'registration'
-      }
-      authenticated :admin_admin do
+      authenticated :admin do
         resources :weeks
         resources :events
+        resources :packages 
       end
 
       root 'events#index'

@@ -3,7 +3,7 @@
   <div class="sidebar-inner slimscrollleft">
     <!-- User -->
     <div class="user-box">
-      <h5><%= current_admin_admin.email %></h5>
+      <h5><%= current_admin.email %></h5>
       <ul class="list-inline">
         <li>
           <a href="#" >
@@ -11,7 +11,7 @@
           </a>
         </li>
         <li>
-          <%= link_to destroy_admin_admin_session_path, method: :delete do%>
+          <%= link_to destroy_admin_session_path, method: :delete do%>
             <i class="zmdi zmdi-power"></i>
           <% end %>
           </a>
@@ -26,6 +26,11 @@
         <li>
           <%= link_to admin_events_path do %>
             <i class="zmdi zmdi-view-dashboard"></i> <span> Eventos </span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_packages_path do %>
+            <i class="zmdi zmdi-view-dashboard"></i> <span> Pacotes </span>
           <% end %>
         </li>
       </ul>

@@ -11,4 +11,6 @@ class Week < ActiveRecord::Base
   end
 
   has_and_belongs_to_many :admins
+  has_many :packages
+  has_many :events
 end

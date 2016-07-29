@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @package.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @package.description %>
+</p>
+
+<p>
+  <strong>Limit:</strong>
+  <%= @package.limit %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @package.price %>
+</p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @package.week %>
+</p>
+
+<%= link_to 'Edit', edit_admin_package_path(@package) %> |
+<%= link_to 'Back', admin_packages_path %>
