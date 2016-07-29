@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
   	@user = current_user
     @events = Event.all
     @eventsDays = Event.days
+    @eventsHash = Event.appointments
     #@events = @week.events.order("vari[avel horario")-TROCAR DEPOIS
   end
 

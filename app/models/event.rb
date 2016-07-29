@@ -19,14 +19,21 @@ class Event < ActiveRecord::Base
 
    def self.appointments
 
-   	eventsDay = Hash.new
-   	days = self.days
+      eventsDay = Hash.new
+      days = self.days
+      events = []
 
-   	days.each do |day| 
-   		self.all.each do |event|
-   			eventsDay[day] << event if day == event.schedule.start_time.to_date
-   		end
-   	end
+      days.each do |day| 
+         self.all.each do |event|
+            event.schedules.each do |schedule|
+                events << event if day == schedule.start_time.to_date
+
+         end
+      end 
+      eventsDay[day] = events
+      end
+      
+      eventsDay 
    end
 
 
