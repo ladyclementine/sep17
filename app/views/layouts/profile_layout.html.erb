@@ -8,22 +8,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
-    <body class="fixed-left">
+<body class="fixed-left">
+
         <!-- Begin page -->
-        <%=render 'layouts/topbar'%>
-        <div class="left side-menu">
-            <div class="sidebar-inner slimscrollleft">
-                <!-- User -->
-                <%=render 'layouts/user_box'%>
-                <!-- side menu -- > 
-                <%=render 'layouts/profile_sidemenu'%>
-            </div>
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+           <%= render 'layouts/topbar'%>
+            <!-- Top Bar End -->
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <%= render 'layouts/profile_sidemenu'%>
+            
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+        
+            <%= yield %>
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
         </div>
-        <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-        <%= yield %>
-        </div>
-        </div>
+        <!-- END wrapper -->
+
+
+
+    
+
+
     </body>
 </html>

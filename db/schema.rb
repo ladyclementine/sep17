@@ -45,7 +45,11 @@ ActiveRecord::Schema.define(version: 20160729000253) do
     t.string   "facilitator"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "week_id"
+    t.string   "type"
   end
+
+  add_index "events", ["week_id"], name: "index_events_on_week_id", using: :btree
 
   create_table "packages", force: :cascade do |t|
     t.string   "title"
@@ -64,7 +68,10 @@ ActiveRecord::Schema.define(version: 20160729000253) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "event_id"
   end
+
+  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -104,4 +111,6 @@ ActiveRecord::Schema.define(version: 20160729000253) do
   end
 
   add_foreign_key "packages", "weeks"
+  add_foreign_key "events", "weeks"
+  add_foreign_key "schedules", "events"
 end

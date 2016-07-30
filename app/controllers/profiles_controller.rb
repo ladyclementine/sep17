@@ -5,6 +5,11 @@ class ProfilesController < ApplicationController
 	
   def index
   	@user = current_user
+    @events = Event.all
+    @eventsDays = Event.days
+    @eventsHash = Event.appointments
+
+   
   end
 
   def week
