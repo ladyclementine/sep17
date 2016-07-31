@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20160729000253) do
     t.datetime "updated_at",  null: false
   end
 
-  add_foreign_key "packages", "weeks"
   add_foreign_key "events", "weeks"
+  add_foreign_key "packages", "weeks"
   add_foreign_key "schedules", "events"
 end
