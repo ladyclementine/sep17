@@ -9,7 +9,7 @@ FactoryGirl.define do
     description { Faker::Lorem.sentences }
     facilitator { Faker::Lorem.sentence}
     
-    type { Faker::Lorem.sentence }
+    #tip { Faker::Lorem.sentence }
 
    
 

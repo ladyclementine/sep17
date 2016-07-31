@@ -7,7 +7,7 @@ FactoryGirl.define do
   factory :schedule do
     
     start_time
-    event
+   
     
     
     

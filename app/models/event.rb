@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
         self.all.each do |event|
           event.schedules.each do |schedule|
             d = schedule.start_time.to_date
-            events << event unless !(d == day)
+            events << d unless !(d == day)
             
           end
         end
