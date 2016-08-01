@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
   def set_current_week
     @current_week = Week.find_by(subdomain: Apartment::Tenant.current)
   end
+
+  
 end

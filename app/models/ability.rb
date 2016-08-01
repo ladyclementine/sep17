@@ -3,7 +3,7 @@ class Ability
 
   def initialize(admin)
     if admin
-      can [:read, :create, :update, :destroy], Week
+      can [:read, :update], Week
     else
       can :read, Week
     end

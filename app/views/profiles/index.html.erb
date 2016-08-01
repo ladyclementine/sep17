@@ -1,55 +1,54 @@
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container">
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="timeline">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="timeline">
+            <% @eventsDays.each do |days| %>
+              <article class="timeline-item alt">
+                <div class="text-right">
+                  <div class="time-show first">
+                    <a href="#" class="btn btn-custom w-lg"><%= days %></a>
+                  </div>
+                </div>
+              </article>
+              <% @eventsHash.each do |events| %>
+              <article class="timeline-item alt">
+                <div class="timeline-desk">
+                  <div class="panel">
+                    <div class="panel-body">
+                      <span class="arrow-alt"></span>
+                      <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
+                      <h4 class="text-danger">1 hour ago</h4>
+                      <p class="timeline-date text-muted"><small><%= events %></small></p>
+                      <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <% end %>
+            <% end %>
 
-                                <% @eventsDays.each do |days| %>
-                                    <article class="timeline-item alt">
-                                        <div class="text-right">
-                                            <div class="time-show first">
-                                                <a href="#" class="btn btn-custom w-lg"><%= days %></a>
-                                            </div>
-                                        </div>
-                                    </article>
-                                     <% @eventsHash.each do |events| %>
-                                    <article class="timeline-item alt">
-                                        <div class="timeline-desk">
-                                            <div class="panel">
-                                                <div class="panel-body">
-                                                    <span class="arrow-alt"></span>
-                                                    <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
-                                                    <h4 class="text-danger">1 hour ago</h4>
-                                                    <p class="timeline-date text-muted"><small><%=events%></small></p>
-                                                    <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                      <% end %>
-                                    <% end %>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
 
 
-                    </div> <!-- container -->
+    </div> <!-- container -->
 
-                </div> <!-- content -->
+  </div> <!-- content -->
 
-                <footer class="footer">
-                    2016 © Adminto.
-                </footer>
+  <footer class="footer">
+    2016 © Adminto.
+  </footer>
 
-            </div>
+</div>
 
 

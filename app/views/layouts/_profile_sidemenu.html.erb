@@ -1,74 +1,68 @@
 
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-                <div class="sidebar-inner slimscrollleft">
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left side-menu">
+  <div class="sidebar-inner slimscrollleft">
 
-                    <!-- User -->
-                    <div class="user-box">
-                        <div class="user-img">
-                            <%= image_tag("users/avatar-1.jpg", class:"img-circle img-thumbnail img-responsive") %>
-                            <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
-                        </div>
-                        <h5><a href="#"><%= @user.name %> </a> </h5>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" >
-                                    <i class="zmdi zmdi-settings"></i>
-                                </a>
-                            </li>
+    <!-- User -->
+    <div class="user-box">
+      <div class="user-img">
+        <%= image_tag("users/avatar-1.jpg", class:"img-circle img-thumbnail img-responsive") %>
+        <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
+      </div>
+      <h5><a href="#"><%= @user.name %> </a> </h5>
+      <ul class="list-inline">
+        <li>
+          <a href="#" >
+            <i class="zmdi zmdi-settings"></i>
+          </a>
+        </li>
 
-                            <li>
-                                <a href="#" class="text-custom">
-                                    <i class="zmdi zmdi-power"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End User -->
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="zmdi zmdi-power"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <!-- End User -->
 
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <ul>
-                          <li class="text-muted menu-title">Navigation</li>
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <ul>
+        <li class="text-muted menu-title">Navigation</li>
 
-                            <li>
-                                 <%= link_to 'profiles/semana', class: 'waves-effect' do %>
-                                    <i class="zmdi zmdi-calendar"></i>
-                                     <span>Minha Semana</span>
-                                            <% end -%>
-                            </li>
+        <li>
+         <%= link_to '', class: 'waves-effect' do %>
+           <i class="zmdi zmdi-calendar"></i>
+           <span>Minha Semana</span>
+         <% end %>
+       </li>
 
-                            <li>
-                                 <a href="inbox.html" class="waves-effect"><i class="zmdi zmdi-email"></i><span class="label label-purple pull-right"></span><span>Pacotes</span></a>
-                            </li>
+       <li>
+         <a href="" class="waves-effect"><i class="zmdi zmdi-email"></i><span class="label label-purple pull-right"></span><span>Pacotes</span></a>
+       </li>
 
-                          
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-mall"></i> <span> Início </span> </a>
-                                <ul class="list-unstyled">
-                                  <li><a href="tables-basic.html">Basic Tables</a></li>
-                                    <li><a href="tables-datatable.html">Data Table</a></li>
-                                    <li><a href="tables-editable.html">Editable Table</a></li>
-                                </ul>
-                            </li>
 
-                            <li>
-                                <a href="calendar.html" class="waves-effect"><i class="zmdi zmdi-calendar"></i><span> Programação </span></a>
-                            </li>
+       <li class="has_sub">
+        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-mall"></i> <span> Início </span> </a>
+        <ul class="list-unstyled">
+          <li><a href="tables-basic.html">Basic Tables</a></li>
+          <li><a href="tables-datatable.html">Data Table</a></li>
+          <li><a href="tables-editable.html">Editable Table</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="" class="waves-effect"><i class="zmdi zmdi-calendar"></i><span> Programação </span></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <!-- Sidebar -->
+  <div class="clearfix"></div>
 
-                           
+</div>
 
-                      
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <!-- Sidebar -->
-                    <div class="clearfix"></div>
-
-                </div>
-
-            </div>
-            <!-- Left Sidebar End -->
+</div>
+<!-- Left Sidebar End -->
 
 

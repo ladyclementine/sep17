@@ -15,11 +15,6 @@ end
 Rails.application.routes.draw do
 
   constraints SubdomainConstraint do
-    root 'pages#show', as: :week_subdomain_root
-  end
-
-  constraints MaindomainConstraint do
-
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       confirmations: 'users/confirmations',
@@ -32,8 +27,8 @@ Rails.application.routes.draw do
       password: 'secret',
       confirmation: 'verification',
       unlock: 'unblock',
-      registration: 'register',
-      sign_up: 'registration'
+      registration: 'registration',
+      sign_up: 'new'
     }
     devise_for :admin, controllers: {
       sessions: 'admin/devise/sessions',
@@ -48,10 +43,13 @@ Rails.application.routes.draw do
       password: 'secret',
       confirmation: 'verification',
       unlock: 'unblock',
-      registration: 'register',
-      sign_up: 'registration'
+      registration: 'registration',
+      sign_up: 'new'
     }
+
+    root 'pages#show', as: :week_subdomain_root
     authenticated :user do
+      get 'dashboard' => 'profiles#index', as: :user_dashboard
       root 'profiles#index', as: :authenticated_user_root
     end
 
@@ -64,11 +62,11 @@ Rails.application.routes.draw do
 
       root 'events#index'
     end
-
-    root 'pages#index'
   end
 
-   get 'profiles/semana' => 'profiles#week'
+  constraints MaindomainConstraint do
+    root 'pages#index'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
