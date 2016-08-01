@@ -12,7 +12,8 @@ class Event < ActiveRecord::Base
 	   	end
 	   end
 
-    	days
+    	days.sort!
+      days
    end
    
 
@@ -22,7 +23,7 @@ class Event < ActiveRecord::Base
       eventsDay = Hash.new
       days = self.days
       events = Event.all
-      n = 0
+      
       days.each do |day|
         eventsDay[day] = []
          events.each do |event|
@@ -30,6 +31,7 @@ class Event < ActiveRecord::Base
           event.schedules.each do |schedule|
                    
                   eventsDay[day] << schedule if schedule.start_time.to_date == day
+                  eventsDay[day].sort_by! {|obj| obj.start_time}
           end
 
          end   

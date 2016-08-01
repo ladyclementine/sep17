@@ -15,11 +15,12 @@
                                     <article class="timeline-item alt">
                                         <div class="text-right">
                                             <div class="time-show first">
-                                                <a href="#" class="btn btn-custom w-lg"><%= days %></a>
+                                                <a href="#" class="btn btn-custom w-lg"><%= days.strftime("%A, %b %d") %></a>
                                             </div>
                                         </div>
                                     </article>
-                                     <% @eventsHash.each do |events| %>
+                                     <% @eventsHash[days].each do |events| %>
+                                     
                                     <article class="timeline-item alt">
                                         <div class="timeline-desk">
                                             <div class="panel">
@@ -27,12 +28,13 @@
                                                     <span class="arrow-alt"></span>
                                                     <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-danger">1 hour ago</h4>
-                                                    <p class="timeline-date text-muted"><small><%=events%></small></p>
+                                                    <p class="timeline-date text-muted"><small><%=events.start_time.strftime("%H : %M")%></small></p>
                                                     <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </article>
+                                     
                                       <% end %>
                                     <% end %>
 
