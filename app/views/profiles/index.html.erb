@@ -19,7 +19,7 @@
                                             </div>
                                         </div>
                                     </article>
-                                     <% @eventsHash[days].each do |events| %>
+                                     <% @scheduleHash[days].each do |schedule| %>
                                      
                                     <article class="timeline-item alt">
                                         <div class="timeline-desk">
@@ -28,8 +28,8 @@
                                                     <span class="arrow-alt"></span>
                                                     <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-danger">1 hour ago</h4>
-                                                    <p class="timeline-date text-muted"><small><%=events.start_time.strftime("%H : %M")%></small></p>
-                                                    <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
+                                                    <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
+                                                    <p> <%=schedule.event.name%> </p>
                                                 </div>
                                             </div>
                                         </div>

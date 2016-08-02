@@ -20,24 +20,24 @@ class Event < ActiveRecord::Base
 
    def self.appointments
 
-      eventsDay = Hash.new
+      scheduleDay = Hash.new
       days = self.days
       events = Event.all
       
       days.each do |day|
-        eventsDay[day] = []
+        scheduleDay[day] = []
          events.each do |event|
           
           event.schedules.each do |schedule|
                    
-                  eventsDay[day] << schedule if schedule.start_time.to_date == day
-                  eventsDay[day].sort_by! {|obj| obj.start_time}
+                  scheduleDay[day] << schedule if schedule.start_time.to_date == day
+                  scheduleDay[day].sort_by! {|obj| obj.start_time}
           end
 
          end   
  
       end
-      eventsDay
+      scheduleDay
       
         
    end
