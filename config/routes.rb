@@ -14,6 +14,10 @@ end
 
 Rails.application.routes.draw do
 
+resource :cart, only: [:show] do
+  put 'add/:event_id', to: 'carts#add', as: :add_to
+  put 'remove/:event_id', to: 'carts#remove', as: :remove_from
+end
   constraints SubdomainConstraint do
     root 'pages#show', as: :week_subdomain_root
   end
