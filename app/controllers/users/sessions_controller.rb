@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    @user = @current_week.users.new(sign_in_params)
+    @user = User.new(sign_in_params)
     clean_up_passwords(@user)
     yield @user if block_given?
     respond_with(@user, serialize_options(@user))
@@ -18,6 +18,7 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message!(:notice, :signed_in)
     sign_in(:user, @user)
     yield @user if block_given?
+    @user.week = @current_week
     respond_with @user, location: after_sign_in_path_for(@user)
   end
 
