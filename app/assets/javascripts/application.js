@@ -9,7 +9,7 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require carts.js
 //= require core/modernizr.min
 //= require jquery2
 //= require jquery_ujs
@@ -101,3 +101,5 @@ jQuery(window).bind("load", function() {
 });
 
 var resizefunc = [];
+
+

@@ -8,8 +8,10 @@ class ProfilesController < ApplicationController
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
-    @eventCart = Event.find(9)
-  @cart_action = @eventCart.cart_action current_user.try :id
+
+   
+
+    #@cart_action = @eventCart.cart_action current_user.try :id
    
   end
 

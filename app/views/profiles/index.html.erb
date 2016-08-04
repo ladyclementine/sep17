@@ -15,7 +15,7 @@
                                     <article class="timeline-item alt">
                                         <div class="text-right">
                                             <div class="time-show first">
-                                                <a href="#" class="btn btn-custom w-lg"><%= days.strftime("%A, %b %d") %></a>
+                                                <a href="#" class="btn btn-custom w-lg"><%= days.strftime("%A, %b %d") %> </a>
                                             </div>
                                         </div>
                                     </article>
@@ -29,11 +29,18 @@
                                                     <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-danger">1 hour ago</h4>
                                                     <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
-                                                    <p> <%=schedule.event.name%> </p>
+                                                    <p> <%=schedule.event.name%> <%= schedule.event_id %></p>
                                                 </div>
                                                   
                                             </div>
-        
+                                             <% cart_action = @events.find(schedule.event_id).cart_action(@user) %>
+
+                                            <%= link_to "Connect", add_to_cart_path(event_id: schedule.event_id)%>
+ 
+    <i class="fi-shopping-cart"></i>
+    <span><%=cart_action%></span> Cart
+
+  
                                         </div>
                                     </article>
                                      
