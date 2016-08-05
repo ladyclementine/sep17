@@ -35,11 +35,10 @@
                                             </div>
                                              <% cart_action = @events.find(schedule.event_id).cart_action(@user) %>
 
-                                            <%= link_to "Connect", add_to_cart_path(event_id: schedule.event_id)%>
- 
+                                       <%=link_to "", class: "button", data: {target: cart_action, addUrl: add_to_cart_path(@events.find(schedule.event_id), :method => :put), removeUrl: remove_from_cart_path(@events.find(schedule.event_id),:method => :put)} do%>
     <i class="fi-shopping-cart"></i>
     <span><%=cart_action%></span> Cart
-
+  <%end%>
   
                                         </div>
                                     </article>

@@ -7,12 +7,13 @@ class CartsController < ApplicationController
   end
 
   def add
-    $redis.sadd current_user_cart, params[:event_id]
+    
+    $redis.sadd current_user_cart, params[:id]
     render json: current_user.cart_count, status: 200
   end
 
   def remove
-    $redis.srem current_user_cart, params[:event_id]
+    $redis.srem current_user_cart, params[:id]
     render json: current_user.cart_count, status: 200
   end
 
