@@ -42,8 +42,8 @@ gem 'pg'
 
 gem 'thin'
 
-
 gem 'redis', '~> 3.3.0'
+
 gem 'hiredis', '~> 0.6.0'
 
 group :development, :test do
