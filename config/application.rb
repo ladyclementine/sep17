@@ -24,6 +24,8 @@ module SemanaDeTecnologia
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    config.app_generators.stylesheet_engine :less
 
     config.generators do |g|
       g.templates.unshift File::expand_path('../../templates', __FILE__)

@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# Use less
+gem 'less-rails', '~> 2.7.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -28,7 +28,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'font-awesome-sass', '~> 4.6.2'
+gem 'font-awesome-less', '~> 4.6.2'
+
+gem 'less-rails-bootstrap'
 
 gem 'apartment'
 
@@ -41,6 +43,8 @@ gem 'cancancan'
 gem 'pg'
 
 gem 'thin'
+
+gem 'therubyracer'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
