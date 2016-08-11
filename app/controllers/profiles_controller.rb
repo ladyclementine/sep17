@@ -15,11 +15,11 @@ class ProfilesController < ApplicationController
    
   end
 
-  def week
+  def week 
     @user = current_user
-   end
-
-  def weekUser
-  end
+    @events = Event.all
+    @eventsDays = Event.days
+    @scheduleHash = Event.appointments
+  end 
 
 end

@@ -72,7 +72,7 @@ end
     root 'pages#index'
   end
 
-   get 'profiles/semana' => 'profiles#week'
+   get 'profiles/semana', to: 'profiles#week'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
