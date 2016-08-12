@@ -46,11 +46,13 @@ Rails.application.routes.draw do
       registration: 'registration',
       sign_up: 'new'
     }
-
-    root 'pages#show', as: :week_subdomain_root
+    
     authenticated :user do
       get 'dashboard' => 'profiles#index', as: :user_dashboard
       root 'profiles#index', as: :authenticated_user_root
+    end
+    unauthenticated :user do
+      root 'pages#show',  as: :unauthenticated_user_root
     end
 
     namespace :admin do

@@ -5,22 +5,14 @@ class Users::SessionsController < Devise::SessionsController
   before_filter :set_current_week
 
   # GET /resource/sign_in
-  def new
-    @user = User.new(sign_in_params)
-    clean_up_passwords(@user)
-    yield @user if block_given?
-    respond_with(@user, serialize_options(@user))
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource/sign_in
-  def create
-    @user = warden.authenticate!(auth_options)
-    set_flash_message!(:notice, :signed_in)
-    sign_in(:user, @user)
-    yield @user if block_given?
-    @user.week = @current_week
-    respond_with @user, location: after_sign_in_path_for(@user)
-  end
+  # def create
+  #   super
+  # end
 
   # DELETE /resource/sign_out
   # def destroy

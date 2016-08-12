@@ -4,6 +4,10 @@ module ApplicationHelper
   end
 
   def image_tenant
-    "logos/#{self.current_tenant.subdomain}.png"
+    if self.current_tenant
+      "logos/#{self.current_tenant.subdomain}.png"
+    else
+      "logos/default.png"
+    end
   end
 end

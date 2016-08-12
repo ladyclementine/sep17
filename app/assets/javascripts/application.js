@@ -37,6 +37,7 @@
 //= require plugins/datatables/dataTables.responsive.min
 //= require plugins/datatables/responsive.bootstrap.min
 //= require plugins/datatables/dataTables.scroller.min
+//= require plugins/toastr.min.js
 
 jQuery(window).bind("load", function() {
   $('#datatable').dataTable();
@@ -100,4 +101,4 @@ jQuery(window).bind("load", function() {
 
 });
 
-var resizefunc = [];
+var resizefunc = []; 

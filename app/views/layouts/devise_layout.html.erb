@@ -3,19 +3,28 @@
 <head>
  <title>SemanaDeTecnologia</title>
  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
- <%= stylesheet_link_tag "semanas/#{current_tenant.subdomain}" %> 
+ <%= stylesheet_link_tag "semanas/#{current_tenant.subdomain}" if current_tenant %> 
  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
  <%= csrf_meta_tags %>
  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
+  <% flash.each do |key, value| %>
+    <script type="text/javascript">
+      toastr.info('<%= value %>');
+    </script>
+  <% end %>
   <div class="account-pages"></div>
   <div class="clearfix"></div>
   <div class="wrapper-page">
     <div class="text-center">
       <a href="" class="logo"><span><%= image_tag(image_tenant) %><span></span></span></a>
-      <h5 class="text-muted m-t-0 font-600"><%= current_tenant.name %></h5>
+      <% if current_tenant %>
+        <h5 class="text-muted m-t-0 font-600"><%= current_tenant.name %></h5>
+      <% else %>
+        <h5 class="text-muted m-t-0 font-600">Public</h5>
+      <% end %>
     </div>
     <div class="m-t-40 card-box">
         <%= yield %>
