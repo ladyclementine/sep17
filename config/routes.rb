@@ -33,8 +33,7 @@ Rails.application.routes.draw do
     devise_for :admin, controllers: {
       sessions: 'admin/devise/sessions',
       confirmations: 'admin/devise/confirmations',
-      passwords: 'admin/devise/passwords',
-      registrations:'admin/devise/registrations'
+      passwords: 'admin/devise/passwords'
     },
     path: 'admin',
     path_names: {
@@ -43,9 +42,7 @@ Rails.application.routes.draw do
       password: 'secret',
       confirmation: 'verification',
       unlock: 'unblock',
-      registration: 'registration',
-      sign_up: 'new'
-    }
+    }, skip: [:registrations]
     
     authenticated :user do
       get 'dashboard' => 'profiles#index', as: :user_dashboard
