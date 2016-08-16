@@ -34,9 +34,9 @@
                                              <% cart_action = @events.find(schedule.event_id).cart_action(@user.id) %>
 
                                              <% if cart_action == "Add to" %>
-                                                 <%= link_to "Adicionar ao carrinho", add_to_cart_path(@events.find(schedule.event_id)), :method => :put %> 
+                                                 <%= link_to "Adicionar ao carrinho", add_to_cart_path(@events.find(schedule.event_id)), :method => :put, class: 'waves-effect waves-light btn'  %> 
                                              <%else%>
-                                                 <%= link_to "Remover do carrinho", remove_from_cart_path(@events.find(schedule.event_id)), :method => :put %> 
+                                                 <%= link_to "Remover do carrinho", remove_from_cart_path(@events.find(schedule.event_id)), :method => :put, class: 'waves-effect waves-light btn'  %> 
                                               <%end%> 
 
 
