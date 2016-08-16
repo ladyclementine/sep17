@@ -71,6 +71,36 @@ class Event < ActiveRecord::Base
 
    #event.order_by { |e| e.schedules
 
+    
+    #defini o css para o tipo de evneto
+
+
+    def circleColor
+      if self.kind=="palestra"
+        "success"
+      else
+        "danger"
+        
+      end
+    end
+
+    def sideAlt (number)
+      if number%2==0
+        "timeline-item alt"
+      else
+        "timeline-item "
+      end
+    end
+
+    def sideArrow (number)
+      if number % 2 ==0
+        "arrow-alt"
+      else
+        "arrow"
+      end
+    end
+
+#final 
 
     def cart_action(current_user_id)
      if $redis.sismember "cart#{current_user_id}", id

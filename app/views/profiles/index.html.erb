@@ -21,18 +21,16 @@
                                     </article>
                                      <% @scheduleHash[days].each do |schedule| %>
                                      
-                                    <article class="timeline-item alt">
+                                    <article class="<%= schedule.event.sideAlt(@number)%>">
                                         <div class="timeline-desk">
                                             <div class="panel">
                                                 <div class="panel-body">
-                                                    <span class="arrow-alt"></span>
-                                                    <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
+                                                    <span class="<%= schedule.event.sideArrow(@number)%>"></span>
+                                                    <span class="timeline-icon bg-<%= schedule.event.circleColor%>"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-danger">1 hour ago</h4>
                                                     <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
                                                     <p> <%=schedule.event.name%> <%= schedule.event_id %></p>
-                                                </div>
-                                                  
-                                            </div>
+                                                       </div>
                                              <% cart_action = @events.find(schedule.event_id).cart_action(@user.id) %>
 
                                              <% if cart_action == "Add to" %>
@@ -45,8 +43,11 @@
         
   
                                         </div>
+                                                </div>
+                                                  
+                                         
                                     </article>
-                                     
+                                     <% @number = @number +1%>
                                       <% end %>
                                     <% end %>
 

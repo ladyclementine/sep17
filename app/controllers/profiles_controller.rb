@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
-
+    @number = 0
    
 
     #@cart_action = @eventCart.cart_action current_user.try :id
@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
+    @number = 0
   end 
 
 end
