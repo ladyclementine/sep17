@@ -10,4 +10,11 @@ module ApplicationHelper
       "logos/default.png"
     end
   end
+  def page_title
+    if self.current_tenant
+      current_tenant.name
+    else
+      "Semana de Tecnologia"
+    end
+  end
 end

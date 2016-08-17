@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
- <title>SemanaDeTecnologia</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+ <title><%= page_title %></title>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ <%= csrf_meta_tags %>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
+</head>
 <body class="fixed-left">
 
-        <!-- Begin page -->
-        <div id="wrapper">
+  <!-- Begin page -->
+  <div id="wrapper">
 
-            <!-- Top Bar Start -->
-           <%= render 'layouts/topbar'%>
-            <!-- Top Bar End -->
-
-
-            <!-- ========== Left Sidebar Start ========== -->
-            <%= render 'layouts/profile_sidemenu'%>
-            
-            <!-- Left Sidebar End -->
+    <!-- Top Bar Start -->
+    <%= render 'layouts/topbar'%>
+    <!-- Top Bar End -->
 
 
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-        
-            <%= yield %>
-
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
-
-
-        </div>
-        <!-- END wrapper -->
-
-
-
+    <!-- ========== Left Sidebar Start ========== -->
+    <%= render 'layouts/profile_sidemenu'%>
     
+    <!-- Left Sidebar End -->
 
 
-    </body>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    
+    <%= yield %>
+
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+
+  </div>
+  <!-- END wrapper -->
+
+
+
+  
+
+
+</body>
 </html>
