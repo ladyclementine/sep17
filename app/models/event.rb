@@ -77,9 +77,9 @@ class Event < ActiveRecord::Base
 
     def circleColor
       if self.kind=="palestra"
-        "success"
+        "purple"
       else
-        "danger"
+        "warning"
         
       end
     end

@@ -18,9 +18,11 @@
                             </li>
 
                             <li>
-                                <a href="#" class="text-custom">
-                                    <i class="zmdi zmdi-power"></i>
-                                </a>
+                            <%= link_to  destroy_user_session_path, :method => :delete do %>
+      <i class="zmdi zmdi-power"></i>
+    
+      <% end -%>
+                               
                             </li>
                         </ul>
                     </div>
