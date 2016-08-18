@@ -31,9 +31,9 @@ Rails.application.routes.draw do
       sign_up: 'new'
     }
     devise_for :admin, controllers: {
-      sessions: 'admin/devise/sessions',
-      confirmations: 'admin/devise/confirmations',
-      passwords: 'admin/devise/passwords'
+      sessions: 'admin/auth/sessions',
+      confirmations: 'admin/auth/confirmations',
+      passwords: 'admin/auth/passwords'
     },
     path: 'admin',
     path_names: {
