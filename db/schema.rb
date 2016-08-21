@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816001732) do
+ActiveRecord::Schema.define(version: 20160821211600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,31 @@ ActiveRecord::Schema.define(version: 20160816001732) do
   end
 
   add_index "packages", ["week_id"], name: "index_packages_on_week_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "method"
+    t.integer  "portions"
+    t.integer  "portions_paid"
+    t.float    "price"
+    t.string   "link_1"
+    t.string   "link_2"
+    t.string   "link_3"
+    t.string   "link_4"
+    t.datetime "create_at"
+    t.datetime "update_at"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "buyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "purchases", ["event_id", "buyer_id"], name: "index_purchases_on_event_id_and_buyer_id", unique: true, using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.datetime "start_time"

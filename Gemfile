@@ -46,6 +46,8 @@ gem 'redis', '~> 3.3.0'
 
 gem 'hiredis', '~> 0.6.0'
 
+gem "pagseguro-oficial", "~> 2.5.0"
+
 group :development, :test do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
