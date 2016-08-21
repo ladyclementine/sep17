@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     authenticated :admin do
       resources :events
       resources :packages 
+      resources :users
     end
 
     root 'events#index'
