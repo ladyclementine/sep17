@@ -2,31 +2,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   layout 'devise_layout'
   before_filter :configure_sign_up_params, only: [:create]
-  before_filter :set_current_week
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
   # POST /resource
-  def create
-    @user = @current_week.users.new(sign_up_params)
-    if @user.save
-      if @user.active_for_authentication?
-        set_flash_message! :notice, :signed_up
-        sign_up(:user, @user)
-        respond_with @user, location: authenticated_user_root_path
-      else
-        set_flash_message! :notice, :"signed_up_but_#{@user.inactive_message}"
-        expire_data_after_sign_in!
-        respond_with @user, location: after_inactive_sign_up_path_for(@user)
-      end
-    else
-      clean_up_passwords @user
-      set_minimum_password_length
-      respond_with @user
-    end
-  end
+  # def create
+  #  super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -77,9 +61,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :course, :semester, :birthday, :university])
-  end
-
-  def set_current_week
-    @current_week = Week.find_by(subdomain: Apartment::Tenant.current)
   end
 end

@@ -32,10 +32,6 @@ gem 'font-awesome-less', '~> 4.6.2'
 
 gem 'less-rails-bootstrap'
 
-gem 'apartment'
-
-gem 'apartment-sidekiq'
-
 gem 'devise'
 
 gem 'cancancan'

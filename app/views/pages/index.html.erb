@@ -1,19 +1,188 @@
-<h1>Todas as Semanas</h1>
 <div class="row">
-  <% @weeks.each do |week| %>
-  <div class="col-lg-4 col-md-6">
-    <%= link_to root_url(subdomain: week.subdomain) do %>
-    <div class="card-box widget-user">
-      <div>
-      <%= image_tag("#{week.subdomain}.png", class:"img-responsive img-circle")%>
-        <div class="wid-u-info">
-          <h4 class="m-t-0 m-b-5 font-600"><%= week.name %></h4>
-          <p class="text-muted m-b-5 font-13">coderthemes@gmail.com</p>
-          <small class="text-warning"><b>12/06 - 20/06</b></small>
-        </div>
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="text-center">
+            <h3 class="font-600"><%= current_week[:name] %></h3>
+            <p class="text-muted"> <%= current_week[:description] %></p>
+              <%= link_to new_user_registration_path, class:'btn btn-success waves-effect waves-light m-t-10' do %>
+                Fazer inscrição
+              <% end %>
+              <%= link_to new_user_session_path, class:'btn btn-primary waves-effect waves-light m-t-10' do %>
+                Entrar
+              <% end %>
+
+            </div>
+          </div><!-- end col -->
+        </div><!-- end row -->
+
+        <div class="row m-t-40">
+          <div class="col-lg-6">
+            <div class="p-20">
+              <div class="panel-group m-b-0" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        What is Lorem Ipsum?
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Is safe use Lorem Ipsum?
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Why use Lorem Ipsum?
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end col -->
+
+          <div class="col-lg-6">
+            <div class="p-20">
+              <div class="panel-group m-b-0" id="accordion1" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#faq4">
+                        License &amp; Copyright
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="faq4" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#faq5">
+                        How many variations exist?
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="faq5" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default bx-shadow-none">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#faq6">
+                        What is Lorem Ipsum?
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="faq6" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500s, when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book.
+
+                      <br> <br>
+
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life
+                      accusamus terry richardson ad squid. 3 wolf moon officia
+                      aute, non cupidatat skateboard dolor brunch. Food truck
+                      quinoa nesciunt laborum eiusmod.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end col -->
+        </div><!-- end row -->
+
       </div>
-    </div>
-    <% end %>
+    </div><!-- end col -->
   </div>
-  <% end %>
-</div>

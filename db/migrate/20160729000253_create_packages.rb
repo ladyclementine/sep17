@@ -5,7 +5,6 @@ class CreatePackages < ActiveRecord::Migration
       t.text :description
       t.integer :limit
       t.string :price
-      t.belongs_to :week, index: true, foreign_key: true
 
       t.timestamps null: false
     end
