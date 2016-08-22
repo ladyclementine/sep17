@@ -1,0 +1,65 @@
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="content-page">
+   <!-- Start content -->
+   <div class="content">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="timeline">
+                  <% @eventsDays.each do |days| %>
+                  <article class="timeline-item alt">
+                     <div class="text-right">
+                        <div class="time-show first">
+                           <a href="#" class="btn btn-custom w-lg"><%= days.strftime("%A, %b %d") %> </a>
+                        </div>
+                     </div>
+                  </article>
+                  <% @scheduleHash[days].each do |schedule| %>
+                  <article class="<%= schedule.event.sideAlt(@number)%>">
+                     <div class="timeline-desk">
+                        <div class="panel">
+                           <div class="panel-body">
+                              <span class="<%= schedule.event.sideArrow(@number)%>"></span>
+                              <span class="timeline-icon bg-<%= schedule.event.circleColor%>"><i class="zmdi zmdi-circle"></i></span>
+                              <h4 class="text-<%= schedule.event.circleColor%>"><%= schedule.event.name%>
+                              <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
+                              <p> <%=schedule.event.description%></p>
+<div class = "album">
+                                      <% cart_action = @events.find(schedule.event_id).cart_action(@user.id) %>
+                           <% if cart_action == "Add to" %>
+
+                           <%= button_to add_to_cart_path(@events.find(schedule.event_id)), :class => "btn btn-icon waves-effect waves-light btn-success m-b-5", :method => :put do %>
+    <span class="zmdi zmdi-shopping-cart-plus"></span>
+<% end %>
+                         
+                           <%else%>
+                           <%= button_to remove_from_cart_path(@events.find(schedule.event_id)), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5", :method => :put do %>
+    <span class="zmdi  zmdi-delete"></span>
+<% end %>
+
+
+                         <%end%>
+                         </div>
+                           </div>
+                   
+                        </div>
+                     </div>
+                  </article>
+
+                  <% @number = @number +1%>
+                  <% end %>
+                  <% end %>
+               </div>
+            </div>
+         </div>
+         <!-- end row -->
+      </div>
+      <!-- container -->
+   </div>
+   <!-- content -->
+   <footer class="footer">
+      2016 © Adminto.
+   </footer>
+</div>

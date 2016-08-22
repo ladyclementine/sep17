@@ -6,14 +6,20 @@ class ProfilesController < ApplicationController
   	@user = current_user
     @events = Event.all
     @eventsDays = Event.days
-    @eventsHash = Event.appointments
+    @scheduleHash = Event.appointments
+    @number = 0
+   
+
+    #@cart_action = @eventCart.cart_action current_user.try :id
+   
   end
 
-  def week
+  def week 
     @user = current_user
-  end
-
-  def week_user
-  end
+    @events = Event.all
+    @eventsDays = Event.days
+    @scheduleHash = Event.appointments
+    @number = 0
+  end 
 
 end

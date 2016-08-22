@@ -19,8 +19,20 @@ Rails.application.routes.draw do
 
   authenticated :user do
     get 'dashboard' => 'profiles#index', as: :user_dashboard
+
+  	resource :cart, only: [:show] do
+      put 'add/:id', to: 'carts#add', as: :add_to
+      put 'remove/:id', to: 'carts#remove', as: :remove_from
+    end
+
+    post 'payment' => 'checkout#create', as: :payment
+    get 'payment' => 'checkout#new'
+
+    get 'programacao' => 'profiles#week', as: :events
+
     root 'profiles#index', as: :authenticated_user_root
   end
+
   unauthenticated :user do
     root 'pages#index',  as: :unauthenticated_user_root
   end
@@ -50,5 +62,4 @@ Rails.application.routes.draw do
     root 'events#index'
   end
 
-  root 'pages#index'
 end

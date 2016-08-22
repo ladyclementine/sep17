@@ -1,54 +1,202 @@
-
 <!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <% provide(:title, "Pacotes") %>
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="timeline">
-            <% @eventsDays.each do |days| %>
-              <article class="timeline-item alt">
-                <div class="text-right">
-                  <div class="time-show first">
-                    <a href="#" class="btn btn-custom w-lg"><%= days %></a>
-                  </div>
-                </div>
-              </article>
-              <% @eventsHash.each do |events| %>
-              <article class="timeline-item alt">
-                <div class="timeline-desk">
-                  <div class="panel">
-                    <div class="panel-body">
-                      <span class="arrow-alt"></span>
-                      <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
-                      <h4 class="text-danger">1 hour ago</h4>
-                      <p class="timeline-date text-muted"><small><%= events %></small></p>
-                      <p>Dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? </p>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <% end %>
-            <% end %>
+                        <div class="row m-t-10">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="row">
 
-          </div>
-        </div>
-      </div>
-      <!-- end row -->
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-3 col-sm-6">
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Basic</h3>
+                                                <h2 class="plan-price">$19</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
 
 
-    </div> <!-- container -->
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-3 col-sm-6">
+                                        <div class="ribbon"><span>POPULAR</span></div>
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Premium</h3>
+                                                <h2 class="plan-price">$29</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
 
-  </div> <!-- content -->
-
-  <footer class="footer">
-    2016 © Adminto.
-  </footer>
-
-</div>
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
 
 
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-3 col-sm-6">
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Developer</h3>
+                                                <h2 class="plan-price">$39</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-3 col-sm-6">
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Business</h3>
+                                                <h2 class="plan-price">$49</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                </div><!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="row">
+
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-4 col-md-4">
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Basic</h3>
+                                                <h2 class="plan-price">$19</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-4 col-md-4">
+                                        <div class="ribbon"><span>POPULAR</span></div>
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Premium</h3>
+                                                <h2 class="plan-price">$29</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+
+                                    <!--Pricing Column-->
+                                    <article class="pricing-column col-lg-4 col-md-4">
+                                        <div class="inner-box card-box">
+                                            <div class="plan-header text-center">
+                                                <h3 class="plan-title">Developer</h3>
+                                                <h2 class="plan-price">$39</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center">
+                                                <li>5 Projects</li>
+                                                <li>1 GB Storage</li>
+                                                <li>No Domain</li>
+                                                <li>1 User</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">Signup Now</a>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                </div>
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    2016 © Adminto.
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->

@@ -1,21 +1,19 @@
 FactoryGirl.define do
 
   sequence :name do |n|
-    Faker:: ("evento" + n.to_s)
+    Faker::Name.name + n.to_s
   end
 
   factory :event do
     name
-    description { Faker::Lorem.sentence }
-    facilitator { Faker::Lorem.setence}
+    description { Faker::Lorem.sentences }
+    facilitator { Faker::Lorem.sentence}
     
-    type { Faker::Lorem.setence }
+    #tip { Faker::Lorem.sentence }
 
    
 
-    before(:create) do |event|
-      event.tags << create(:tag)
-    end
+   
 
   end
 end

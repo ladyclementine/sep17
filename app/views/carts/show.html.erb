@@ -1,0 +1,140 @@
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <% provide(:title, "Meu carrinho") %>
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <!-- <div class="panel-heading">
+                                        <h4>Invoice</h4>
+                                    </div> -->
+                                    <div class="panel-body">
+                                        <div class="clearfix">
+                                            <div class="pull-left">
+                                                <h3 class="logo">Adminto</h3>
+                                            </div>
+                                            <div class="pull-right">
+                                                <h4>Invoice # <br>
+                                                    <strong>2016-04-23654789</strong>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="pull-left m-t-30">
+                                                    <address>
+                                                      <strong>Twitter, Inc.</strong><br>
+                                                      795 Folsom Ave, Suite 600<br>
+                                                      San Francisco, CA 94107<br>
+                                                      <abbr title="Phone">P:</abbr> (123) 456-7890
+                                                      </address>
+                                                </div>
+                                                <div class="pull-right m-t-30">
+                                                    <p><strong> Data: </strong> Jan 17, 2016</p>
+                                                    <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pending</span></p>
+                                                    <p class="m-t-10"><strong>Pedido: </strong> #123456</p>
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+                                        <div class="m-h-50"></div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table m-t-30">
+                                                        <thead>
+                                                        
+                                                            <tr><th>#</th>
+                                                            <th>Evento</th>
+                                                            <th>Descrição</th>
+                                                            <th>tipo</th>
+                                                            <th>Custo</th>
+                                                            <th>Total</th>
+                                                      
+                                                       
+                                                        </tr></thead>
+                                                        <tbody>
+                                                        <% @cart_events.each do |cart| %>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td><%=cart.name%></td>
+                                                                <td><%=cart.description%></td>
+                                                                <td><%=cart.kind%></td>
+                                                                <td>$380</td>
+                                                                <td>$380</td>
+                                                                      <td><%= button_to remove_from_cart_path(cart.id), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5", :method => :put do %>
+    <span class="zmdi  zmdi-delete"></span> <%end%></td>
+                                                            </tr>
+                                                        <%end%>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <div class="clearfix m-t-40">
+                                                    <h5 class="small text-inverse font-600">PAYMENT TERMS AND POLICIES</h5>
+
+                                                    <small>
+                                                        All accounts are to be paid within 7 days from receipt of
+                                                        invoice. To be paid by cheque or credit card or direct payment
+                                                        online. If account is not paid within 7 days the credits details
+                                                        supplied as confirmation of work undertaken will be charged the
+                                                        agreed quoted fee noted above.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
+                                                <p class="text-right"><b>Sub-total:</b><%=current_user.cart_total_price%></p>
+                                                <p class="text-right">Desconto de pacote: 12.9%</p>
+                                               
+                                                <hr>
+                                                <h3 class="text-right">R$ <%=current_user.cart_total_price%></h3>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="hidden-print">
+                                            <div class="pull-right">
+                                                <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
+
+                                                
+                                                 <%= button_to payment_path,  :class => "btn btn-primary waves-effect waves-light", :method => :post do %>
+    <span > Finalizar compra</span>
+<% end %>
+                                                <a href="#" class="btn btn-primary waves-effect waves-light">Finalizar compra</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- end row -->
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    2016 © Adminto.
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->

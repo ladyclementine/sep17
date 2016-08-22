@@ -7,10 +7,10 @@ before(:each) do
 	@event2 = FactoryGirl.create(:event)
 	@event3 = FactoryGirl.create(:event)
 	@event4 = FactoryGirl.create(:event)
-	@event1.schedules.create(FactoryGirl.create(:schedule))
-	@event2.schedules.create(FactoryGirl.create(:schedule))
-	@event3.schedules.create(FactoryGirl.create(:schedule))
-	@event4.schedules.create(FactoryGirl.create(:schedule))
+	#@event1.schedules.create(Schedule.create(start_time: DateTime.new(2016,6,10)))
+	#@event2.schedules.create(FactoryGirl.create(:schedule))
+	#@event3.schedules.create(FactoryGirl.create(:schedule))
+	#@event4.schedules.create(FactoryGirl.create(:schedule))
 end
 
 
@@ -18,12 +18,20 @@ end
 
 it "returns even numbers" do
 
-	event =  Event.appointments
-	day = Event.days
-	events = event[day.first]
-numbers = (0..10).select {|n| n % 2 == 0 }
-expect(event).to eql({"2016-11-12"=>["evento1"]})
+	#days =  event.days
+	@event1.schedules.create(start_time:DateTime.new(2016,5,10))
+	@event1.schedules.create(start_time:DateTime.new(2016,5,12))
+	@event2.schedules.create(start_time:DateTime.new(2016,5,12))
+	@event3.schedules.create(start_time:DateTime.new(2016,5,8))
+	@event4.schedules.create(start_time:DateTime.new(2016,5,9))
+	 
+	event = Event.appointments 
+	
+  days = Event.days
+expect(event).to eql(DateTime.new(2016,5,10))
 end
+
+
 it "returns odd numbers" do
 end
 

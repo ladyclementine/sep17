@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
    belongs_to :week
    has_many :schedules
+   has_many :purchases
+   has_many :buyers, through: :purchases
 
    def self.days
      days = []
@@ -12,28 +14,32 @@ class Event < ActiveRecord::Base
 	   	end
 	   end
 
-    	days
+    	days.sort!
+      days
    end
    
 
 
    def self.appointments
 
-      eventsDay = Hash.new
+      scheduleDay = Hash.new
       days = self.days
-      events = []
-
+      events = Event.all
+      
       days.each do |day|
-        self.all.each do |event|
+        scheduleDay[day] = []
+         events.each do |event|
+          
           event.schedules.each do |schedule|
-            d = schedule.start_time.to_date
-            events << event unless !(d == day)
-            
+                   
+                  scheduleDay[day] << schedule if schedule.start_time.to_date == day
+                  scheduleDay[day].sort_by! {|obj| obj.start_time}
           end
-        end
-        eventsDay[day] = events
+
+         end   
+ 
       end
-      eventsDay
+      scheduleDay
       
         
    end
@@ -67,8 +73,44 @@ class Event < ActiveRecord::Base
 
    #event.order_by { |e| e.schedules
 
+    
+    #defini o css para o tipo de evneto
 
 
+    def circleColor
+      if self.kind=="palestra"
+        "purple"
+      else
+        "warning"
+        
+      end
+    end
+
+    def sideAlt (number)
+      if number%2==0
+        "timeline-item alt"
+      else
+        "timeline-item "
+      end
+    end
+
+    def sideArrow (number)
+      if number % 2 ==0
+        "arrow-alt"
+      else
+        "arrow"
+      end
+    end
+
+#final 
+
+    def cart_action(current_user_id)
+     if $redis.sismember "cart#{current_user_id}", id
+      "Remove from"
+     else
+      "Add to"
+      end
+    end
 
    def self.filtered_by_shedules
      

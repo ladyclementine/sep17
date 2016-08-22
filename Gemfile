@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use less
-gem 'less-rails', '~> 2.7.0'
+gem 'less-rails', '2.7.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'therubyracer'
+
 gem 'font-awesome-less', '~> 4.6.2'
 
 gem 'less-rails-bootstrap'
@@ -40,7 +42,15 @@ gem 'pg'
 
 gem 'thin'
 
-gem 'therubyracer'
+gem 'redis', '~> 3.3.0'
+
+gem 'hiredis', '~> 0.6.0'
+
+gem 'pagseguro-oficial', '2.5.0'
+
+
+
+
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
