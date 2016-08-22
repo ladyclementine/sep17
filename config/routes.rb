@@ -18,6 +18,10 @@ resource :cart, only: [:show] do
   put 'add/:id', to: 'carts#add', as: :add_to
   put 'remove/:id', to: 'carts#remove', as: :remove_from
 end
+
+post "payment" => "checkout#create", :as => "payment"
+  get "payment" => "checkout#new"
+
   constraints SubdomainConstraint do
     root 'pages#show', as: :week_subdomain_root
   end

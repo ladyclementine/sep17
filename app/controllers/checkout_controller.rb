@@ -1,38 +1,38 @@
 class CheckoutController < ApplicationController
-
-	  before_action :authenticate_user!
   def create
     # O modo como você irá armazenar os produtos que estão sendo comprados
     # depende de você. Neste caso, temos um modelo Order que referência os
     # produtos que estão sendo comprados.
-    order = Order.find(params[:id])
+    order = current_user.id
+    @cart = current_user.get_cart_events
 
-    payment = PagSeguro::PaymentRequest.new
+    #payment = PagSeguro::PaymentRequest.new
 
     # Você também pode fazer o request de pagamento usando credenciais
     # diferentes, como no exemplo abaixo
 
-    payment = PagSeguro::PaymentRequest.new(email: 'abc@email', token: 'token')
+    payment = PagSeguro::PaymentRequest.new
 
-    payment.reference = order.id
-    payment.notification_url = notifications_url
-    payment.redirect_url = processing_url
+    #payment.reference = order
+    #payment.notification_url = notifications_url
+    #payment.redirect_url = processing_url
 
-    order.products.each do |product|
+    @cart.each do |product|
       payment.items << {
         id: product.id,
-        description: product.title,
-        amount: product.price,
-        weight: product.weight
+        description: product.name,
+        amount: 10
+       
       }
     end
 
+    byebug
     # Caso você precise passar parâmetros para a api que ainda não foram
     # mapeados na gem, você pode fazer de maneira dinâmica utilizando um
     # simples hash.
-    payment.extra_params << { paramName: 'paramValue' }
-    payment.extra_params << { senderBirthDate: '07/05/1981' }
-    payment.extra_params << { extraAmount: '-15.00' }
+   # payment.extra_params << { paramName: 'paramValue' }
+    #payment.extra_params << { senderBirthDate: '07/05/1981' }
+    #payment.extra_params << { extraAmount: '-15.00' }
 
     response = payment.register
 
@@ -44,7 +44,7 @@ class CheckoutController < ApplicationController
     if response.errors.any?
       raise response.errors.join("\n")
     else
-      redirect_to response.url
+      redirect_to response.url 
     end
   end
 end
