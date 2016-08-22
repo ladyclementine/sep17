@@ -48,6 +48,14 @@ gem 'hiredis', '~> 0.6.0'
 
 gem "pagseguro-oficial", "~> 2.5.0"
 
+
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+gem 'rails-i18n', '~> 3.0.0' # For 3.x
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 5.x
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-3-x' # For 3.x
+
 group :development, :test do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
