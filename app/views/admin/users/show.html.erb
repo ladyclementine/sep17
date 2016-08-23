@@ -1,34 +1,39 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="text-center card-box">
+      <h4 class="header-title m-t-0 m-b-30">Perfil</h4>
 
-<p>
-  <strong>Name:</strong>
-  <%= @admin_user.name %>
-</p>
+      <div>
+        <img src="assets/images/users/avatar-10.jpg" class="img-circle thumb-xl img-thumbnail m-b-10" alt="profile-image">
 
-<p>
-  <strong>Email:</strong>
-  <%= @admin_user.email %>
-</p>
+        <div class="text-left">
+          <p class="text-muted font-13"><strong>Nome :</strong> <span class="m-l-15"><%= @admin_user.name %></span></p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @admin_user.course %>
-</p>
+          <p class="text-muted font-13"><strong>Email :</strong><span class="m-l-15"><%= @admin_user.email %></span></p>
 
-<p>
-  <strong>Semester:</strong>
-  <%= @admin_user.semester %>
-</p>
+          <p class="text-muted font-13"><strong>Curso :</strong> <span class="m-l-15"><%= @admin_user.course %></span></p>
 
-<p>
-  <strong>Birthday:</strong>
-  <%= @admin_user.birthday %>
-</p>
+          <p class="text-muted font-13"><strong>Semestre :</strong> <span class="m-l-15"><%= @admin_user.semester %></span></p>
+          <p class="text-muted font-13"><strong>Data de Nascimento :</strong> <span class="m-l-15"><%= @admin_user.birthday %></span></p>
+          <p class="text-muted font-13"><strong>Instituição de Ensino :</strong> <span class="m-l-15"><%= @admin_user.university %></span></p>
+        </div>
 
-<p>
-  <strong>University:</strong>
-  <%= @admin_user.university %>
-</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="text-center card-box">
+      <h4 class="header-title m-t-0 m-b-30">Informações de Pagamento</h4>
+      <div class="text-left">
+        <p>
+          <%= render 'payment', @payment %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_admin_user_path(@admin_user) %> |
 <%= link_to 'Back', admin_users_path %>

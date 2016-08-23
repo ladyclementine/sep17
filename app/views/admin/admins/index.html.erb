@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box table-responsive">
+      <h4 class="header-title m-t-0 m-b-30">Admin Admins</h4>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="m-b-30">
+            <%= link_to(new_admin_admin_path, class:'btn btn-primary waves-effect waves-light') do %>
+            New Admin <i class="fa fa-plus"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="responsive">
+        <table class="table table-striped" id="datatable">
+          <thead>
+            <tr>
+                            <th>Email</th>
+                            <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @admin_admins.each do |admin_admin| %>
+              <% if admin_admin != current_admin %>
+                <tr>
+                  <td><%= admin_admin.email %></td>
+                  <td class="actions">
+                    <%= link_to 'Show', admin_admin_path(admin_admin) %>
+                    <%= link_to 'Edit', edit_admin_admin_path(admin_admin) %>
+                    <%= link_to 'Destroy', admin_admin_path(admin_admin), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div><!-- end col -->
+  </div>
+</div>

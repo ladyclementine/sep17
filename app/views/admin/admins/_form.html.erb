@@ -1,0 +1,20 @@
+<%= form_for [:admin, @admin_admin] do |f| %>
+    <% if @admin_admin.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@admin_admin.errors.count, "error") %> prohibited this admin_admin from being saved:</h2>
+
+        <ul>
+        <% @admin_admin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group text-right m-b-0">
+      <%= button_tag "Create admin_admin", type:'submit', class:'btn btn-purple waves-effect waves-light' %>
+    </div>
+<% end %>

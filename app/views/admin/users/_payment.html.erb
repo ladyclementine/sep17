@@ -1,0 +1,8 @@
+<%= form_tag({ controller: 'admin/users', action: 'set_payment'}, method: :patch, class: 'form-horizontal') do %>
+  <div class="form-group">
+    <label class="col-md-4 control-label">Método de pagamento </label>
+    <div class="col-md-8">
+      <%= select_tag(:payment_method, options_for_select([['Dinheiro', 1], ['Boleto', 2]]), class:'form-control') %>
+    </div>
+  </div>
+<% end %>
