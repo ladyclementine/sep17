@@ -1,48 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
- <title><%= current_week[:name] %></title>
- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
- <%= csrf_meta_tags %>
- <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body class="fixed-left">
-
-  <!-- Begin page -->
-  <div id="wrapper">
-
-    <!-- Top Bar Start -->
-    <%= render 'layouts/topbar'%>
-    <!-- Top Bar End -->
-
-
-    <!-- ========== Left Sidebar Start ========== -->
-    <%= render 'layouts/profile_sidemenu'%>
-    
-    <!-- Left Sidebar End -->
-
-
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    
-    <%= yield %>
-
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
-
-
-  </div>
-  <!-- END wrapper -->
-
-
-
-  
-
-
-</body>
+  <head>
+    <title><%= current_week[:name] %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body class="fixed-left">
+    <!-- Begin page -->
+    <div id="wrapper">
+      <%= render 'layouts/topbar' %>
+      <%= render 'layouts/profile_sidemenu'%>
+      <%= yield %>
+    </div>
+  </body>
 </html>
