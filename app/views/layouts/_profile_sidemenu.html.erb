@@ -1,8 +1,6 @@
-
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left side-menu">
   <div class="sidebar-inner slimscrollleft">
-
     <!-- User -->
     <div class="user-box">
       <div class="user-img">
@@ -16,51 +14,45 @@
             <i class="zmdi zmdi-settings"></i>
           </a>
         </li>
-
         <li>
           <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="zmdi zmdi-power"></i>
+          <i class="zmdi zmdi-power"></i>
           <% end %>
         </li>
       </ul>
     </div>
-    <!-- End User -->
 
-    <!--- Sidemenu -->
-    <div id="sidebar-menu">
-      <ul>
-        <li class="text-muted menu-title">Navigation</li>
-
-                            <li>
-                                 <%= link_to authenticated_user_root_path, class: 'waves-effect' do %>
-                                    <i class="zmdi zmdi-home"></i>
-                                     <span>Início</span>
-                                            <% end -%>
-                            </li>
-
-                              <li>
-                                 <%= link_to events_path, class: 'waves-effect' do %>
-                                    <i class="zmdi zmdi-calendar"></i>
-                                     <span>Programação</span>
-                                            <% end -%>
-                            </li>
-
-                             <li>
-                                 <%= link_to '#', class: 'waves-effect' do %>
-                                    <i class="zmdi zmdi-calendar-alt"></i>
-                                     <span>Minha Semana</span>
-                                            <% end -%>
-                            </li>
-                             <li>
-                                 <%= link_to cart_path, class: 'waves-effect' do %>
-                                    <i class="zmdi zmdi-shopping-cart"></i>
-                                     <span>Meu carrinho</span>
-                                            <% end -%>
-                            </li>
-
-</div>
-
+  <!-- End User -->
+  <!--- Sidemenu -->
+  <div id="sidebar-menu">
+    <ul>
+      <li class="text-muted menu-title">Navigation</li>
+      <li>
+        <%= link_to authenticated_user_root_path, class: 'waves-effect' do %>
+        <i class="zmdi zmdi-home"></i>
+        <span>Início</span>
+        <% end -%>
+      </li>
+      <li>
+        <%= link_to events_path, class: 'waves-effect' do %>
+        <i class="zmdi zmdi-calendar"></i>
+        <span>Programação</span>
+        <% end -%>
+      </li>
+      <li>
+        <%= link_to my_events_path, class: 'waves-effect' do %>
+        <i class="zmdi zmdi-calendar-alt"></i>
+        <span>Minha Semana</span>
+        <% end -%>
+      </li>
+      <li>
+        <%= link_to cart_path, class: 'waves-effect' do %>
+        <i class="zmdi zmdi-shopping-cart"></i>
+        <span>Meu carrinho</span>
+        <% end -%>
+      </li>
+    </div>
+  </div>
+>>>>>>> f6976a205a58b6fb4a9dfe04f78e45d1d6bcb737
 </div>
 <!-- Left Sidebar End -->
-
-

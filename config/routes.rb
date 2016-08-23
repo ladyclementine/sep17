@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'payment' => 'checkout#new'
 
     get 'programacao' => 'profiles#week', as: :events
+    get 'minhasemana' => 'profiles#week_user', as: :my_events
 
     root 'profiles#index', as: :authenticated_user_root
   end
