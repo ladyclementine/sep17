@@ -1,6 +1,13 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
 
   layout 'layouts/devise_layout'
+
+
+ private
+  def after_confirmation_path_for(resource_name, resource)
+    new_user_session_path
+  end
+  
   # GET /resource/confirmation/new
   # def new
   #   super
