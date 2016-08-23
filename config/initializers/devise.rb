@@ -13,9 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
 
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
   config.mailer_sender = 'vica.escorcio@gmail.com'
 
   # Configure the class responsible to send e-mails.
