@@ -11,12 +11,12 @@
       <ul class="list-inline">
         <li>
           <a href="#" >
-            <i class="zmdi zmdi-settings"></i>
+            <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
           </a>
-        </li>
+        </li> 
         <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="zmdi zmdi-power"></i>
+          <%= link_to destroy_user_session_path,title: "Sair", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :delete do %>
+          <i class="zmdi zmdi-power  zmdi-hc-2x"></i>
           <% end %>
         </li>
       </ul>
