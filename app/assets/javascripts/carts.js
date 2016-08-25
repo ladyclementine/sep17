@@ -5,6 +5,7 @@ $(window).load(function() {
     $this = $(this);
     if ($this.data('target') === 'Add to') {
       url = $this.data('addurl');
+
       new_target = "Remove from";
     } else {
       url = $this.data('removeurl');
@@ -21,3 +22,5 @@ $(window).load(function() {
     });
   });
 });
+
+

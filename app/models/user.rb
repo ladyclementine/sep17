@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :semester, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: {with: VALID_EMAIL_REGEX}
-  validates :password, length: { minimum: 5 }
+  validates :password, length: { minimum: 6 }
 
   def cart_count
     $redis.scard "cart#{id}"

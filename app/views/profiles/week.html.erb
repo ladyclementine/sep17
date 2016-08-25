@@ -62,19 +62,15 @@
 
 
 
+ <% cart_action = schedule.event.cart_action(@user.id) %>
+                       
 
- <% cart_action = @events.find(schedule.event_id).cart_action(@user.id) %>
-                           <% if cart_action == "Add to" %>
-
-                           <%= button_to add_to_cart_path(@events.find(schedule.event_id)), :class => "btn btn-success waves-effect w-md waves-light m-b-5", :method => :put do %>
-    <span class="zmdi zmdi-shopping-cart-plus"></span>
+                           <%= link_to "", :class => "btn btn-success waves-effect w-md waves-light m-b-5", data: {target: cart_action, addUrl: add_to_cart_path(schedule.event), removeUrl: remove_from_cart_path(schedule.event)},remote: true,  :method => :put do %>
+                          <i class="zmdi zmdi-shopping-cart-plus"></i>
+    <span > <%=cart_action%></span>
 <% end %>
                          
-                           <%else%>
-                           <%= button_to remove_from_cart_path(@events.find(schedule.event_id)), :class => "btn btn-danger waves-effect w-md waves-light m-b-5", :method => :put do %>
-    <span class="zmdi  zmdi-delete"></span>
-<% end %>
-<% end %>
+             
 
 
 
