@@ -5,5 +5,8 @@ class PagesController < ApplicationController
 
   def show
   end
+
+  def teams
+  end
   
 end
