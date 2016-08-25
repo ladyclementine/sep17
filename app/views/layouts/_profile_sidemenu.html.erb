@@ -11,16 +11,17 @@
       <ul class="list-inline">
         <li>
           <a href="#" >
-            <i class="zmdi zmdi-settings"></i>
+            <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
           </a>
-        </li>
+        </li> 
         <li>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="zmdi zmdi-power"></i>
+          <%= link_to destroy_user_session_path,title: "Sair", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :delete do %>
+          <i class="zmdi zmdi-power  zmdi-hc-2x"></i>
           <% end %>
         </li>
       </ul>
     </div>
+
   <!-- End User -->
   <!--- Sidemenu -->
   <div id="sidebar-menu">
@@ -39,7 +40,7 @@
         <% end -%>
       </li>
       <li>
-        <%= link_to '#', class: 'waves-effect' do %>
+        <%= link_to my_events_path, class: 'waves-effect' do %>
         <i class="zmdi zmdi-calendar-alt"></i>
         <span>Minha Semana</span>
         <% end -%>
@@ -52,5 +53,6 @@
       </li>
     </div>
   </div>
+>>>>>>> f6976a205a58b6fb4a9dfe04f78e45d1d6bcb737
 </div>
 <!-- Left Sidebar End -->

@@ -1,6 +1,7 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
+<% provide(:title, "Minha semana") %>
 <div class="content-page">
    <!-- Start content -->
    <div class="content">
@@ -25,7 +26,7 @@
                               <span class="timeline-icon bg-<%= schedule.event.circleColor%>"><i class="zmdi zmdi-circle"></i></span>
                               <h4 class="text-<%= schedule.event.circleColor%>"><%= schedule.event.name%>
                               <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
-                              <p> <%=schedule.event.description%></p>
+                              <p><%=schedule.event.description%></p>
 <div class = "album">
                                       <% cart_action = @events.find(schedule.event_id).cart_action(@user.id) %>
                            <% if cart_action == "Add to" %>

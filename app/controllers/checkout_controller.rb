@@ -47,4 +47,6 @@ class CheckoutController < ApplicationController
       redirect_to response.url 
     end
   end
+
+
 end

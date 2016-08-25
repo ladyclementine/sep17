@@ -97,11 +97,11 @@
               <hr>
               <div class="hidden-print">
                 <div class="pull-right">
-                  <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                  <%= button_to payment_path,  :class => "btn btn-primary waves-effect waves-light", :method => :post do %>
+                  
+                  <%= button_to form_cart_path,  :class => "btn btn-primary waves-effect waves-light", :method => :get do %>
                   <span > Finalizar compra</span>
                   <% end %>
-                  <a href="#" class="btn btn-primary waves-effect waves-light">Finalizar compra</a>
+                 
                 </div>
               </div>
             </div>

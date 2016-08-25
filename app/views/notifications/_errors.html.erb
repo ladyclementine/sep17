@@ -1,0 +1,18 @@
+<% flash.each do |key, value| %>
+    <% if value.class == Array %>
+    <% value.each do |message| %>  
+        <div class="<%= flash_class(key) %>">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            
+                <%= message %>
+                </br>
+          
+        </div>
+          <% end %>
+    <% else %>
+        <div class="<%= flash_class(key) %>">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <%= value %>
+        </div>
+    <% end %>
+<% end %>

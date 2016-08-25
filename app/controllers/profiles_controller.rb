@@ -21,5 +21,12 @@ class ProfilesController < ApplicationController
     @scheduleHash = Event.appointments
     @number = 0
   end 
+  def week_user
+      @user = current_user
+    @events = Event.all
+    @eventsDays = Event.days
+    @scheduleHash = Event.appointments
+    @number = 0
+  end
 
 end

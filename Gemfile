@@ -48,7 +48,7 @@ gem 'hiredis', '~> 0.6.0'
 
 gem 'pagseguro-oficial', '2.5.0'
 
-
+#gem 'puma'
 
 
 
