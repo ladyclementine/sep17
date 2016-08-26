@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
 
       scheduleDay = Hash.new
       days = self.days
-      events = Event.all
+      events = self.all
       
       days.each do |day|
         scheduleDay[day] = []
@@ -43,7 +43,29 @@ class Event < ActiveRecord::Base
       
         
    end
-  
+  def self.appointment(my_events)
+
+      scheduleDay = Hash.new
+      days = Event.days
+      events = my_events
+      
+      days.each do |day|
+        scheduleDay[day] = []
+         events.each do |event|
+          
+          event.schedules.each do |schedule|
+                   
+                  scheduleDay[day] << schedule if schedule.start_time.to_date == day
+                  scheduleDay[day].sort_by! {|obj| obj.start_time}
+          end
+
+         end   
+ 
+      end
+      scheduleDay
+      
+        
+   end
 
 
    #retorna os horários em ordem 

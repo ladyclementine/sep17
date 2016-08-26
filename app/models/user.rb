@@ -46,4 +46,7 @@ def purchase?(event)
   events.include?(event)
 end
 
+
+
+
 end
