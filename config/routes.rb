@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   	resource :cart do
       put 'add/:id', to: 'carts#add', as: :add_to
       put 'remove/:id', to: 'carts#remove', as: :remove_from
-       get 'formadepagamento' => 'carts#new', as: :form
+      get 'formadepagamento' => 'carts#new', as: :form
     end
 
 
@@ -41,6 +41,15 @@ Rails.application.routes.draw do
 
   unauthenticated :user do
     root 'pages#index',  as: :unauthenticated_user_root
+
+    namespace :challenge do
+      get 'inscricao/nova' => 'team#new_inscription', as: :new_team_inscription
+      post 'inscricao' => 'team#create_inscription', as: :team_inscription
+
+      get 'inscricao/:team_id/equipe' => 'member#new_inscription', as: :new_members_inscription
+      post 'inscricao/:team_id/' => 'member#create_inscription', as: :members_inscription
+    end
+
   end
 
   # Admin auth routes
