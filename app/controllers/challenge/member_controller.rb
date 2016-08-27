@@ -24,8 +24,6 @@ class Challenge::MemberController < ApplicationController
     else
       render :new_inscription, notice: 'Erro ao cadastrar equipe!'
     end
-    
-
   end
 
   protected
