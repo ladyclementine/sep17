@@ -10,11 +10,21 @@ class Challenge::MemberController < ApplicationController
   end
 
   def create_inscription
-    @members = params[:members]
-
+    @members = params.require(:members)
+    errors = []
     @members.each do |index, member|
-      @challenge_team.challenge_members.create(name: member[:name], email: member[:email])
+      @member = @challenge_team.challenge_members.new(member.permit(:name, :email))
+      if !@member.save
+        errors << @member.errors
+      end
     end
+
+    if errors.empty?
+      redirect_to challenge_new_team_inscription_path, notice: 'Equipe cadastrada com sucesso!'
+    else
+      render :new_inscription, notice: 'Erro ao cadastrar equipe!'
+    end
+    
 
   end
 
@@ -23,12 +33,7 @@ class Challenge::MemberController < ApplicationController
     @challenge_team = Challenge::Team.find(params[:team_id])
 
     if !@challenge_team.challenge_members.empty?
-      redirect_to challenge_new_team_inscription_path, error: 'Time cadastrado, agora insira sua equipe'
+      redirect_to challenge_new_team_inscription_path, notice: 'Time já possui membros cadastrados, tente criar outro time!'
     end
   end
-
-  def challenge_member_params(params)
-    params.permit(:name, :email)
-  end
-
 end
