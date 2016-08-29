@@ -46,6 +46,11 @@ def purchase?(event)
   events.include?(event)
 end
 
+def is_there_payment?
+  self.payment.nil?
+
+
+end
 
 
 

@@ -10,6 +10,8 @@ class CartsController < ApplicationController
     @scheduleHash = Event.appointments
     @number = 0
 
+    
+
    
   end
 
