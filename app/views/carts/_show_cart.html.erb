@@ -9,7 +9,7 @@
             <div class="panel-body">
               <div class="clearfix">
                 <div class="pull-left">
-                  <h3 class="logo">Adminto</h3>
+                  <h3 class="logo">Lista de compras</h3>
                 </div>
                 <div class="pull-right">
                   <h4>Invoice # <br>
@@ -29,8 +29,8 @@
                     </address>
                   </div>
                   <div class="pull-right m-t-30">
-                    <p><strong> Data: </strong> Jan 17, 2016</p>
-                    <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pending</span></p>
+                    <p><strong> Data: </strong> <%=@time.strftime('%d-%m-%Y %H:%M:%S')%></p>
+                    <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pendente</span></p>
                     <p class="m-t-10"><strong>Pedido: </strong> #123456</p>
                   </div>
                 </div>
@@ -74,14 +74,25 @@
               <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6">
                   <div class="clearfix m-t-40">
-                    <h5 class="small text-inverse font-600">PAYMENT TERMS AND POLICIES</h5>
-                    <small>
-                    All accounts are to be paid within 7 days from receipt of
-                    invoice. To be paid by cheque or credit card or direct payment
-                    online. If account is not paid within 7 days the credits details
-                    supplied as confirmation of work undertaken will be charged the
-                    agreed quoted fee noted above.
-                    </small>
+                    <h5 class=" text-inverse font-600">DADOS DO COMPRADOR E FORMA DE PAGAMENTO</h5>
+                  <%= form_for(@payment , url: cart_path ,html: {class: 'form-horizontal '}) do |f| %>
+ <div class="form-group">
+                                                  <label class="col-sm-2 control-label">Nome</label>
+                                                    <div class="col-sm-10">
+                                                      <p class="form-control-static"><%= current_user.name%></p>
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                 <label class="col-sm-2 control-label">Email</label>
+                                                    <div class="col-sm-10">
+                                                      <p class="form-control-static"><%= current_user.email%></p>
+                                                    </div>
+                                              </div>
+                                               <label class="col-sm-2 control-label">Forma de pagamento</label>
+                                               <div class="col-sm-10">
+
+   <%= f.select :method, ['Depósito bancário', 'Em espécie(presencial)', 'PagSeguro'], {}, { :class => 'form-control' } %>
+</div>
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
@@ -91,13 +102,21 @@
                   <h3 class="text-right">R$ <%=current_user.cart_total_price%></h3>
                 </div>
               </div>
+
+
+
+
+
+
               <hr>
               <div class="hidden-print">
                 <div class="pull-right">
                   
-                  <%= button_to form_cart_path,  :class => "btn btn-primary waves-effect waves-light", :method => :get do %>
-                  <span > Finalizar compra</span>
-                  <% end %>
+
+   <%= f.submit "Finalizar compra", class: "btn btn-primary" %>
+   <%end%>
+
+            
                  
                 </div>
               </div>

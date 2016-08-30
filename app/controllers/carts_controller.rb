@@ -13,7 +13,8 @@ class CartsController < ApplicationController
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
     @number = 0
-
+    @payment = Payment.new
+    @time = Time.now
     
 
    
@@ -29,7 +30,7 @@ class CartsController < ApplicationController
     @number = 0
 
 
-    @payment = Payment.new
+    
   end 
 
 
@@ -40,7 +41,7 @@ class CartsController < ApplicationController
       # Handle a successful save.
       redirect_to  user_dashboard_path
     else
-      render 'new'
+      render 'show'
     end
   end
 
