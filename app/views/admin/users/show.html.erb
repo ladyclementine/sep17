@@ -5,18 +5,16 @@
       <h4 class="header-title m-t-0 m-b-30">Perfil</h4>
 
       <div>
-        <img src="assets/images/users/avatar-10.jpg" class="img-circle thumb-xl img-thumbnail m-b-10" alt="profile-image">
-
         <div class="text-left">
-          <p class="text-muted font-13"><strong>Nome :</strong> <span class="m-l-15"><%= @admin_user.name %></span></p>
+          <p class="text-muted"><strong>Nome :</strong> <span class="m-l-15"><%= @admin_user.name %></span></p>
 
-          <p class="text-muted font-13"><strong>Email :</strong><span class="m-l-15"><%= @admin_user.email %></span></p>
+          <p class="text-muted"><strong>Email :</strong><span class="m-l-15"><%= @admin_user.email %></span></p>
 
-          <p class="text-muted font-13"><strong>Curso :</strong> <span class="m-l-15"><%= @admin_user.course %></span></p>
+          <p class="text-muted"><strong>Curso :</strong> <span class="m-l-15"><%= @admin_user.course %></span></p>
 
-          <p class="text-muted font-13"><strong>Semestre :</strong> <span class="m-l-15"><%= @admin_user.semester %></span></p>
-          <p class="text-muted font-13"><strong>Data de Nascimento :</strong> <span class="m-l-15"><%= @admin_user.birthday %></span></p>
-          <p class="text-muted font-13"><strong>Instituição de Ensino :</strong> <span class="m-l-15"><%= @admin_user.university %></span></p>
+          <p class="text-muted"><strong>Semestre :</strong> <span class="m-l-15"><%= @admin_user.semester %></span></p>
+          <p class="text-muted"><strong>Data de Nascimento :</strong> <span class="m-l-15"><%= @admin_user.birthday %></span></p>
+          <p class="text-muted"><strong>Instituição de Ensino :</strong> <span class="m-l-15"><%= @admin_user.university %></span></p>
         </div>
 
       </div>
@@ -26,11 +24,37 @@
   <div class="col-md-6">
     <div class="text-center card-box">
       <h4 class="header-title m-t-0 m-b-30">Informações de Pagamento</h4>
-      <div class="text-left">
-        <p>
+      <div class="text-center">
+        <% if !@payment.nil? %>
           <%= render 'payment', @payment %>
-        </p>
+        <% else %>
+          <p>Este usuário ainda não escolheu o método de pagamento</p>
+        <% end %>
       </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card-box">
+      <h4 class="header-title m-t-0 m-b-30">Inscrições</h4>
+      <ul class="list-group m-b-0 user-list">
+        <% if @admin_user.events.empty? %>
+          <div class="text-center">
+            <p>Usuario não está inscrito em nenhum evento</p>
+          </div>
+        <% else %>
+          <% @admin_user.events.each do |event| %>
+            <li class="list-group-item user-list-item">
+              <div class="avatar text-center">
+                <i class="zmdi zmdi-circle text-primary"></i>
+              </div>
+              <div class="user-desc">
+                <span class="name"> <%= event.name %></span>
+                <span class="desc"><%= event.schedules.to_s %></span>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

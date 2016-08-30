@@ -71,9 +71,8 @@ Rails.application.routes.draw do
     authenticated :admin do
       resources :events
       resources :packages 
-      resources :users do
-        patch 'change_payment' => 'users#set_payment', as: :change_user_payment
-      end
+      resources :users
+      patch 'users/:id/change_payment' => 'users#set_payment', as: :change_user_payment
       resources :admins
     end
 

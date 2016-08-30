@@ -20,6 +20,7 @@
       <h5 class="text-muted m-t-0 font-600"><%= current_week[:name] %></h5>
     </div>
     <div class="m-t-40 card-box">
+        <%= render 'notifications/errors' %>
         <%= yield %>
     </div>
   </div>

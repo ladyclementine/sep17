@@ -12,6 +12,7 @@ class Challenge::TeamController < ApplicationController
     else
       render :new_inscription
     end
+    byebug
   end
 
   protected

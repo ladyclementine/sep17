@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment]
 
   # GET /admin/users
   def index
@@ -21,8 +21,9 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def set_payment
-    @admin_user.payment = Payment.create(params[:payment_method], 1)
+    @admin_user.payment.update(method: params[:payment_method])
   end
+
   # POST /admin/users
   def create
     @admin_user = User.new(admin_user_params)
