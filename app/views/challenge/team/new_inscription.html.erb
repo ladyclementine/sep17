@@ -1,0 +1,20 @@
+<h4 class="text-uppercase text-center font-bold m-b-0">Cadastrar Equipe</h4>
+<%= form_for(@team, url: challenge_team_inscription_path(@team), html: { class: 'form-horizontal m-t-20' }) do |f| %>
+
+  <%= render 'notifications/errors', resource: @team %>
+<div class="form-group ">
+  <div class="col-xs-12">
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: 'Nome da equipe' %>
+  </div>
+</div>
+<div class="form-group ">
+  <div class="col-xs-12">
+    <%= f.number_field :limit, class: "form-control", placeholder: 'Número de membros' %>
+  </div>
+</div>
+<div class="form-group text-center m-t-30">
+  <div class="col-xs-12">
+    <%= button_tag "Cadastrar membros", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light" %>
+  </div>
+</div>
+<% end %>

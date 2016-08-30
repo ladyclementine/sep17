@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment]
 
   # GET /admin/users
   def index
@@ -8,6 +8,7 @@ class Admin::UsersController < Admin::BaseController
 
   # GET /admin/users/1
   def show
+    @payment = @admin_user.payment
   end
 
   # GET /admin/users/new
@@ -19,9 +20,12 @@ class Admin::UsersController < Admin::BaseController
   def edit
   end
 
+  def set_payment
+    @admin_user.payment.update(method: params[:payment_method])
+  end
+
   # POST /admin/users
   def create
-    byebug
     @admin_user = User.new(admin_user_params)
     generated_password = Devise.friendly_token.first(8)
     @admin_user.password = generated_password

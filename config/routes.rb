@@ -41,6 +41,15 @@ Rails.application.routes.draw do
 
   unauthenticated :user do
     root 'pages#index',  as: :unauthenticated_user_root
+
+    namespace :challenge do
+      get 'inscription/new' => 'team#new_inscription', as: :new_team_inscription
+      post 'inscription' => 'team#create_inscription', as: :team_inscription
+
+      get 'inscription/:team_id/equipe' => 'member#new_inscription', as: :new_members_inscription
+      post 'inscription/:team_id/' => 'member#create_inscription', as: :members_inscription
+    end
+
   end
 
   # Admin auth routes
@@ -63,6 +72,8 @@ Rails.application.routes.draw do
       resources :events
       resources :packages 
       resources :users
+      patch 'users/:id/change_payment' => 'users#set_payment', as: :change_user_payment
+      resources :admins
     end
 
     root 'events#index'

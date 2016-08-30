@@ -1,0 +1,2 @@
+module Challenge::MemberHelper
+end
