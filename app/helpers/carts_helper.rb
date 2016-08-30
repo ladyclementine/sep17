@@ -4,7 +4,7 @@ module CartsHelper
  	if current_user.is_there_payment?
  		 render :partial => 'carts/show_cart' 
  	else
- 		 render :partial => 'carts/show_blocked ' 
+ 		 render :partial => 'carts/blocked' 
  	end
 
 

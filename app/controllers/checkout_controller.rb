@@ -26,7 +26,7 @@ class CheckoutController < ApplicationController
       }
     end
 
-    byebug
+   
     # Caso você precise passar parâmetros para a api que ainda não foram
     # mapeados na gem, você pode fazer de maneira dinâmica utilizando um
     # simples hash.
