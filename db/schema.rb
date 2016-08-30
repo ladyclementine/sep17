@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20160825034027) do
     t.datetime "updated_at",        null: false
   end
 
+  add_index "challenge_members", ["email"], name: "index_challenge_members_on_email", unique: true, using: :btree
+
   create_table "challenge_teams", force: :cascade do |t|
     t.string   "name",                    null: false
     t.integer  "limit",      default: 10, null: false

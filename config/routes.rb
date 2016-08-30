@@ -43,11 +43,11 @@ Rails.application.routes.draw do
     root 'pages#index',  as: :unauthenticated_user_root
 
     namespace :challenge do
-      get 'inscricao/nova' => 'team#new_inscription', as: :new_team_inscription
-      post 'inscricao' => 'team#create_inscription', as: :team_inscription
+      get 'inscription/new' => 'team#new_inscription', as: :new_team_inscription
+      post 'inscription' => 'team#create_inscription', as: :team_inscription
 
-      get 'inscricao/:team_id/equipe' => 'member#new_inscription', as: :new_members_inscription
-      post 'inscricao/:team_id/' => 'member#create_inscription', as: :members_inscription
+      get 'inscription/:team_id/equipe' => 'member#new_inscription', as: :new_members_inscription
+      post 'inscription/:team_id/' => 'member#create_inscription', as: :members_inscription
     end
 
   end
