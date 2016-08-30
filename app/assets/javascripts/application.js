@@ -9,11 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
 //= require core/modernizr.min
 //= require jquery2
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.mask.js
 //= require core/bootstrap
 //= require core/detect
 //= require core/fastclick
@@ -38,6 +39,8 @@
 //= require plugins/datatables/responsive.bootstrap.min
 //= require plugins/datatables/dataTables.scroller.min
 //= require plugins/toastr.min.js
+//= require carts.js
+//= require mask.js
 
 jQuery(window).bind("load", function() {
   $('#datatable').dataTable();

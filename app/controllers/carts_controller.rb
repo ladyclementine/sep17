@@ -9,6 +9,9 @@ class CartsController < ApplicationController
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
     @number = 0
+
+    
+
    
   end
 
@@ -25,13 +28,20 @@ class CartsController < ApplicationController
   def add
     
     $redis.sadd current_user_cart, params[:id]
-    #render json: current_user.cart_count
+
+   # respond_to do |format|
+    #  format.js {render json: current_user.cart_count,  status: 200}
+    #end 
     redirect_to :back
   end
 
   def remove
     $redis.srem current_user_cart, params[:id]
-    #render json: current_user.cart_count, status: 200
+  
+    #respond_to do |format|
+
+     # format.js {render json: current_user.cart_count , status: 200}
+    #end 
     redirect_to :back
   end
 
