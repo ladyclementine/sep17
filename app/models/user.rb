@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_one :payment
   has_many :purchases, foreign_key: :buyer_id
   has_many :events, through: :purchases
+  belongs_to :package
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -15,6 +16,8 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }
+
+  before_save :set_package
 
   def cart_count
     $redis.scard "cart#{id}"
@@ -48,5 +51,12 @@ class User < ActiveRecord::Base
 
   def is_there_payment?
     self.payment.nil?
+  end
+
+  private
+  def set_package
+    if Package.count  <= 1
+      self.package = Package.firt
+    end
   end
 end

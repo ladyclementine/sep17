@@ -1,3 +1,3 @@
 class Package < ActiveRecord::Base
-  belongs_to :week
+  has_many :users
 end

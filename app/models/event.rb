@@ -1,5 +1,4 @@
 class Event < ActiveRecord::Base
-   belongs_to :week
    has_many :schedules
    has_many :purchases
    has_many :buyers, through: :purchases
