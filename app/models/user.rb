@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :purchases, foreign_key: :buyer_id
   has_many :events, through: :purchases
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 
 
   validates :name,  uniqueness: true, presence: true, length: { maximum: 50 }
