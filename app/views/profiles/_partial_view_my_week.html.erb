@@ -9,23 +9,26 @@
                                     <article class="timeline-item alt">
                                         <div class="text-right">
                                             <div class="time-show first">
-                                                <a href="#" class="btn btn-custom w-lg"><%= days.strftime("%A, %b %d") %> </a>
+                                                <a href="#" class="btn btn-custom w-lg"><%= l days, format: :week %> </a>
                                             </div>
                                         </div>
                                     </article>
                                      <% @my_events_day[days].each do |schedule| %>
-                                    <article class="<%= schedule.event.sideAlt(@number)%>">
+                                    <article class="<%= schedule.event.sideAlt%>">
+
                                         <div class="timeline-desk">
                                             <div class="panel">
                                                 <div class="panel-body">
-                                                    <span class="<%= schedule.event.sideArrow(@number)%>"></span>
+                                                    <span class="<%= schedule.event.sideArrow%>"></span>
                                                     <span class="timeline-icon bg-<%= schedule.event.circleColor%>"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-<%= schedule.event.circleColor%>"><%= schedule.event.name%>
                                                    <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
                                                   <p><%=schedule.event.description%></p>
                                                   <div class = " album">
+                                                  <% if current_user.is_there_payment?%>
                                                                <%= button_to remove_from_cart_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",remote: true,  :method => :put do %>
     <span class="zmdi  zmdi-delete"></span>
+<% end %>
 <% end %>
                                                   </div>
 
@@ -35,7 +38,7 @@
 
                                     </article>
 
-                                    
+                                  
 <% end %>
 <% end %>
                                 </div>
