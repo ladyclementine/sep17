@@ -1,6 +1,10 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   layout 'profile_layout'
+
+
+
+
   def show
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
@@ -16,14 +20,30 @@ class CartsController < ApplicationController
   end
 
   def new
-       cart_ids = $redis.smembers current_user_cart
+    cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
     @user = current_user
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
     @number = 0
+
+
+    @payment = Payment.new
   end 
+
+
+  def create
+    method = params[:method]
+     @payment = Payment.new(method:method, user_id:current_user.id)    # Not the final implementation!
+    if @payment.save
+      # Handle a successful save.
+      redirect_to  user_dashboard_path
+    else
+      render 'new'
+    end
+  end
+
 
   def add
     
