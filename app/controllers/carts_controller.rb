@@ -15,6 +15,7 @@ class CartsController < ApplicationController
     @number = 0
     @payment = Payment.new
     @time = Time.now
+   
     
 
    
@@ -47,11 +48,7 @@ class CartsController < ApplicationController
     end
   end
 
-  private
 
-  def payment_params
-    params.require(:payment).permit(:method)
-  end
 
 
 
@@ -79,5 +76,10 @@ class CartsController < ApplicationController
 
   def current_user_cart
     "cart#{current_user.id}"
+  end
+
+
+  def payment_params
+    params.require(:payment).permit(:method)
   end
 end

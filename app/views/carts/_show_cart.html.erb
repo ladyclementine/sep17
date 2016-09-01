@@ -12,29 +12,28 @@
                         <div class="pull-left">
                            <h3 class="logo">Lista de compras</h3>
                         </div>
-                        <div class="pull-right">
-                           <h4>Invoice # <br>
-                              <strong>2016-04-23654789</strong>
-                           </h4>
-                        </div>
+
                      </div>
                      <hr>
                      <div class="row">
-                        <div class="col-md-12">
-                           <div class="pull-left m-t-30">
-                              <address>
-                                 <strong>Twitter, Inc.</strong><br>
-                                 795 Folsom Ave, Suite 600<br>
-                                 San Francisco, CA 94107<br>
-                                 <abbr title="Phone">P:</abbr> (123) 456-7890
-                              </address>
-                           </div>
-                           <div class="pull-right m-t-30">
-                              <p><strong> Data: </strong> <%=@time.strftime('%d-%m-%Y %H:%M:%S')%></p>
-                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pendente</span></p>
-                              <p class="m-t-10"><strong>Pedido: </strong> #123456</p>
-                           </div>
+                     <div class="col-md-12">
+                        <div class="pull-right ">
+                           <h4><br>
+                              <strong> Dados do comprador:</strong>
+                           </h4>
+                           <p><strong> Nome: </strong> <%= current_user.name%></p>
+                              <p class="m-t-10"><strong> Email: </strong> <%=current_user.email%></p>
+                              
                         </div>
+                           <div class="pull-left ">
+                            <h4><br>
+                              <strong> Dados da compra:</strong>
+                           </h4>
+                              <p><strong> Data: </strong> <%= l @time, format: :long%></p>
+                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pendente</span></p>
+                              <p class="m-t-10"><strong>Pedido: </strong> #</p>
+                           </div>
+                      </div>
                         <!-- end col -->
                      </div>
                      <!-- end row -->
@@ -45,25 +44,27 @@
                               <table class="table m-t-30">
                                  <thead>
                                     <tr>
-                                       <th>#</th>
+                                       <th>Id</th>
                                        <th>Evento</th>
                                        <th>Descrição</th>
-                                       <th>tipo</th>
+                                       <th>Tipo</th>
                                        <th>Custo</th>
-                                       <th>Total</th>
+                                      
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <% @cart_events.each do |cart| %>
                                     <tr>
-                                       <td>1</td>
+                                       <td><%= cart.id%></td>
                                        <td><%=cart.name%></td>
                                        <td><%=cart.description%></td>
                                        <td><%=cart.kind%></td>
-                                       <td>$380</td>
-                                       <td>$380</td>
+                                       <td>R$ <%= cart.price%></td>
+                                      
                                        <td><%= button_to remove_from_cart_path(cart.id), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5", :method => :put do %>
-                                          <span class="zmdi  zmdi-delete"></span> <%end%>
+                                          <i class="zmdi zmdi-minus-circle-outline"></i>
+                              <span> Remover</span>
+                              <%end%>
                                        </td>
                                     </tr>
                                     <%end%>
@@ -75,20 +76,9 @@
                      <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                            <div class="clearfix m-t-40">
-                              <h5 class=" text-inverse font-600">DADOS DO COMPRADOR E FORMA DE PAGAMENTO</h5>
+                              <h5 class=" text-inverse font-600">Qual a forma de pagamento?</h5>
                               <%= form_for(@payment , url: cart_path ,html: {class: 'form-horizontal '}) do |f| %>
-                              <div class="form-group">
-                                 <label class="col-sm-2 control-label">Nome</label>
-                                 <div class="col-sm-10">
-                                    <p class="form-control-static"><%= current_user.name%></p>
-                                 </div>
-                              </div>
-                              <div class="form-group">
-                                 <label class="col-sm-2 control-label">Email</label>
-                                 <div class="col-sm-10">
-                                    <p class="form-control-static"><%= current_user.email%></p>
-                                 </div>
-                              </div>
+                              
                               <label class="col-sm-2 control-label">Forma de pagamento</label>
                               <div class="col-sm-10">
                                  <%= f.select :method, ['Depósito bancário', 'Em espécie(presencial)', 'PagSeguro'], {}, { :class => 'form-control' } %>
@@ -103,7 +93,7 @@
                      </div>
                      <div class="hidden-print">
                         <div class="pull-right">
-                           <%= f.submit "Finalizar compra" %>
+                            <%= button_tag "Finalizar compra", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", type:"submit"  %>
                            <%end%>
                         </div>
                      </div>
