@@ -1,47 +1,35 @@
 class Event < ActiveRecord::Base
-   has_many :schedules
-   has_many :purchases
-   has_many :buyers, through: :purchases
+  has_many :schedules
+  has_many :purchases
+  has_many :buyers, through: :purchases
 
-   def self.days
-     days = []
-
-	   self.all.each do |event|
-	   	event.schedules.each do |schedule|
-	      day = schedule.start_time.to_date
-	      days << day unless day.in?(days) 
-	   	end
-	   end
-
-    	days.sort!
-      days
-   end
-   
-
-
-   def self.appointments
-
-      scheduleDay = Hash.new
-      days = self.days
-      events = self.all
-      
-      days.each do |day|
-        scheduleDay[day] = []
-         events.each do |event|
-          
-          event.schedules.each do |schedule|
-                   
-                  scheduleDay[day] << schedule if schedule.start_time.to_date == day
-                  scheduleDay[day].sort_by! {|obj| obj.start_time}
-          end
-
-         end   
- 
+  def self.days
+    days = []
+    self.all.each do |event|
+      event.schedules.each do |schedule|
+        day = schedule.start_time.to_date
+        days << day unless day.in?(days) 
       end
-      scheduleDay
-      
-        
-   end
+    end
+    days.sort!
+  end
+   
+  def self.appointments
+    scheduleDay = Hash.new
+    days = self.days
+    events = self.all
+    days.each do |day|
+      scheduleDay[day] = []
+      events.each do |event|
+        event.schedules.each do |schedule|
+          scheduleDay[day] << schedule if schedule.start_time.to_date == day
+          scheduleDay[day].sort_by! {|obj| obj.start_time}
+        end
+      end   
+    end
+    scheduleDay
+  end
+  
   def self.appointment(my_events)
 
       scheduleDay = Hash.new
@@ -70,18 +58,18 @@ class Event < ActiveRecord::Base
    #retorna os horários em ordem 
 
    def self.timetables(eventsDay)
-   	timetables = []
+    timetables = []
 
-   	eventsDay.each do |event|
-   		event.schedules.each do |schedule|
-   			timetable = schedule.start_time
-   			timetables << timetable
-   		end
-   	end
+    eventsDay.each do |event|
+      event.schedules.each do |schedule|
+        timetable = schedule.start_time
+        timetables << timetable
+      end
+    end
 
-   	#timetables.uniq!
-   	#timetables.order_by(start_time)
-   	timetables
+    #timetables.uniq!
+    #timetables.order_by(start_time)
+    timetables
 
    end    
 

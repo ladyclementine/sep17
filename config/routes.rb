@@ -18,8 +18,6 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-    get 'dashboard' => 'packages#index', as: :packages
-
   	resource :cart  do
       put 'add/:id', to: 'carts#add', as: :add_to
       put 'remove/:id', to: 'carts#remove', as: :remove_from
@@ -32,10 +30,11 @@ Rails.application.routes.draw do
     get 'payment' => 'checkout#new'
 
     get 'events' => 'events#index', as: :events
-    get 'home' => 'profile#show', as: :my_events
+    get 'my_events' => 'profile#events', as: :my_events
+    get 'my_home' => 'profile#home', as: :my_home
 
 
-    root 'packages#index', as: :authenticated_user_root
+    root 'profile#home', as: :authenticated_user_root
   end
 
   unauthenticated :user do

@@ -1,10 +1,4 @@
-class CartsController < ApplicationController
-  before_action :authenticate_user!
-  layout 'profile_layout'
-
-
-
-
+class CartsController < ProfileController
   def show
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)

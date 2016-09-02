@@ -1,13 +1,19 @@
 class ProfileController < ApplicationController
 	before_action :authenticate_user!, :get_user
-  before_action :verify_packages, except: [:show]
+  before_action :verify_packages, except: [:events, :home]
 	layout 'profile_layout'
 
-  def show
+  def home
+    
+  end
+
+  def events
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
-    @number = 0    
+    @number = 0
+    @my_events = @user.get_cart_events
+    @my_events_day = Event.appointment(@my_events)    
   end
 
   protected
