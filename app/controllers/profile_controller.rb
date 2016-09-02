@@ -24,7 +24,7 @@ class ProfileController < ApplicationController
       end
     else
       if controller_path == 'packages'
-        redirect_to :events, notice: 'Você já está inscrito noo pacote disponível.'
+        redirect_to :events, notice: 'Você já está inscrito no pacote disponível.'
       end
     end
   end
