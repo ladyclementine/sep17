@@ -15,6 +15,7 @@ class CartsController < ApplicationController
     @number = 0
     @payment = Payment.new
     @time = Time.now
+   
     
 
    
@@ -35,8 +36,10 @@ class CartsController < ApplicationController
 
 
   def create
-    method = params[:method]
-     @payment = Payment.new(method:method, user_id:current_user.id)    # Not the final implementation!
+    
+     @payment = Payment.new( user_id:current_user.id) 
+     @payment.method = payment_params[:method]
+      # Not the final implementation!
     if @payment.save
       # Handle a successful save.
       redirect_to  user_dashboard_path
@@ -44,6 +47,9 @@ class CartsController < ApplicationController
       render 'show'
     end
   end
+
+
+
 
 
   def add
@@ -70,5 +76,10 @@ class CartsController < ApplicationController
 
   def current_user_cart
     "cart#{current_user.id}"
+  end
+
+
+  def payment_params
+    params.require(:payment).permit(:method)
   end
 end

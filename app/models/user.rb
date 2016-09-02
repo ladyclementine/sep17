@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   def cart_total_price
    total_price = 0
-   get_cart_events.each { |event| total_price+= event.id }
+   get_cart_events.each { |event| total_price+= event.price }
    total_price
   end
 

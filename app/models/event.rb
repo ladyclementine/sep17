@@ -107,16 +107,16 @@ class Event < ActiveRecord::Base
       end
     end
 
-    def sideAlt (number)
-      if number%2==0
+    def sideAlt 
+      if self.id%2==0
         "timeline-item alt"
       else
         "timeline-item "
       end
     end
 
-    def sideArrow (number)
-      if number % 2 ==0
+    def sideArrow 
+      if self.id % 2 ==0
         "arrow-alt"
       else
         "arrow"
