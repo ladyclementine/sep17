@@ -1,0 +1,30 @@
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<% provide(:title, "Programação") %>
+<div class="row">
+  <div class="col-sm-12">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+      <li class="active">
+        <a href="#welcome"class=" waves-effect waves-custom" data-toggle="tab">
+          Minha semana
+        </a>
+      </li>
+    <% @eventsDays.each do |days| %> 
+      <li>
+        <a href="#tab<%= @number %>"class=" waves-effect waves-custom" data-toggle="tab">
+          <%= days.strftime("%A, %b %d") %>
+        </a>
+      </li>
+      <% @number = @number + 1%>
+    <%end%>
+   </ul>
+   <% @number = 0%>
+  </div>
+</div>
+<div id="my-tab-content" class="tab-content">
+  <div class="tab-pane active fade in" id="welcome">
+    <%= render 'partial_view_my_week'%>
+  </div>
+  <%= render 'partial_view_week'%>
+</div>

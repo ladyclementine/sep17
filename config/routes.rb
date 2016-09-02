@@ -18,25 +18,24 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-    get 'dashboard' => 'profiles#index', as: :user_dashboard
+    get 'dashboard' => 'packages#index', as: :packages
 
   	resource :cart  do
       put 'add/:id', to: 'carts#add', as: :add_to
       put 'remove/:id', to: 'carts#remove', as: :remove_from
-      get'formadepagamento' => 'carts#new', as: :form
+      get 'method' => 'carts#new', as: :form
     end
 
-
-
+    resources :packages, only: [:index]
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'
 
-    get 'programacao' => 'profiles#week', as: :events
-    get 'minhasemana' => 'profiles#week_user', as: :my_events
+    get 'events' => 'events#index', as: :events
+    get 'home' => 'profile#show', as: :my_events
 
 
-    root 'profiles#index', as: :authenticated_user_root
+    root 'packages#index', as: :authenticated_user_root
   end
 
   unauthenticated :user do

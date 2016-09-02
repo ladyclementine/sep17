@@ -10,9 +10,10 @@
       <h5><a href="#"><%= @user.name %> </a> </h5>
       <ul class="list-inline">
         <li>
-          <a href="#" >
-            <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
-          </a>
+          <%= link_to edit_user_registration_path,title: "Opções de conta", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :get do %>
+          <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
+          <% end %>
+        </li>
         </li> 
         <li>
           <%= link_to destroy_user_session_path,title: "Sair", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :delete do %>
