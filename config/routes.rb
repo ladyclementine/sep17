@@ -24,7 +24,13 @@ Rails.application.routes.draw do
       get 'method' => 'carts#new', as: :form
     end
 
-    resources :packages, only: [:index]
+    resources :packages, only: [:index] do 
+       put 'add/:package_id', to: 'packages#add_package', as: :add_package
+    end
+
+
+
+ 
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'

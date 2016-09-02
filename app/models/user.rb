@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
     self.payment.nil?
   end
 
+  def is_there_package?
+    self.package_id.nil?
+  end
+
   private
   def set_package
     flag = false
