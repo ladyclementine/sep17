@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-  validates :name,  uniqueness: true, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }
   validates :course, presence: true, length: { maximum: 60 }
   validates :university, presence: true, length: { maximum: 70 } 
   validates :semester, presence: true
@@ -55,8 +55,13 @@ class User < ActiveRecord::Base
 
   private
   def set_package
-    if Package.count  <= 1
-      self.package = Package.firt
+    flag = false
+    if Package.count == 1  
+      self.package = Package.first
+      flag = true
+    elsif Package.count > 1
+      flag = true
     end
+    flag
   end
 end

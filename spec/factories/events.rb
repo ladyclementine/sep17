@@ -8,13 +8,6 @@ FactoryGirl.define do
     name
     description { Faker::Lorem.sentences }
     facilitator { Faker::Lorem.sentence}
-    
-    #tip { Faker::Lorem.sentence }
-
-   
-
-   
-
   end
 end
 

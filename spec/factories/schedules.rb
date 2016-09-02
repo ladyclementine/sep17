@@ -5,17 +5,7 @@ FactoryGirl.define do
   end
 
   factory :schedule do
-    
     start_time
-   
-    
-    
-    
-
-   
-
-   
-
   end
 end
 
