@@ -18,19 +18,15 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-  	resource :cart  do
-      put 'add/:id', to: 'carts#add', as: :add_to
-      put 'remove/:id', to: 'carts#remove', as: :remove_from
-      get 'method' => 'carts#new', as: :form
-    end
+    get 'cart' => 'cart#show', as: :cart
+    get 'cart/method' => 'cart#new', as: :form
+    put 'cart/add/:id', to: 'cart#add', as: :add_to
+    put 'cart/remove/:id', to: 'cart#remove', as: :remove_from
+    post 'cart/checkout' => 'cart#create', as: :cart_checkout
 
     resources :packages, only: [:index] do 
-       put 'add/:package_id', to: 'packages#add_package', as: :add_package
+      put 'add/:package_id', to: 'packages#add_package', as: :add_package
     end
-
-
-
- 
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'

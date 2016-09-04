@@ -2,14 +2,11 @@ module ApplicationHelper
   def current_week
     case Rails.application.secrets.week_id
     when "semana_test"
-      @week = {name: 'Semana em Teste', colors: [base: '#FFFFFF'], logo: 'semana_test-logo.png'}
+      @week = {name: 'Semana em Teste', sigla: 'SeT', colors: [base: '#FFFFFF'], logo: 'semana_test-logo.png'}
     else
       @week = {}
     end
   end
-
-
-
 
   def flash_class(level)
     case level

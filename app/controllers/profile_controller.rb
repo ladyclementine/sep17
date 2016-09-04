@@ -1,10 +1,9 @@
 class ProfileController < ApplicationController
 	before_action :authenticate_user!, :get_user
-  before_action :verify_packages, except: [:events, :home]
+  # before_action :verify_packages, except: [:events, :home]
 	layout 'profile_layout'
 
   def home
-    
   end
 
   def events
