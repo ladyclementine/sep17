@@ -1,7 +1,7 @@
 <h4 class="text-uppercase text-center font-bold m-b-0">Cadastrar Equipe</h4>
 <%= form_for(@team, url: challenge_team_inscription_path(@team), html: { class: 'form-horizontal m-t-20' }) do |f| %>
 
-  <%= render 'notifications/errors', resource: @team %>
+<%= render 'notifications/errors',locals: { resource: @team } %>
 <div class="form-group ">
   <div class="col-xs-12">
     <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: 'Nome da equipe' %>
