@@ -14,12 +14,12 @@
                               <%if current_user.is_there_payment?%>
                               <% cart_action = schedule.event.cart_action(@user.id) %>
                               <% if cart_action == "Add to" %>
-                              <%= button_to add_to_cart_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-success m-b-5",   :method => :put do %>
+                              <%= button_to add_to_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-success m-b-5",   :method => :put do %>
                              <i class=" zmdi zmdi-plus-circle-o"></i>
                               <span >Adicionar</span>
                               <% end %>
                               <% else %>
-                              <%= button_to remove_from_cart_path(schedule.event),:class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",  :method => :put do %>
+                              <%= button_to remove_from_path(schedule.event),:class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",  :method => :put do %>
                               <i class="zmdi zmdi-minus-circle-outline"></i>
                               <span> Remover</span>
                                                             <% end %>

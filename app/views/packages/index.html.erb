@@ -3,70 +3,39 @@
 <% provide(:title, "Pacotes") %>
 <div class="row m-t-10">
   <div class="col-md-10 col-md-offset-1">
+
+  
     <div class="row">
 
       <!--Pricing Column-->
+ <%= form_for(@user, url:add_package_path(@user)) do |f| %>
+     <% @packages.each do |package|%>
       <article class="pricing-column col-lg-3 col-sm-6">
         <div class="inner-box card-box">
           <div class="plan-header text-center">
-            <h3 class="plan-title">Ouro</h3>
-            <h2 class="plan-price">R$ 45 </h2>
+            <h3 class="plan-title"><%=package.title%></h3>
+            <h4 class="plan-price">R$<%= package.price%> </h4>
+            <h5 >Vagas:<%= package.limit%> </h5>
             
           </div>
           <ul class="plan-stats list-unstyled text-center">
-            <li>2 Mini-cursos</li>
-            <li>1 Kit</li>
-            <li>2 Visitas</li>
+            <li><%=package.description %></li>
+            
             
           </ul>
-
-         
-        </div>
-      </article>
-
-
-      <!--Pricing Column-->
-      <article class="pricing-column col-lg-3 col-sm-6">
-        
-        <div class="inner-box card-box">
-          <div class="plan-header text-center">
-            <h3 class="plan-title">Prata</h3>
-            <h2 class="plan-price">R$ 35</h2>
-            
-          </div>
-          <ul class="plan-stats list-unstyled text-center">
-            <li>2 mini-cursos</li>
-            <li>1 kit</li>
-            <li>1 Visita</li>
-            
-          </ul>
-          
-        </div>
-      </article>
-
-
-      <!--Pricing Column-->
-      <article class="pricing-column col-lg-3 col-sm-6">
-        <div class="inner-box card-box">
-          <div class="plan-header text-center">
-            <h3 class="plan-title">Bronze</h3>
-            <h2 class="plan-price">R$ 30</h2>
-            
-          </div>
-          <ul class="plan-stats list-unstyled text-center">
-            <li>1 mini-curso</li>
-            <li>1 Kit</li>
-            <li>1 Visita</li>
-            
-          </ul>
-
-         
-        </div>
-      </article>
-
+         <%= f.radio_button :package_id, package.id %> 
       
+         
+        </div>
+      </article>
+    <%end%>
+
+     <%= button_tag "Finalizar compra", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light"  %>
+                           
+    <%end%>
 
     </div><!-- end row -->
+
   </div>
 </div>
       <!-- end row -->

@@ -57,7 +57,7 @@
                                        <td><%=cart.kind%></td>
                                        <td>R$ <%= cart.price%></td>
                                       
-                                       <td><%= button_to remove_from_cart_path(cart.id), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5", :method => :put do %>
+                                       <td><%= button_to remove_from_path(cart.id), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5", :method => :put do %>
                                           <i class="zmdi zmdi-minus-circle-outline"></i>
                               <span> Remover</span>
                               <%end%>

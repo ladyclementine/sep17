@@ -24,9 +24,10 @@ Rails.application.routes.draw do
     put 'cart/remove/:id', to: 'cart#remove', as: :remove_from
     post 'cart/checkout' => 'cart#create', as: :cart_checkout
 
-    resources :packages, only: [:index] do 
-      put 'add/:package_id', to: 'packages#add_package', as: :add_package
-    end
+
+    get 'packages' => 'packages#index', as: :packages
+    post 'packages/add/:package_id' => 'packages#add_package', as: :add_package
+  
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'

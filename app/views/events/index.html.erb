@@ -13,7 +13,7 @@
     <% @eventsDays.each do |days| %> 
       <li>
         <a href="#tab<%= @number %>"class=" waves-effect waves-custom" data-toggle="tab">
-          <%= days.strftime("%A, %b %d") %>
+          <%= l days, format: :week_format %>
         </a>
       </li>
       <% @number = @number + 1%>

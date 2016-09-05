@@ -26,7 +26,7 @@
                                                   <p><%=schedule.event.description%></p>
                                                   <div class = " album">
                                                   <% if current_user.is_there_payment?%>
-                                                               <%= button_to remove_from_cart_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",remote: true,  :method => :put do %>
+                                                               <%= button_to remove_from_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",remote: true,  :method => :put do %>
     <i class="zmdi zmdi-minus-circle-outline"></i>
                               <span> Remover</span>
                                                             <% end %>
