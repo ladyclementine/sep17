@@ -1,4 +1,5 @@
 class CartController < ProfileController
+
   def show
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
@@ -25,12 +26,30 @@ class CartController < ProfileController
   def create
     @payment = Payment.new(user_id: current_user.id) 
     @payment.method = payment_params[:method]
-    
-    if pag_seguro
-      # Handle a successful save.
-      redirect_to  pag_seguro.redirect_url
+
+    if !@cart.empty?
+      case payment_params[:method]
+      when 'Depósito bancário'
+        if @payment.save
+          redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.' 
+        else
+          render 'show', notice: 'Erro ao efetuar pagamento!'
+        end
+      when 'Em espécie(presencial)'
+        if @payment
+          redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.'
+        else
+          render 'show', notice: 'Erro ao efetuar pagamento!'
+        end
+      when 'PagSeguro'
+        if pag_seguro && @payment.save
+          redirect_to  pag_seguro.url
+        else
+          render 'show', notice: 'Erro ao efetuar pagamento!'
+        end
+      end
     else
-      render 'show', notice: 'Erro ao efetuar pagamento!'
+      render 'show', notice: 'Seu carrinho está vazio!'
     end
   end
 
@@ -72,22 +91,21 @@ class CartController < ProfileController
 
     payment = PagSeguro::PaymentRequest.new
 
-    #payment.reference = order
+    payment.reference = order
     #payment.notification_url = notifications_url
-    #payment.redirect_url = processing_url
-
-    @cart.each do |product|
-      payment.items << {
-        id: product.id,
-        description: product.name,
-        amount: 10
-      }
-
-    end
-
+    payment.redirect_url = cart_url
+    payment.sender = {
+      name: current_user.name,
+      email: current_user.email
+    }
+    # @cart.each do |product|
+    payment.items << {
+      id: 1,
+      description: 'Teste',
+      amount: 10.0
+    }
+    # end
     response = payment.register
-
-    byebug
   end
 
   def payment_params
