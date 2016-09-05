@@ -37,7 +37,7 @@ class CartController < ProfileController
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'Em espécie(presencial)'
-        if @payment
+        if @payment.save
           redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'

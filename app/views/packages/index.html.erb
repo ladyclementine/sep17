@@ -8,7 +8,7 @@
     <div class="row">
 
       <!--Pricing Column-->
- <%= form_for(@user, url:add_package_path(@user), method:  :post) do |f| %>
+
      <% @packages.each do |package|%>
       <article class="pricing-column col-lg-3 col-sm-6">
         <div class="inner-box card-box">
@@ -23,17 +23,16 @@
             
             
           </ul>
-         <%= f.radio_button :package_id, package.id %> 
-      
+           <%= link_to add_package_path(package.id), class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", method: :post do %>
+   <span> Escolher pacote </span>
+   <%end%>
+         
          
         </div>
       </article>
     <%end%>
 
-     <%= button_tag "Finalizar compra", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light"  %>
-                           
-    <%end%>
-
+  
     </div><!-- end row -->
 
   </div>
