@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   
   layout 'devise_layout', except:'edit'
-  layout 'profile_layout', only:'edit'
+ 
 
   before_filter :configure_sign_up_params, only: [:create]
   # GET /resource/sign_up

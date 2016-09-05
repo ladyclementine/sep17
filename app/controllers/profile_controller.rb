@@ -4,6 +4,7 @@ class ProfileController < ApplicationController
 	layout 'profile_layout'
 
   def home
+    @user = current_user
   end
 
   def events

@@ -1,5 +1,6 @@
 class PackagesController < ProfileController
   def index
+    
     @packages = Package.all
     @package_1 = Package.first
     @user = current_user 
@@ -8,8 +9,12 @@ class PackagesController < ProfileController
 
 
   def add_package
+    
   	@user.package_id = package_params[:package_id]
-  	redirect_to :back
+    @user.save
+
+  	redirect_to :my_home, notice: 'Pacote escolhido com sucesso!'
+
   end
 
 

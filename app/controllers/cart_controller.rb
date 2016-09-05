@@ -24,10 +24,11 @@ class CartController < ProfileController
 
 
   def create
+    cart_ids = $redis.smembers current_user_cart
     @payment = Payment.new(user_id: current_user.id) 
     @payment.method = payment_params[:method]
-
-    if !@cart.empty?
+    @cart_events = Event.find(cart_ids)
+    if !@cart_events.empty?
       case payment_params[:method]
       when 'Depósito bancário'
         if @payment.save
