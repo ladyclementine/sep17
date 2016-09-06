@@ -3,6 +3,33 @@ class Event < ActiveRecord::Base
   has_many :purchases
   has_many :buyers, through: :purchases
 
+
+
+
+
+
+  def self.events_prices
+      lectures_price = self.find_by(kind:'palestra').price
+      courses_price = self.find_by(kind:'mini-curso').price
+      visits_price = self.find_by(kind:'visita').price
+      price = Array.new
+      price[0] = 0
+      price[1] = 0
+      price[2]=0
+      #price[lectures] = 0
+      #price[courses] = 0
+      #price[visits] = 0
+
+      price[0] += lectures_price
+      price[1] += courses_price
+      price[2] += visits_price
+
+      price
+
+
+  end
+
+
   def self.days
     days = []
     self.all.each do |event|
@@ -89,9 +116,11 @@ class Event < ActiveRecord::Base
     def circleColor
       if self.kind=="palestra"
         "purple"
-      else
+      elsif self.kind == "mini-curso"
+
         "warning"
-        
+       elsif self.kind == "visita" 
+        "inverse"
       end
     end
 
@@ -121,7 +150,5 @@ class Event < ActiveRecord::Base
       end
     end
 
-   def self.filtered_by_shedules
-     
-   end
+
 end

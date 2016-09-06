@@ -10,6 +10,9 @@ class CartController < ProfileController
     @number = 0
     @payment = Payment.new
     @time = Time.now
+    @package = Package.second
+    @count = @package.package_fit?(current_user)
+    @cart_total = @package.cart_total_price(current_user)
   end
 
   def new

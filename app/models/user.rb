@@ -24,16 +24,14 @@ class User < ActiveRecord::Base
   end
 
 
-  def cart_total_price
-   total_price = 0
-   get_cart_events.each { |event| total_price+= event.price }
-   total_price
-  end
+
 
   def get_cart_events
     cart_ids = $redis.smembers "cart#{id}"
     Event.find(cart_ids)
   end
+
+
 
 
   def purchase_cart_events!
@@ -49,7 +47,7 @@ class User < ActiveRecord::Base
     events.include?(event)
   end
 
-  def is_there_payment
+  def is_there_payment?
     self.payment.nil?
   end
 

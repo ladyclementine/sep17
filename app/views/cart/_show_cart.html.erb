@@ -44,7 +44,7 @@
                                        <th>Evento</th>
                                        <th>Descrição</th>
                                        <th>Tipo</th>
-                                       <th>Custo</th>
+                                       <th>Custo    <%=@count%></th>
                                       
                                     </tr>
                                  </thead>
@@ -80,9 +80,9 @@
                            </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
-                           <p class="text-right"><b>Sub-total: </b><%= current_user.cart_total_price%></p>
+                           <p class="text-right"><b>Sub-total: </b><</p>
                            <p class="text-right">Desconto de pacote: 12.9 %</p>
-                           <h3 class="text-right">R$ <%=current_user.cart_total_price%></h3>
+                           <h3 class="text-right">R$ <%=@cart_total%> </h3>
                         </div>
                      </div>
                      <div class="hidden-print">
