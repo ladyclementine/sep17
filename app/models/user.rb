@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }
 
-  before_save :set_package
+  # before_save :set_package
 
   def cart_count
     $redis.scard "cart#{id}"
@@ -49,12 +49,12 @@ class User < ActiveRecord::Base
     events.include?(event)
   end
 
-  def is_there_payment?
+  def is_there_payment
     self.payment.nil?
   end
 
-  def is_there_package?
-    self.package_id.nil?
+  def is_there_package
+    self.package.nil?
   end
 
   private
