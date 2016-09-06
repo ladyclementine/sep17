@@ -28,6 +28,7 @@ class CartController < ProfileController
     @payment = Payment.new(user_id: current_user.id) 
     @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
+    
     if !@cart_events.empty?
       case payment_params[:method]
       when 'Depósito bancário'
