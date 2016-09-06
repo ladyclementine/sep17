@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations:'users/registrations'
   },
+  path: '',
   path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
 
 
     get 'packages' => 'packages#index', as: :packages
-    post 'packages/add/:package_id' => 'packages#add_package', as: :add_package
+    patch 'packages/add/:package_id' => 'packages#add_package', as: :add_package
   
 
     post 'payment' => 'checkout#create', as: :payment
