@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>Week:</strong>
-  <%= @package.week %>
+  <strong>Cursos/Palestras/Visitas</strong>
+  <%= @package.courses %>/<%= @package.lectures %>/<%= @package.visits %>
 </p>
 
 <%= link_to 'Edit', edit_admin_package_path(@package) %> |

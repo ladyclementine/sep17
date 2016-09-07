@@ -19,8 +19,8 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>Limit</th>
+                            <th>Cursos/Palestras/Visitas</th>
                             <th>Price</th>
-                            <th>Week</th>
                             <th></th>
             </tr>
           </thead>
@@ -30,8 +30,8 @@
                             <td><%= package.title %></td>
                             <td><%= package.description %></td>
                             <td><%= package.limit %></td>
+                            <td><%= package.courses %>/<%= package.lectures %>/<%= package.visits %></td>
                             <td><%= package.price %></td>
-                            <td><%= package.week %></td>
                             <td class="actions">
                 <%= link_to 'Show', [:admin, package] %>
                 <%= link_to 'Edit', edit_admin_package_path(package) %>

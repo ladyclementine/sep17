@@ -13,7 +13,7 @@
 //= require core/modernizr.min
 //= require jquery2
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require jquery.mask.js
 //= require core/bootstrap
 //= require core/detect

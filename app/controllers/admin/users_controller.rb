@@ -9,6 +9,7 @@ class Admin::UsersController < Admin::BaseController
   # GET /admin/users/1
   def show
     @payment = @admin_user.payment
+    @package = @admin_user.package
   end
 
   # GET /admin/users/new
