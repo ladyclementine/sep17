@@ -5,16 +5,7 @@ class ProfileController < ApplicationController
 
   def home
     @user = current_user
-  end
-
-  def events
-    @events = Event.all
-    @eventsDays = Event.days
-    @scheduleHash = Event.appointments
-    @number = 0
-    @my_events = @user.get_cart_events
-    @my_events_day = Event.appointment(@my_events)    
-    @user_package = Package.find(current_user.package_id)
+    @user_package = @user.package
   end
 
   protected

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :purchases
   belongs_to :package
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
     self.payment.nil?
   end
 
-  def is_there_package
-    self.package.nil?
+  def is_there_package?
+    self.try(:package).nil?
   end
 
   private
