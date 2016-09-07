@@ -23,6 +23,11 @@
                 <a class="btn btn-success btn-bordred btn-rounded waves-effect waves-light disabled">
                   <span> Pacote já escolhido </span>
                 </a>
+
+              <%elsif package.remaining == 0%>
+                   <a class="btn btn-success btn-bordred btn-rounded waves-effect waves-light disabled">
+                  <span> Esse pacote não possui mais vagas </span>
+                </a>
               <% else %>
                 <%= link_to add_package_path(package), class:  "btn btn-custom btn-bordred btn-rounded waves-effect waves-light", method: :patch do %>
                   <span> Escolher este pacote </span>

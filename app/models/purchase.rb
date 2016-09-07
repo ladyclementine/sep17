@@ -11,11 +11,13 @@ class Purchase < ActiveRecord::Base
 
 
 
-  def create_purchases
-    
+  def self.create_purchases(current_user)
+    package = Package.find(current_user.package_id)
 
+  	current_user.get_cart_events.each do |event|
+  		self.create(buyer_id:current_user.id, event_id:event.id)
 
-
+  	end
   end
 
 end
