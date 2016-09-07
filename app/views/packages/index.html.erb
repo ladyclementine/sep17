@@ -14,7 +14,9 @@
               <div class="plan-duration">Vagas: <%= package.remaining %></div>
             </div>
             <ul class="plan-stats list-unstyled text-center">
-              <li><%= package.description %></li>
+              <li><%= package.courses %> Cursos</li>
+              <li><%= package.lectures %> Palestras</li>
+              <li><%= package.visits %> Visitas Técnicas</li>
             </ul>
             <div class="text-center">
               <% if @user.package == package %>
