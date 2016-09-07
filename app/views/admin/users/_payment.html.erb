@@ -6,9 +6,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-4 control-label">Pagamento efetuado? </label>
+    <label class="col-md-4 control-label">Status do pagamento </label>
     <div class="col-md-8">
-      <%= select_tag(:portions, options_for_select([['Sim', 1], ['Não', 2]]), class:'form-control') %>
+      <%= select_tag(:status, options_for_select([['Pago', 1], ['Não pago', 2]]), class:'form-control') %>
     </div>
   </div>
   <div class="form-group">

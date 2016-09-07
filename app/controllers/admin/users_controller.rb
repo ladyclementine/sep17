@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment, :remove_from_event]
 
   # GET /admin/users
   def index
@@ -22,7 +22,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def set_payment
-    @admin_user.payment.update(method: params[:payment_method])
+    @admin_user.payment.update(method: params[:payment_method], status: params[:status])
+  end
+
+  def remove_from_event
+    @event = Event.find(params[:event_id])
+
+
   end
 
   # POST /admin/users
