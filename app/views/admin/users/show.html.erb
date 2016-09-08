@@ -23,9 +23,18 @@
   <div class="col-md-6">
     <div class="card-box">
       <h4 class="header-title m-t-0 m-b-30">Informações de Pagamento</h4>
+
       <div class="text-center">
         <% if !@payment.nil? %>
-          <%= render 'payment', @payment %>
+          <div class="text-left">
+            <p class="text-muted"><strong>Método atual :</strong>
+              <span class="m-l-15"> <%= @payment.method %></span>
+            </p>
+            <p class="text-muted"><strong>Status atual :</strong>
+              <span class="m-l-15"><%= @payment.status %></span>
+            </p>
+          </div>
+          <%= render 'payment'%>
         <% else %>
           <p>Este usuário ainda não escolheu o método de pagamento</p>
         <% end %>
@@ -57,26 +66,34 @@
   </div>
   <div class="col-md-6">
     <div class="card-box">
-      <h4 class="header-title m-t-0 m-b-30">Inscrições</h4>
-      <ul class="list-group m-b-0 user-list">
-        <% if @admin_user.events.empty? %>
-          <div class="text-center">
-            <p>Usuario não está inscrito em nenhum evento</p>
-          </div>
-        <% else %>
-          <% @admin_user.events.each do |event| %>
-            <li class="list-group-item user-list-item">
-              <div class="avatar text-center">
-                <i class="zmdi zmdi-circle text-primary"></i>
-              </div>
-              <div class="user-desc">
-                <span class="name"> <%= event.name %></span>
-                <span class="desc"><%= event.schedules.to_s %></span>
-              </div>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
+      <h4 class="header-title m-t-0 m-b-30">Eventos</h4>
+      <% if @admin_user.events.empty? %>
+        <div class="text-center">
+          <p>Usuario não está inscrito em nenhum evento</p>
+        </div>
+      <% else %>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Evento</th>
+                <th>Horário</th>
+                <th>Opções</th>
+                <th><%= link_to 'Remover de todos', admin_remove_user_from_all_events_path(@admin_user), method: :patch, class:'label label-danger' %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @admin_user.events.each do |event| %>
+                <tr>
+                  <td><%= event.name %></td>
+                  <td><%= event.description %></td>
+                  <td><%= link_to 'Remover', admin_remove_user_from_event_path(@admin_user, event), method: :patch, class:'label label-danger' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

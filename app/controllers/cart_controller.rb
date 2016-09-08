@@ -1,9 +1,8 @@
 class CartController < ProfileController
-before_action :verify_cart_count, only: [:create]
+  before_action :verify_cart_count, only: [:create]
   def show
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
-    @user = current_user
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
@@ -18,7 +17,6 @@ before_action :verify_cart_count, only: [:create]
   def new
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
-    @user = current_user
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
@@ -31,8 +29,8 @@ before_action :verify_cart_count, only: [:create]
     @payment = Payment.new(user_id: current_user.id) 
     @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
+    @total_price = @user.package.cart_total_price(@user)
 
-    
     if !@cart_events.empty?
       case payment_params[:method]
       when 'Depósito bancário'
@@ -50,11 +48,12 @@ before_action :verify_cart_count, only: [:create]
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'PagSeguro'
-        if pag_seguro && @payment.save
+        @pag = pag_seguro(@total_price, @user)
+        if @pag.errors.empty? && @payment.save
           Purchase.create_purchases(current_user)
-          redirect_to  pag_seguro.url
+          redirect_to @pag.url
         else
-          render 'show', notice: 'Erro ao efetuar pagamento!'
+          render 'show', notice: "Erro ao efetuar pagamento! #{pag.errors}"
         end
       end
     else
@@ -86,12 +85,12 @@ before_action :verify_cart_count, only: [:create]
     "cart#{current_user.id}"
   end
 
-  def pag_seguro
+  def pag_seguro(value, user)
     # O modo como você irá armazenar os produtos que estão sendo comprados
     # depende de você. Neste caso, temos um modelo Order que referência os
     # produtos que estão sendo comprados.
-    order = current_user.id
-    @cart = current_user.get_cart_events
+    order = user.id
+    @cart = user.get_cart_events
 
     #payment = PagSeguro::PaymentRequest.new
 
@@ -104,14 +103,13 @@ before_action :verify_cart_count, only: [:create]
     #payment.notification_url = notifications_url
     payment.redirect_url = cart_url
     payment.sender = {
-      name: current_user.name,
-      email: current_user.email
+      email: 'c70708097678004206459@sandbox.pagseguro.com.br'
     }
     # @cart.each do |product|
     payment.items << {
-      id: 1,
-      description: 'Teste',
-      amount: 10.0
+      id: user.id,
+      description: "Pacote #{user.package.title} + x avulsos",
+      amount: value.to_f
     }
     # end
     response = payment.register

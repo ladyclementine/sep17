@@ -3,11 +3,6 @@ class Event < ActiveRecord::Base
   has_many :purchases
   has_many :buyers, through: :purchases
 
-
-
-
-
-
   def self.events_prices
       lectures_price = self.find_by(kind:'palestra').price
       courses_price = self.find_by(kind:'mini-curso').price

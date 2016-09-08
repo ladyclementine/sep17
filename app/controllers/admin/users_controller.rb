@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment, :remove_from_event, :remove_from_all_events]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment]
 
   # GET /admin/users
   def index
@@ -22,17 +22,21 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def set_payment
-    @admin_user.payment.update(method: params[:payment_method], status: params[:status])
+    if @admin_user.payment.update(method: params[:payment_method], status: params[:status])
+      redirect_to admin_users_path, notice: 'Pagamento alterado com sucesso!'
+    end
   end
 
   def remove_from_event
-    @event = Event.find(params[:event_id])
+    @admin_user = User.find(params[:user_id])
+    @event = Event.find(params[:id])
     if @admin_user.events.destroy(@event)
       render :show, notice: 'Usuário removido do evento!'
     end
   end
 
   def remove_from_all_events
+    @admin_user = User.find(params[:user_id])
     if @admin_user.events.destroy_all
       render :show, notice: 'Usuário removido de todos os eventos!'
     end
