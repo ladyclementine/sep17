@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment, :remove_from_event]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment, :remove_from_event, :remove_from_all_events]
 
   # GET /admin/users
   def index
@@ -27,8 +27,15 @@ class Admin::UsersController < Admin::BaseController
 
   def remove_from_event
     @event = Event.find(params[:event_id])
+    if @admin_user.events.destroy(@event)
+      render :show, notice: 'Usuário removido do evento!'
+    end
+  end
 
-
+  def remove_from_all_events
+    if @admin_user.events.destroy_all
+      render :show, notice: 'Usuário removido de todos os eventos!'
+    end
   end
 
   # POST /admin/users
