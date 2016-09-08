@@ -1,6 +1,7 @@
 class Package < ActiveRecord::Base
   has_many :users
-
+  validates_length_of :users, maximum: 1, message:"Não há mais vagas para este pacote"
+  
   def remaining
     @remaining = self.limit - self.users.count
   end
