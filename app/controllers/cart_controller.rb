@@ -1,5 +1,5 @@
 class CartController < ProfileController
-
+before_action :verify_cart_count, only: [:create]
   def show
     cart_ids = $redis.smembers current_user_cart
     @cart_events = Event.find(cart_ids)
@@ -10,8 +10,8 @@ class CartController < ProfileController
     @number = 0
     @payment = Payment.new
     @time = Time.now
-    @package = Package.second
-    @count = @package.package_fit?(current_user)
+    @package = Package.find(current_user.package_id)
+    @user_cart = @package.event_kind_count(current_user)
     @cart_total = @package.cart_total_price(current_user)
   end
 
@@ -31,23 +31,27 @@ class CartController < ProfileController
     @payment = Payment.new(user_id: current_user.id) 
     @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
+
     
     if !@cart_events.empty?
       case payment_params[:method]
       when 'Depósito bancário'
         if @payment.save
+          Purchase.create_purchases(current_user)
           redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.' 
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'Em espécie(presencial)'
         if @payment.save
+          Purchase.create_purchases(current_user)
           redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'PagSeguro'
         if pag_seguro && @payment.save
+          Purchase.create_purchases(current_user)
           redirect_to  pag_seguro.url
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'

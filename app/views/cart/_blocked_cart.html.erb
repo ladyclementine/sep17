@@ -24,7 +24,7 @@
                               <strong> Dados da compra:</strong>
                            </h4>
                               <p><strong> Data: </strong> </p>
-                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pendente</span></p>
+                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink"><%=current_user.payment.status%></span></p>
                               <p class="m-t-10"><strong>Pedido: </strong> #</p>
                            </div>
           </div>
@@ -69,10 +69,10 @@
 <%= render_payment_form %>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
-        <p class="text-right"><b>Sub-total:</b><%=current_user.cart_total_price%></p>
-        <p class="text-right">Desconto de pacote: 12.9%</p>
+         <p class="text-right"><b>Preço do pacote:</b> <%=@package.price%> </p>
+         
         <hr>
-        <h3 class="text-right">R$ <%=current_user.cart_total_price%></h3>
+        <h3 class="text-right">R$ <%=@cart_total%></h3>
       </div>
     </div>
 
