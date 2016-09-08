@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902142935) do
+ActiveRecord::Schema.define(version: 20160908140951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160902142935) do
     t.integer  "week_id"
     t.string   "kind"
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
+    t.integer  "limit"
   end
 
   add_index "events", ["week_id"], name: "index_events_on_week_id", using: :btree
@@ -77,6 +78,9 @@ ActiveRecord::Schema.define(version: 20160902142935) do
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
+    t.integer  "courses",                             default: 0
+    t.integer  "lectures",                            default: 0
+    t.integer  "visits",                              default: 0
   end
 
   add_index "packages", ["week_id"], name: "index_packages_on_week_id", using: :btree
@@ -92,9 +96,9 @@ ActiveRecord::Schema.define(version: 20160902142935) do
     t.string   "link_4"
     t.datetime "update_at"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "status"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "status",        default: "pendente"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -158,5 +162,4 @@ ActiveRecord::Schema.define(version: 20160902142935) do
   add_foreign_key "events", "weeks"
   add_foreign_key "packages", "weeks"
   add_foreign_key "schedules", "events"
-  add_foreign_key "users", "packages"
 end

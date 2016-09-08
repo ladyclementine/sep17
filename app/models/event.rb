@@ -2,6 +2,45 @@ class Event < ActiveRecord::Base
   has_many :schedules
   has_many :purchases
   has_many :buyers, through: :purchases
+  @@foo = 0
+
+
+
+
+
+
+
+  def remaining
+    @remaining = self.limit - self.buyers.count
+  end
+
+
+
+
+
+
+
+  def self.events_prices
+      lectures_price = self.find_by(kind:'palestra').price
+      courses_price = self.find_by(kind:'mini-curso').price
+      visits_price = self.find_by(kind:'visita').price
+      price = Array.new
+      price[0] = 0
+      price[1] = 0
+      price[2]=0
+      #price[lectures] = 0
+      #price[courses] = 0
+      #price[visits] = 0
+
+      price[0] += lectures_price
+      price[1] += courses_price
+      price[2] += visits_price
+
+      price
+
+
+  end
+
 
   def self.days
     days = []
@@ -89,14 +128,17 @@ class Event < ActiveRecord::Base
     def circleColor
       if self.kind=="palestra"
         "purple"
-      else
+      elsif self.kind == "mini-curso"
+
         "warning"
-        
+       elsif self.kind == "visita" 
+        "inverse"
       end
     end
 
-    def sideAlt 
-      if self.id%2==0
+    def sideAlt
+    @@foo +=1 
+      if @@foo%2==0
         "timeline-item alt"
       else
         "timeline-item "
@@ -104,7 +146,7 @@ class Event < ActiveRecord::Base
     end
 
     def sideArrow 
-      if self.id % 2 ==0
+      if @@foo % 2 ==0
         "arrow-alt"
       else
         "arrow"
@@ -121,7 +163,5 @@ class Event < ActiveRecord::Base
       end
     end
 
-   def self.filtered_by_shedules
-     
-   end
+
 end

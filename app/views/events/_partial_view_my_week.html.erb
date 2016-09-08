@@ -22,12 +22,13 @@
                                                     <span class="<%= schedule.event.sideArrow%>"></span>
                                                     <span class="timeline-icon bg-<%= schedule.event.circleColor%>"><i class="zmdi zmdi-circle"></i></span>
                                                     <h4 class="text-<%= schedule.event.circleColor%>"><%= schedule.event.name%>
-                                                   <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%></small></p>
+                                                   <p class="timeline-date text-muted"><small><%=schedule.start_time.strftime("%H : %M")%>h</small></p>
                                                   <p><%=schedule.event.description%></p>
+                                                  <p><%=schedule.event.kind%></p>
                                                   <div class = " album">
                                                   <% if current_user.is_there_payment?%>
-                                                               <%= button_to remove_from_cart_path(schedule.event), :class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",remote: true,  :method => :put do %>
-    <i class="zmdi zmdi-minus-circle-outline"></i>
+                                            <%= button_to remove_from_path(schedule.event),:class => "btn btn-icon waves-effect waves-light btn-danger m-b-5",  :method => :put do %>
+                              <i class="zmdi zmdi-minus-circle-outline"></i>
                               <span> Remover</span>
                                                             <% end %>
 <% end %>

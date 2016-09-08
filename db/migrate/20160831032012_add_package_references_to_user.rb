@@ -1,5 +1,7 @@
 class AddPackageReferencesToUser < ActiveRecord::Migration
   def change
-    add_reference :users, :package, index: true, foreign_key: true
+    change_table :users do |t|
+      t.belongs_to :package, index: true
+    end
   end
 end

@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
   has_one :payment
   has_many :purchases, foreign_key: :buyer_id
   has_many :events, through: :purchases
   belongs_to :package
+  validates_associated :package
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -17,24 +20,16 @@ class User < ActiveRecord::Base
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }
 
-  before_save :set_package
+  # before_save :set_package
 
   def cart_count
     $redis.scard "cart#{id}"
-  end
-
-
-  def cart_total_price
-   total_price = 0
-   get_cart_events.each { |event| total_price+= event.price }
-   total_price
   end
 
   def get_cart_events
     cart_ids = $redis.smembers "cart#{id}"
     Event.find(cart_ids)
   end
-
 
   def purchase_cart_events!
     get_cart_events.each { |event| purchase(event) }
@@ -54,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def is_there_package?
-    self.package_id.nil?
+    self.try(:package).nil?
   end
 
   private

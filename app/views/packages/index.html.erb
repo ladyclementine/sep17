@@ -2,71 +2,43 @@
 <!-- ============================================================== -->
 <% provide(:title, "Pacotes") %>
 <div class="row m-t-10">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-12">
     <div class="row">
-
       <!--Pricing Column-->
-      <article class="pricing-column col-lg-3 col-sm-6">
-        <div class="inner-box card-box">
-          <div class="plan-header text-center">
-            <h3 class="plan-title">Ouro</h3>
-            <h2 class="plan-price">R$ 45 </h2>
-            
+      <% @packages.each do |package| %>
+        <article class="pricing-column col-md-4">
+          <div class="inner-box card-box">
+            <div class="plan-header text-center">
+              <h3 class="plan-title"><%=package.title%></h3>
+              <h2 class="plan-price">R$ <%= package.price%> </h4>
+              <div class="plan-duration">Vagas: <%= package.remaining %></div>
+            </div>
+            <ul class="plan-stats list-unstyled text-center">
+              <li><%= package.courses %> Cursos</li>
+              <li><%= package.lectures %> Palestras</li>
+              <li><%= package.visits %> Visitas Técnicas</li>
+            </ul>
+            <div class="text-center">
+              <% if @user.package == package %>
+                <a class="btn btn-success btn-bordred btn-rounded waves-effect waves-light disabled">
+                  <span> Pacote já escolhido </span>
+                </a>
+
+              <%elsif package.remaining == 0%>
+                   <a class="btn btn-success btn-bordred btn-rounded waves-effect waves-light disabled">
+                  <span> Esse pacote não possui mais vagas </span>
+                </a>
+              <% else %>
+                <%= link_to add_package_path(package), class:  "btn btn-custom btn-bordred btn-rounded waves-effect waves-light", method: :patch do %>
+                  <span> Escolher este pacote </span>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-          <ul class="plan-stats list-unstyled text-center">
-            <li>2 Mini-cursos</li>
-            <li>1 Kit</li>
-            <li>2 Visitas</li>
-            
-          </ul>
-
-         
-        </div>
-      </article>
-
-
-      <!--Pricing Column-->
-      <article class="pricing-column col-lg-3 col-sm-6">
-        
-        <div class="inner-box card-box">
-          <div class="plan-header text-center">
-            <h3 class="plan-title">Prata</h3>
-            <h2 class="plan-price">R$ 35</h2>
-            
-          </div>
-          <ul class="plan-stats list-unstyled text-center">
-            <li>2 mini-cursos</li>
-            <li>1 kit</li>
-            <li>1 Visita</li>
-            
-          </ul>
-          
-        </div>
-      </article>
-
-
-      <!--Pricing Column-->
-      <article class="pricing-column col-lg-3 col-sm-6">
-        <div class="inner-box card-box">
-          <div class="plan-header text-center">
-            <h3 class="plan-title">Bronze</h3>
-            <h2 class="plan-price">R$ 30</h2>
-            
-          </div>
-          <ul class="plan-stats list-unstyled text-center">
-            <li>1 mini-curso</li>
-            <li>1 Kit</li>
-            <li>1 Visita</li>
-            
-          </ul>
-
-         
-        </div>
-      </article>
-
-      
-
-    </div><!-- end row -->
+        </article>
+      <% end %>
+    </div>
+    <!-- end row -->
   </div>
 </div>
-      <!-- end row -->
+<!-- end row -->

@@ -13,7 +13,7 @@
 //= require core/modernizr.min
 //= require jquery2
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require jquery.mask.js
 //= require core/bootstrap
 //= require core/detect
@@ -30,6 +30,7 @@
 //= require plugins/datatables/dataTables.buttons.min
 //= require plugins/datatables/buttons.bootstrap.min
 //= require plugins/datatables/jszip.min
+//= require plugins/datatables/pdfmake.min
 //= require plugins/datatables/vfs_fonts
 //= require plugins/datatables/buttons.html5.min
 //= require plugins/datatables/buttons.print.min
@@ -43,65 +44,71 @@
 //= require mask.js
 
 jQuery(window).bind("load", function() {
-  $('#datatable').dataTable();
+    $('#datatable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
 
-  var openLeftBtn = $(".open-left");
-  var menuItem = $("#sidebar-menu a");
-  function openLeftBar() {
-    $("#wrapper").toggleClass("enlarged");
-    $("#wrapper").addClass("forced");
+    var openLeftBtn = $(".open-left");
+    var menuItem = $("#sidebar-menu a");
 
-    if ($("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left")) {
-      $("body").removeClass("fixed-left").addClass("fixed-left-void");
-    } else if (!$("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left-void")) {
-      $("body").removeClass("fixed-left-void").addClass("fixed-left");
+    function openLeftBar() {
+        $("#wrapper").toggleClass("enlarged");
+        $("#wrapper").addClass("forced");
+
+        if ($("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left")) {
+            $("body").removeClass("fixed-left").addClass("fixed-left-void");
+        } else if (!$("#wrapper").hasClass("enlarged") && $("body").hasClass("fixed-left-void")) {
+            $("body").removeClass("fixed-left-void").addClass("fixed-left");
+        }
+
+        if ($("#wrapper").hasClass("enlarged")) {
+            $(".left ul").removeAttr("style");
+        } else {
+            $(".subdrop").siblings("ul:first").show();
+        }
+
+        //this.toggle_slimscroll(".slimscrollleft");
+        $("body").trigger("resize");
+        // for mobile screen re-intializing it
+        if (jQuery.browser.mobile === true) {
+            $('.slimscrollleft').getNiceScroll().resize();
+        }
     }
 
-    if ($("#wrapper").hasClass("enlarged")) {
-      $(".left ul").removeAttr("style");
-    } else {
-      $(".subdrop").siblings("ul:first").show();
+    function menuItemClick() {
+        if (!$("#wrapper").hasClass("enlarged")) {
+            if ($(this).parent().hasClass("has_sub")) {}
+            if (!$(this).hasClass("subdrop")) {
+                // hide any open menus and remove all other classes
+                $("ul", $(this).parents("ul:first")).slideUp(350);
+                $("a", $(this).parents("ul:first")).removeClass("subdrop");
+                $("#sidebar-menu .pull-right i").removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+                // open our new menu and add the open class
+                $(this).next("ul").slideDown(350);
+                $(this).addClass("subdrop");
+                $(".drop-arrow i", $(this).parents(".has_sub:first")).removeClass("zmdi-chevron-right").addClass("zmdi-chevron-down");
+                $(".drop-arrow i", $(this).siblings("ul")).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+            } else if ($(this).hasClass("subdrop")) {
+                $(this).removeClass("subdrop");
+                $(this).next("ul").slideUp(350);
+                $(".drop-arrow i", $(this).parent()).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
+            }
+        }
+        $('.slimscrollleft').getNiceScroll().resize();
     }
+    openLeftBtn.on("click", function(e) {
+        openLeftBar();
+    });
+    menuItem.on("click", function(e) {
+        console.log("Item clicado!")
+        menuItemClick();
+    });
 
-    //this.toggle_slimscroll(".slimscrollleft");
-    $("body").trigger("resize");
-    // for mobile screen re-intializing it
-    if(jQuery.browser.mobile === true) {
-      $('.slimscrollleft').getNiceScroll().resize();
-    }
-  }
-
-  function menuItemClick() {
-    if (!$("#wrapper").hasClass("enlarged")) {
-      if ($(this).parent().hasClass("has_sub")) {}
-      if (!$(this).hasClass("subdrop")) {
-        // hide any open menus and remove all other classes
-        $("ul", $(this).parents("ul:first")).slideUp(350);
-        $("a", $(this).parents("ul:first")).removeClass("subdrop");
-        $("#sidebar-menu .pull-right i").removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
-        // open our new menu and add the open class
-        $(this).next("ul").slideDown(350);
-        $(this).addClass("subdrop");
-        $(".drop-arrow i", $(this).parents(".has_sub:first")).removeClass("zmdi-chevron-right").addClass("zmdi-chevron-down");
-        $(".drop-arrow i", $(this).siblings("ul")).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
-      } else if ($(this).hasClass("subdrop")) {
-        $(this).removeClass("subdrop");
-        $(this).next("ul").slideUp(350);
-        $(".drop-arrow i", $(this).parent()).removeClass("zmdi-chevron-down").addClass("zmdi-chevron-right");
-      }
-    }
-    $('.slimscrollleft').getNiceScroll().resize();
-  }
-  openLeftBtn.on("click", function (e) {
-    openLeftBar();
-  });
-  menuItem.on("click", function (e) {
-    console.log("Item clicado!")
-    menuItemClick();
-  });
-
-  $("#sidebar-menu ul li.has_sub a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
+    $("#sidebar-menu ul li.has_sub a.active").parents("li:last").children("a:first").addClass("active").trigger("click");
 
 });
 
-var resizefunc = []; 
+var resizefunc = [];

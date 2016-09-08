@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations:'users/registrations'
   },
+  path: '',
   path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -24,9 +25,10 @@ Rails.application.routes.draw do
     put 'cart/remove/:id', to: 'cart#remove', as: :remove_from
     post 'cart/checkout' => 'cart#create', as: :cart_checkout
 
-    resources :packages, only: [:index] do 
-      put 'add/:package_id', to: 'packages#add_package', as: :add_package
-    end
+
+    get 'packages' => 'packages#index', as: :packages
+    patch 'packages/add/:package_id' => 'packages#add_package', as: :add_package
+  
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'
@@ -72,7 +74,9 @@ Rails.application.routes.draw do
       resources :events
       resources :packages 
       resources :users
-      patch 'users/:id/change_payment' => 'users#set_payment', as: :change_user_payment
+      patch 'users/:user_id/change_payment' => 'users#set_payment', as: :change_user_payment
+      patch 'users/:user_id/remove_from_event/:id' => 'users#remove_from_event', as: :remove_user_from_event
+      patch 'users/:user_id/remove_from_all_events' => 'users#remove_from_all_events', as: :remove_user_from_all_events
       resources :admins
     end
 
