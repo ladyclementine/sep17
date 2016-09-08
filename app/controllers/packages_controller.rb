@@ -8,13 +8,12 @@ class PackagesController < ProfileController
   end
 
   def add_package
-    if @user.update_attribute(:package_id, @package.id)
-
-      
-
-      redirect_to :my_home, notice: 'Pacote escolhido com sucesso!' 
-    else
-      render :index
+    if @package.remaining != 0
+      if @user.update_attribute(:package_id, @package.id)
+        redirect_to :my_home, notice: 'Pacote escolhido com sucesso!' 
+      else
+        render :index
+      end
     end
   end
 

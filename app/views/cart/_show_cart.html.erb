@@ -25,9 +25,9 @@
                             <h4><br>
                               <strong> Dados da compra:</strong>
                            </h4>
-                              <p><strong> Data: </strong> </p>
+                              <p><strong> Data:<%=  DateTime.now.strftime(" %d/%m/%Y")%>h </strong> </p>
                               <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink">Pendente</span></p>
-                              <p class="m-t-10"><strong>Pedido: </strong> #</p>
+                              
                               <p class="m-t-10"><strong>Pacote inclui: </strong> <%=@package.lectures%> palestras + <%=@package.courses%> mini-cursos + <%=@package.visits%> visitas </p>
                                <p class="m-t-10"><strong>Eventos adicionados: </strong> <%=@user_cart[:lectures]%> palestras  + <%=@user_cart[:courses]%> mini-cursos + <%=@user_cart[:visits]%> visitas </p>
                            </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
                         <p> <b class=text-danger>Atenção:</b> em qualquer compra feita fora da cobertura do pacote, será cobrado o preço avulso dos eventos, exceto as que ultrapassarem as quantidades especificadas(sendo cobrado valor do pacote + o total dos eventos adicionais).</p>
-                           <p class="text-right"><b>Preço do pacote:</b> <%=@package.price%> </p>
+                           <p class="text-right"><b>Tipo de desconto:</b> <%=@package.title%> </p>
 
                            <h3 class="text-right">R$ <%=@cart_total%>  </h3>
                         </div>

@@ -1,6 +1,11 @@
 <h4 class="text-uppercase text-center font-bold m-b-0"><%= "Equipe #{@challenge_team.name}" %></h4>
 <%= form_tag challenge_members_inscription_path, class: 'form-inline m-t-10' do %>
-  <%= render 'notifications/errors' %>
+  <% if !@errors.empty? %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <%= @errors.first.full_messages.first %>
+    </div>
+  <% end %>
   <% @challenge_team.limit.times do |index| %> 
     <%= fields_for "members[#{index}]", @members[index] do |m| %>
         <div class="row">

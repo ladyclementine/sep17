@@ -7,20 +7,25 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Event.create(name:'Evento-teste1', description:'Esse é o evento teste 1', facilitator:'SET', kind:'mini-curso', price:20).schedules.create(start_time:DateTime.new(2016,5,9,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste2', description:'Esse é o evento teste 2', facilitator:'SET', kind:'mini-curso', price:20).schedules.create(start_time:DateTime.new(2016,7,9,10,30), end_time:DateTime.new(2016,7,9,12,30))
-Event.create(name:'Evento-teste3', description:'Esse é o evento teste 3', facilitator:'SET', kind:'palestra', price:45).schedules.create(start_time:DateTime.new(2016,5,9,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste4', description:'Esse é o evento teste 4', facilitator:'SET', kind:'palestra', price:45).schedules.create(start_time:DateTime.new(2016,7,9,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste5', description:'Esse é o evento teste 5', facilitator:'SET', kind:'mini-curso', price:20).schedules.create(start_time:DateTime.new(2016,8,9,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste6', description:'Esse é o evento teste 6', facilitator:'SET', kind:'palestra', price:45).schedules.create(start_time:DateTime.new(2016,8,9,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste7', description:'Esse é o evento teste 7', facilitator:'SET', kind:'visita', price:35).schedules.create(start_time:DateTime.new(2016,6,9,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste8', description:'Esse é o evento teste 8', facilitator:'SET', kind:'visita', price:35).schedules.create(start_time:DateTime.new(2016,6,9,14,30), end_time:DateTime.new(2016,6,9,16,30))
+Event.create(name:'Evento-teste1', description:'Esse é o evento teste 1', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,5,10,30), end_time:DateTime.new(2016,6,9,12,30))
+Event.create(name:'Evento-teste2', description:'Esse é o evento teste 2', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,7,10,30), end_time:DateTime.new(2016,7,9,12,30))
+Event.create(name:'Evento-teste3', description:'Esse é o evento teste 3', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,5,14,30), end_time:DateTime.new(2016,6,9,16,30))
+Event.create(name:'Evento-teste4', description:'Esse é o evento teste 4', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,7,14,30), end_time:DateTime.new(2016,6,9,16,30))
+Event.create(name:'Evento-teste5', description:'Esse é o evento teste 5', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,8,10,30), end_time:DateTime.new(2016,6,9,12,30))
+Event.create(name:'Evento-teste6', description:'Esse é o evento teste 6', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,8,14,30), end_time:DateTime.new(2016,6,9,16,30))
+Event.create(name:'Evento-teste7', description:'Esse é o evento teste 7', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,10,30), end_time:DateTime.new(2016,6,9,12,30))
+Event.create(name:'Evento-teste8', description:'Esse é o evento teste 8', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,14,30), end_time:DateTime.new(2016,6,9,16,30))
+
+
 
 Package.create(title:'Ouro', description:'esse é o pacote ouro', limit:20, price:50, courses:4, lectures:3, visits:2)
-Package.create(title:'Prata', description:'esse é o pacote ouro', limit:20, price:40, courses:3, lectures:2, visits:1)
-Package.create(title:'Bronze', description:'esse é o pacote ouro', limit:20, price:30, courses:2, lectures:1, visits:0)
+Package.create(title:'Prata', description:'esse é o pacote prata', limit:20, price:40, courses:3, lectures:2, visits:1)
+Package.create(title:'Bronze', description:'esse é o pacote bronze', limit:20, price:30, courses:2, lectures:1, visits:0)
 
+@user = User.create(name: 'Rodrigo', email: 'rodrigo_tn@live.com', semester: 8, course: 'ENG COMP', university: 'UFC', birthday: '07-12-1994', password: '123456as')
+@user.confirm
 
+Admin.create(email: 'admin@semanas.com', password: 'admin123')
 #30.times do
  # FactoryGirl.create :event
 #end

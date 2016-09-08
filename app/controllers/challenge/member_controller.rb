@@ -4,6 +4,7 @@ class Challenge::MemberController < ApplicationController
 
   def new_inscription
     @members = []
+    @errors = []
     @challenge_team.limit.times do |i|
       @members << Challenge::Member.new
     end
@@ -11,15 +12,16 @@ class Challenge::MemberController < ApplicationController
 
   def create_inscription
     @members = params.require(:members)
-    errors = []
+    @errors = []
     @members.each do |index, member|
       @member = @challenge_team.challenge_members.new(member.permit(:name, :email))
       if !@member.save
-        errors << @member.errors
+        @errors << @member.errors
+        byebug
       end
     end
 
-    if errors.empty?
+    if @errors.empty?
       redirect_to challenge_new_team_inscription_path, notice: 'Equipe cadastrada com sucesso!'
     else
       render :new_inscription, notice: 'Erro ao cadastrar equipe!'

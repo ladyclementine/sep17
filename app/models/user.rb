@@ -26,16 +26,10 @@ class User < ActiveRecord::Base
     $redis.scard "cart#{id}"
   end
 
-
-
-
   def get_cart_events
     cart_ids = $redis.smembers "cart#{id}"
     Event.find(cart_ids)
   end
-
-
-
 
   def purchase_cart_events!
     get_cart_events.each { |event| purchase(event) }

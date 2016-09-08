@@ -10,6 +10,9 @@
                               </p>
                               <div class="text-left">
                                  <p class="text-muted font-13"><strong>Nome do evento:</strong> <span class="m-l-15"><%= schedule.event.name%></span></p>
+                                  <p class="text-muted font-13"><strong>Vagas:</strong> <span class="m-l-15"><%= schedule.event.remaining%></span></p>
+                                 <p class="text-muted font-13"><strong>Tipo de evento:</strong> <span class="m-l-15"><%= schedule.event.kind%></span></p>
+                                  <p class="text-muted font-13"><strong>Início:</strong> <span class="m-l-15"><%= schedule.start_time.strftime("%H : %M")%>h</span></p>
                               </div>
                               <%if current_user.is_there_payment?%>
                               <% cart_action = schedule.event.cart_action(@user.id) %>
