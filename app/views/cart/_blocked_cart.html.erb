@@ -23,9 +23,11 @@
                             <h4><br>
                               <strong> Dados da compra:</strong>
                            </h4>
-                              <p><strong> Data: </strong> </p>
-                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink"><%=current_user.payment.status%></span></p>
-                              <p class="m-t-10"><strong>Pedido: </strong> #</p>
+                              <p><strong> Data:<%= DateTime.now.strftime(" %d/%m/%Y -%H : %M") %> h</strong> </p>
+                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink"><%= current_user.payment.status%></span></p>
+                             
+                              <p class="m-t-10"><strong>Pacote inclui: </strong> <%=@package.lectures%> palestras + <%=@package.courses%> mini-cursos + <%=@package.visits%> visitas </p>
+                               <p class="m-t-10"><strong>Eventos adicionados: </strong> <%=@user_cart[:lectures]%> palestras  + <%=@user_cart[:courses]%> mini-cursos + <%=@user_cart[:visits]%> visitas </p>
                            </div>
           </div>
           <!-- end col -->
@@ -69,7 +71,7 @@
 <%= render_payment_form %>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
-         <p class="text-right"><b>Preço do pacote:</b> <%=@package.price%> </p>
+         <p class="text-right"><b>Tipo de desconto:</b> <%=@package.title%> </p>
          
         <hr>
         <h3 class="text-right">R$ <%=@cart_total%></h3>

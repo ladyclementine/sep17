@@ -35,22 +35,22 @@ class CartController < ProfileController
       case payment_params[:method]
       when 'Depósito bancário'
         if @payment.save
-          Purchase.create_purchases(current_user)
-          redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.' 
+          
+          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.' 
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'Em espécie(presencial)'
         if @payment.save
-          Purchase.create_purchases(current_user)
-          redirect_to :my_home, notice: 'Verifique a informações para efetuar o pagamento.'
+          
+          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'PagSeguro'
         @pag = pag_seguro(@total_price, @user)
         if @pag.errors.empty? && @payment.save
-          Purchase.create_purchases(current_user)
+        
           redirect_to @pag.url
         else
           render 'show', notice: "Erro ao efetuar pagamento! #{pag.errors}"
@@ -62,18 +62,29 @@ class CartController < ProfileController
   end
 
   def add
-    $redis.sadd current_user_cart, params[:id]
+
+
+
+   if Purchase.create_purchases(current_user, params[:id])
+
+        $redis.sadd current_user_cart, params[:id]
+        redirect_to :back
+   else
+    redirect_to :back, notice:'Não há mais vagas disponíveis para este evento' 
+  end
 
    # respond_to do |format|
     #  format.js {render json: current_user.cart_count,  status: 200}
     #end 
-    redirect_to :back
+    
   end
 
   def remove
-    $redis.srem current_user_cart, params[:id]
-    #respond_to do |format|
 
+    $redis.srem current_user_cart, params[:id]
+    Purchase.delete_purchases(current_user, params[:id])
+    #respond_to do |format|
+  
      # format.js {render json: current_user.cart_count , status: 200}
     #end 
     redirect_to :back

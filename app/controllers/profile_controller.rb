@@ -28,7 +28,7 @@ class ProfileController < ApplicationController
     courses = package.courses - count[:courses]
     visits = package.visits - count[:visits]
     if !package.package_fit?(current_user)
-      if count[:lectures] < package.lectures ||  count[:courses] < package.courses || count[:visits] < package.visits    
+      if count[:lectures] < package.lectures     
         redirect_to :events, notice:"adicione #{lectures} palestras ao seu carrinho para completar seu pacote"
       elsif count[:visits]<package.visits
         redirect_to :events, notice: " adicione #{visits} visitas ao seu carrinho para completar o pacote"

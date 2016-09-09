@@ -1,5 +1,7 @@
 class Package < ActiveRecord::Base
+
   has_many :users, before_add: :validate_user_limit
+
 
   def remaining
     @remaining = self.limit - self.users.count

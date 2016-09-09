@@ -2,6 +2,23 @@ class Event < ActiveRecord::Base
   has_many :schedules
   has_many :purchases
   has_many :buyers, through: :purchases
+  @@foo = 0
+
+
+
+
+
+
+
+  def remaining
+    @remaining = self.limit - self.buyers.count
+  end
+
+
+
+
+
+
 
   def self.events_prices
       lectures_price = self.find_by(kind:'palestra').price
@@ -119,8 +136,9 @@ class Event < ActiveRecord::Base
       end
     end
 
-    def sideAlt 
-      if self.id%2==0
+    def sideAlt
+    @@foo +=1 
+      if @@foo%2==0
         "timeline-item alt"
       else
         "timeline-item "
@@ -128,7 +146,7 @@ class Event < ActiveRecord::Base
     end
 
     def sideArrow 
-      if self.id % 2 ==0
+      if @@foo % 2 ==0
         "arrow-alt"
       else
         "arrow"

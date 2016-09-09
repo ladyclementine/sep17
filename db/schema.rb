@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906132812) do
+ActiveRecord::Schema.define(version: 20160908140951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 20160906132812) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "admins_weeks", id: false, force: :cascade do |t|
+    t.integer "week_id"
+    t.integer "admin_id"
+  end
 
   create_table "challenge_members", force: :cascade do |t|
     t.string   "name",              null: false
@@ -57,14 +62,19 @@ ActiveRecord::Schema.define(version: 20160906132812) do
     t.string   "facilitator"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.integer  "week_id"
     t.string   "kind"
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
+    t.integer  "limit"
   end
+
+  add_index "events", ["week_id"], name: "index_events_on_week_id", using: :btree
 
   create_table "packages", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "limit"
+    t.integer  "week_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
@@ -72,6 +82,8 @@ ActiveRecord::Schema.define(version: 20160906132812) do
     t.integer  "lectures",                            default: 0
     t.integer  "visits",                              default: 0
   end
+
+  add_index "packages", ["week_id"], name: "index_packages_on_week_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "method"
@@ -84,9 +96,9 @@ ActiveRecord::Schema.define(version: 20160906132812) do
     t.string   "link_4"
     t.datetime "update_at"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "status"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "status",        default: "pendente"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -139,5 +151,15 @@ ActiveRecord::Schema.define(version: 20160906132812) do
   add_index "users", ["package_id"], name: "index_users_on_package_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "weeks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_foreign_key "events", "weeks"
+  add_foreign_key "packages", "weeks"
   add_foreign_key "schedules", "events"
 end
