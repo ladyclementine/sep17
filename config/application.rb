@@ -32,5 +32,14 @@ module SemanaDeTecnologia
       g.templates.unshift File::expand_path('../../templates', __FILE__)
     end
     
+    ActionMailer::Base.smtp_settings = {
+      :user_name => Rails.application.secrets.sendgrid_user,
+      :password => Rails.application.secrets.sendgrid_password,
+      :domain => Rails.application.secrets.site_domain,
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
   end
 end
