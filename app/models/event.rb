@@ -2,23 +2,12 @@ class Event < ActiveRecord::Base
   has_many :schedules
   has_many :purchases
   has_many :buyers, through: :purchases
+
   @@foo = 0
 
-
-
-
-
-
-
   def remaining
-    @remaining = self.limit - self.buyers.count
+    self.limit - self.purchases.count
   end
-
-
-
-
-
-
 
   def self.events_prices
       lectures_price = self.find_by(kind:'palestra').price
@@ -28,19 +17,13 @@ class Event < ActiveRecord::Base
       price[0] = 0
       price[1] = 0
       price[2]=0
-      #price[lectures] = 0
-      #price[courses] = 0
-      #price[visits] = 0
 
       price[0] += lectures_price
       price[1] += courses_price
       price[2] += visits_price
 
       price
-
-
   end
-
 
   def self.days
     days = []

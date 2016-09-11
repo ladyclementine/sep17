@@ -5,6 +5,7 @@ class ProfileController < ApplicationController
 
   def home
     @user_package = @user.package
+    @comments = Comment.all
   end
 
   protected
