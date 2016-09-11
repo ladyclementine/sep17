@@ -20,14 +20,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'jquery-turbolinks'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'therubyracer'
 
@@ -49,8 +41,7 @@ gem 'hiredis', '~> 0.6.0'
 
 gem 'pagseguro-oficial', '2.5.0'
 
-#gem 'puma'
- gem 'web-console', '~> 2.0', group: :development
+gem 'web-console', '~> 2.0', group: :development
 
 
 group :development, :test do

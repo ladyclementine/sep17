@@ -62,31 +62,17 @@ class CartController < ProfileController
   end
 
   def add
-
-
-
-   if Purchase.create_purchases(current_user, params[:id])
-
-        $redis.sadd current_user_cart, params[:id]
-        redirect_to :back
-   else
-    redirect_to :back, notice:'Não há mais vagas disponíveis para este evento' 
-  end
-
-   # respond_to do |format|
-    #  format.js {render json: current_user.cart_count,  status: 200}
-    #end 
-    
+    if Purchase.create(buyer_id: current_user, event_id: params[:id])
+      $redis.sadd current_user_cart, params[:id]
+      redirect_to :back
+    else
+      redirect_to :back, notice:'Não há mais vagas disponíveis para este evento' 
+    end 
   end
 
   def remove
-
     $redis.srem current_user_cart, params[:id]
     Purchase.delete_purchases(current_user, params[:id])
-    #respond_to do |format|
-  
-     # format.js {render json: current_user.cart_count , status: 200}
-    #end 
     redirect_to :back
   end
 

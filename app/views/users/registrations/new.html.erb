@@ -69,8 +69,13 @@
 
 <% end %>
 <div class="row">
-    <div class="col-sm-12 text-center">
-        <p class="text-muted">Já tem cadastro?   <%= link_to "Log in", {controller: "sessions", action: "new"}, class: "text-primary m-l-5" %></p>
+    <div class="col-sm-6 text-center">
+        <p class="text-muted">Já tem cadastro?   <%= link_to "Entrar", {controller: "sessions", action: "new"}, class: "text-primary m-l-5" %></p>
+    </div>
+    <div class="col-sm-6 text-center">
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+          <p class="text-muted"> <%= link_to "Não recebeu as instruçẽs de confirmação?", new_confirmation_path(resource_name), class: "text-primary m-l-5" %></p>
+        <% end -%>
     </div>
 </div>
 
