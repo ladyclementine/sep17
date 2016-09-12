@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 20160911024320) do
     t.integer  "limit"
   end
 
+  create_table "inscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "inscriptions", ["user_id"], name: "index_inscriptions_on_user_id", unique: true, using: :btree
+
   create_table "packages", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -139,12 +148,10 @@ ActiveRecord::Schema.define(version: 20160911024320) do
     t.string   "university"
     t.date     "birthday"
     t.boolean  "qualified"
-    t.integer  "package_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["package_id"], name: "index_users_on_package_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "schedules", "events"

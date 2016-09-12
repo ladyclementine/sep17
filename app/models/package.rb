@@ -1,6 +1,7 @@
 class Package < ActiveRecord::Base
 
-  has_many :users, before_add: :validate_user_limit
+  has_many :inscriptions
+  has_many :users, through: :inscriptions
 
 
   def remaining
@@ -15,7 +16,7 @@ class Package < ActiveRecord::Base
     current_user.get_cart_events.each { |event| event_partial_price+= event.price }
     partial_price = event_partial_price - self.package_discount(current_user)
     if package_fit?(current_user)
-      total_price = self.price + partial_price 
+      total_price = self.price + partial_price
     else
       total_price = event_partial_price
     end
