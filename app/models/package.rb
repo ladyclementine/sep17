@@ -5,7 +5,7 @@ class Package < ActiveRecord::Base
 
 
   def remaining
-    @remaining = self.limit - self.users.count
+    self.limit - self.inscriptions.count
   end
 
 
