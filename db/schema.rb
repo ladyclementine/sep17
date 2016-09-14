@@ -59,20 +59,29 @@ ActiveRecord::Schema.define(version: 20160911024320) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                              null: false
     t.text     "description"
     t.string   "facilitator"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.string   "kind"
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
-    t.integer  "limit"
+    t.integer  "limit",                               default: 0,   null: false
   end
 
+  create_table "inscriptions", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "package_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "inscriptions", ["user_id"], name: "index_inscriptions_on_user_id", unique: true, using: :btree
+
   create_table "packages", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",                                             null: false
     t.text     "description"
-    t.integer  "limit"
+    t.integer  "limit",                                             null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.decimal  "price",       precision: 8, scale: 2, default: 0.0
@@ -83,23 +92,17 @@ ActiveRecord::Schema.define(version: 20160911024320) do
 
   create_table "payments", force: :cascade do |t|
     t.string   "method"
-    t.integer  "portions"
-    t.integer  "portions_paid"
     t.float    "price"
-    t.string   "link_1"
-    t.string   "link_2"
-    t.string   "link_3"
-    t.string   "link_4"
     t.datetime "update_at"
     t.integer  "user_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "status",        default: "pendente"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "status",     default: "pendente"
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "buyer_id"
+    t.integer  "event_id",   null: false
+    t.integer  "buyer_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -107,8 +110,8 @@ ActiveRecord::Schema.define(version: 20160911024320) do
   add_index "purchases", ["event_id", "buyer_id"], name: "index_purchases_on_event_id_and_buyer_id", unique: true, using: :btree
 
   create_table "schedules", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "start_time", null: false
+    t.datetime "end_time",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "event_id"
@@ -139,12 +142,10 @@ ActiveRecord::Schema.define(version: 20160911024320) do
     t.string   "university"
     t.date     "birthday"
     t.boolean  "qualified"
-    t.integer  "package_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["package_id"], name: "index_users_on_package_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "schedules", "events"

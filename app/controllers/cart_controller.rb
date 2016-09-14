@@ -9,7 +9,7 @@ class CartController < ProfileController
     @number = 0
     @payment = Payment.new
     @time = Time.now
-    @package = Package.find(current_user.package_id)
+    @package = @user.package
     @user_cart = @package.event_kind_count(current_user)
     @cart_total = @package.cart_total_price(current_user)
   end
@@ -21,12 +21,12 @@ class CartController < ProfileController
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
     @number = 0
-  end 
+  end
 
 
   def create
     cart_ids = $redis.smembers current_user_cart
-    @payment = Payment.new(user_id: current_user.id) 
+    @payment = Payment.new(user_id: current_user.id)
     @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
     @total_price = @user.package.cart_total_price(@user)
@@ -35,14 +35,14 @@ class CartController < ProfileController
       case payment_params[:method]
       when 'Depósito bancário'
         if @payment.save
-          
-          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.' 
+
+          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when 'Em espécie(presencial)'
         if @payment.save
-          
+
           redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
@@ -50,7 +50,7 @@ class CartController < ProfileController
       when 'PagSeguro'
         @pag = pag_seguro(@total_price, @user)
         if @pag.errors.empty? && @payment.save
-        
+
           redirect_to @pag.url
         else
           render 'show', notice: "Erro ao efetuar pagamento! #{pag.errors}"
@@ -62,12 +62,12 @@ class CartController < ProfileController
   end
 
   def add
-    if Purchase.create(buyer_id: current_user, event_id: params[:id])
+    if Purchase.create(buyer_id: @user.id, event_id: params[:id])
       $redis.sadd current_user_cart, params[:id]
       redirect_to :back
     else
-      redirect_to :back, notice:'Não há mais vagas disponíveis para este evento' 
-    end 
+      redirect_to :back, notice:'Não há mais vagas disponíveis para este evento'
+    end
   end
 
   def remove
@@ -100,12 +100,12 @@ class CartController < ProfileController
     #payment.notification_url = notifications_url
     payment.redirect_url = cart_url
     payment.sender = {
-      email: 'c70708097678004206459@sandbox.pagseguro.com.br'
+      email: user.email
     }
     # @cart.each do |product|
     payment.items << {
       id: user.id,
-      description: "Pacote #{user.package.title} + x avulsos",
+      description: "Pacote #{user.package.title}",
       amount: value.to_f
     }
     # end
