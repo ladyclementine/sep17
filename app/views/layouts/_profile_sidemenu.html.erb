@@ -27,7 +27,7 @@
   <!--- Sidemenu -->
   <div id="sidebar-menu">
     <ul>
-      <li class="text-muted menu-title">Navigation</li>
+      <li class="text-muted menu-title">Navegação</li>
       <li>
         <%= link_to authenticated_user_root_path, class: 'waves-effect' do %>
         <i class="zmdi zmdi-home"></i>
@@ -40,7 +40,14 @@
         <span>Programação</span>
         <% end -%>
       </li>
-    
+
+      <li>
+        <%= link_to packages_path, class: 'waves-effect' do %>
+        <i class="zmdi zmdi-collection-bookmark"></i>
+        <span>Pacotes disponíveis</span>
+        <% end -%>
+      </li>
+
       <li>
         <%= link_to cart_path, class: 'waves-effect' do %>
         <i class="zmdi zmdi-shopping-cart"></i>

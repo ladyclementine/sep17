@@ -8,7 +8,7 @@ class PackagesController < ProfileController
   end
 
   def add_package
-    if @package.users << @user
+    if @user.package = @package
       redirect_to :my_home, notice: 'Pacote escolhido com sucesso!'
     else
       render :index

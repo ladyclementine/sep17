@@ -9,7 +9,7 @@ class CartController < ProfileController
     @number = 0
     @payment = Payment.new
     @time = Time.now
-    @package = Package.find(current_user.package_id)
+    @package = @user.package
     @user_cart = @package.event_kind_count(current_user)
     @cart_total = @package.cart_total_price(current_user)
   end
@@ -62,7 +62,7 @@ class CartController < ProfileController
   end
 
   def add
-    if Purchase.create(buyer_id: current_user, event_id: params[:id])
+    if Purchase.create(buyer_id: @user.id, event_id: params[:id])
       $redis.sadd current_user_cart, params[:id]
       redirect_to :back
     else
@@ -100,12 +100,12 @@ class CartController < ProfileController
     #payment.notification_url = notifications_url
     payment.redirect_url = cart_url
     payment.sender = {
-      email: 'c70708097678004206459@sandbox.pagseguro.com.br'
+      email: user.email
     }
     # @cart.each do |product|
     payment.items << {
       id: user.id,
-      description: "Pacote #{user.package.title} + x avulsos",
+      description: "Pacote #{user.package.title}",
       amount: value.to_f
     }
     # end

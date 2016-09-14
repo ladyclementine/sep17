@@ -3,7 +3,6 @@ class Package < ActiveRecord::Base
   has_many :inscriptions
   has_many :users, through: :inscriptions
 
-
   def remaining
     self.limit - self.inscriptions.count
   end
@@ -55,11 +54,5 @@ class Package < ActiveRecord::Base
       count[:visits] +=1 if event.kind == 'visita'
     end
     count
-  end
-
-  private
-
-  def validate_user_limit(user)
-    self.users.size >= self.limit
   end
 end
