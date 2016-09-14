@@ -22,6 +22,8 @@
                             <th>Semester</th>
                             <th>Birthday</th>
                             <th>University</th>
+                            <th>Metodo de Pagamento</th>
+                            <th>Status do Pagamento</th>
                             <th></th>
             </tr>
           </thead>
@@ -34,6 +36,8 @@
                             <td><%= admin_user.semester %></td>
                             <td><%= admin_user.birthday %></td>
                             <td><%= admin_user.university %></td>
+                            <td><%= admin_user.payment.try(:method) %></td>
+                            <td><%= admin_user.payment.try(:status) %></td>
                             <td class="actions">
                 <%= link_to 'Show', admin_user_path(admin_user) %>
                 <%= link_to 'Edit', edit_admin_user_path(admin_user) %>
