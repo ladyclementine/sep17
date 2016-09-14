@@ -4,9 +4,9 @@ module ApplicationHelper
     when "semana_test"
       @week = { name: 'Semana em Teste', sigla: 'SeT', colors: [base: '#FFFFFF'], logo: 'semana_test-logo.png' }
     when "stem"
-      @week = { name: 'Semana da Emgenharia Mecânica', sigla: 'STEM', colors: [base: '#FFFFFF'], logo: 'stem-logo.png' }
+      @week = { name: 'Semana da Engenharia Mecânica', sigla: 'STEM', colors: [base: '#FFFFFF'], logo: 'stem-logo.png' }
     when "sec"
-      @week = { name: 'Semana da Emgenharia Civil', sigla: 'SEC', colors: [base: '#FFFFFF'], logo: 'sec-logo.png' }
+      @week = { name: 'Semana da Engenharia Civil', sigla: 'SEC', colors: [base: '#FFFFFF'], logo: 'sec-logo.png' }
     when "setic"
       @week = { name: 'Semana de Tecnologia e Inovação', sigla: 'Setic', colors: [base: '#FFFFFF'], logo: 'setic-logo.png' }
     else
