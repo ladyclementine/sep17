@@ -1,8 +1,8 @@
-class Admin::EventsController < Admin::BaseController
+class Admin::CommentsController < Admin::BaseController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   # GET /events
   def index
-    @events = Comment.all
+    @comments = Comment.all
   end
 
   # GET /events/1

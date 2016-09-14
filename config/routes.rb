@@ -81,7 +81,7 @@ Rails.application.routes.draw do
       resources :admins
     end
 
-    root 'events#index'
+    root 'users#index'
   end
 
 end
