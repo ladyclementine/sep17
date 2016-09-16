@@ -31,6 +31,7 @@ module SemanaDeTecnologia
     config.app_generators.stylesheet_engine :less
 
     config.serve_static_assets = true
+    config.assets.compile = true
 
     config.generators do |g|
       g.templates.unshift File::expand_path('../../templates', __FILE__)
