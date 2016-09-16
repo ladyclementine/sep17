@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :schedules
-  accepts_nested_attributes_for :schedules
+  accepts_nested_attributes_for :schedules, :reject_if => lambda { |a| a[:start_time].blank? || a[:end_time].blank? }, :allow_destroy => true
   has_many :purchases
   has_many :buyers, through: :purchases
 

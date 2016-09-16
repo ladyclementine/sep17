@@ -1,4 +1,4 @@
-<%= nested_form_for [:admin, @event] do |f| %>
+<%= form_for [:admin, @event] do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -28,7 +28,7 @@
   <%= f.fields_for :schedules do |schedule_form| %>
     <%= schedule_form.text_field :start_time %>
     <%= schedule_form.text_field :end_time %>
-    <%= schedule_form.link_to_remove "Remove this schedule" %>
+    <%= schedule_form.check_box :_destroy %>
+    <%= schedule_form.label :_destroy, 'remove' %>
   <% end %>
-  <p><%= f.link_to_add "Add a schedule", :schedules %></p>
 <% end %>
