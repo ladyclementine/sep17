@@ -27,13 +27,15 @@ module SemanaDeTecnologia
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    
+
     config.app_generators.stylesheet_engine :less
+
+    config.serve_static_assets = true
 
     config.generators do |g|
       g.templates.unshift File::expand_path('../../templates', __FILE__)
     end
-    
+
     ActionMailer::Base.smtp_settings = {
       :user_name => Rails.application.secrets.sendgrid_user,
       :password => Rails.application.secrets.sendgrid_password,
