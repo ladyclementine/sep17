@@ -4,6 +4,7 @@
     <title><%= current_week[:name] %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'nested_form' %>
     <%= javascript_include_tag params[:controller], 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +17,11 @@
     <% end %>
     <div id="wrapper">
       <%= render 'admin/topbar' %>
-      <%= render 'admin/sidemenu' %> 
+      <%= render 'admin/sidemenu' %>
       <div class="content-page">
         <!-- Start content -->
         <div class="content">
-          <div class="container">     
+          <div class="container">
             <%= yield %>
           </div>
         </div>

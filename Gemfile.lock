@@ -149,6 +149,7 @@ GEM
     minitest (5.9.0)
     multi_json (1.12.1)
     nenv (0.3.0)
+    nested_form (0.3.2)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -302,6 +303,7 @@ DEPENDENCIES
   less-rails-bootstrap
   letter_opener
   meta_request
+  nested_form
   pagseguro-oficial (= 2.5.0)
   pg
   quiet_assets

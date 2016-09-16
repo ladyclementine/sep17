@@ -14,6 +14,7 @@
 //= require jquery2
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery_nested_form
 //= require jquery.mask.js
 //= require core/bootstrap
 //= require core/detect
@@ -43,7 +44,7 @@
 //= require carts.js
 //= require mask.js
 
-jQuery(window).bind("load", function() {
+jQuery(document).ready( function() {
     $('#datatable').DataTable({
         dom: 'Bfrtip',
         buttons: [
