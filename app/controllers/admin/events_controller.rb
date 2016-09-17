@@ -7,6 +7,7 @@ class Admin::EventsController < Admin::BaseController
 
   # GET /events/1
   def show
+    @event_users = @event.buyers
   end
 
   # GET /events/new
