@@ -32,6 +32,14 @@
                 <p>
                   Total de vagas restantes: <%= @event.remaining %>
                 </p>
+                <p>
+                  Horários:
+                </p>
+                <ul>
+                  <% @event.schedules.each do |schedule| %>
+                    <li><%= schedule.start_time %> - <%= schedule.end_time %></li>
+                  <% end %>
+                </ul>
               </div>
             </div>
           </div>
