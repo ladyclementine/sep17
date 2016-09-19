@@ -45,12 +45,15 @@ ActiveRecord::Schema.define(version: 20160911024320) do
   add_index "challenge_members", ["email"], name: "index_challenge_members_on_email", unique: true, using: :btree
 
   create_table "challenge_teams", force: :cascade do |t|
-    t.string   "name",                    null: false
-    t.string   "email",                   null: false
-    t.integer  "limit",      default: 10, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",                        null: false
+    t.string   "email",                       null: false
+    t.string   "payment_method",              null: false
+    t.integer  "limit",          default: 10, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
+
+  add_index "challenge_teams", ["email"], name: "index_challenge_teams_on_email", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
