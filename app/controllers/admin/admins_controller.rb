@@ -25,7 +25,7 @@ class Admin::AdminsController < Admin::BaseController
     generated_password = Devise.friendly_token.first(8)
     @admin_admin.password = generated_password
     if @admin_admin.save
-      RegistrationMailer.welcome(@admin_admin, generated_password).deliver_now
+      Admin::RegistrationMailer.welcome(@admin_admin, generated_password).deliver_now
       redirect_to [:admin, @admin_admin], notice: 'User was successfully created.'
     else
       render :new
@@ -48,13 +48,13 @@ class Admin::AdminsController < Admin::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_admin
-      @admin_admin = Admin.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_admin
+    @admin_admin = Admin.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def admin_admin_params
-      params.require(:admin_admin).permit(:email)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def admin_admin_params
+    params.require(:admin).permit(:email)
+  end
 end

@@ -71,7 +71,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     authenticated :admin do
-      resources :events
+      resources :events do
+        resources :schedules, path: 'schedules'
+      end
       resources :packages
       resources :users
       resources :comments

@@ -18,9 +18,7 @@
               <th>Name</th>
               <th>Description</th>
               <th>Facilitator</th>
-              <th>Inscritos</th>
-              <th>Vagas restantes/Total</th>
-              <th data-orderable="false"></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -29,14 +27,10 @@
               <td><%= event.name %></td>
               <td><%= event.description %></td>
               <td><%= event.facilitator %></td>
-              <td><%= event.buyers.count %></td>
-              <td><%= event.remaining %>/<%= event.limit %></td>
-              <td>
-                <div class="btn-group m-b-10">
-                  <%= link_to 'Mostrar', admin_event_path(event), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Editar', edit_admin_event_path(event), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Deletar', admin_event_path(event), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
-                </div>
+              <td class="actions">
+                <%= link_to 'Show', admin_event_path(event) %>
+                <%= link_to 'Edit', edit_admin_event_path(event) %>
+                <%= link_to 'Destroy', admin_event_path(event), method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
             <% end %>

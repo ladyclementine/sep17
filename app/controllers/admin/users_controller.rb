@@ -47,8 +47,9 @@ class Admin::UsersController < Admin::BaseController
     @admin_user = User.new(admin_user_params)
     generated_password = Devise.friendly_token.first(8)
     @admin_user.password = generated_password
+    byebug
     if @admin_user.save
-      RegistrationMailer.welcome(@admin_user, generated_password).deliver_now
+      Admin::RegistrationMailer.welcome(@admin_user, generated_password).deliver_now
       redirect_to [:admin, @admin_user], notice: 'User was successfully created.'
     else
       render :new

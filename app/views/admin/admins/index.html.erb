@@ -17,7 +17,7 @@
           <thead>
             <tr>
                             <th>Email</th>
-                            <th></th>
+                            <th data-orderable="false"></th>
             </tr>
           </thead>
           <tbody>
@@ -25,10 +25,12 @@
               <% if admin_admin != current_admin %>
                 <tr>
                   <td><%= admin_admin.email %></td>
-                  <td class="actions">
-                    <%= link_to 'Show', admin_admin_path(admin_admin) %>
-                    <%= link_to 'Edit', edit_admin_admin_path(admin_admin) %>
-                    <%= link_to 'Destroy', admin_admin_path(admin_admin), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <td class="actions pull-right">
+                    <div class="btn-group m-b-10">
+                  <%= link_to 'Mostrar', admin_admin_path(admin_admin), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Editar', edit_admin_admin_path(admin_admin), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Deletar', admin_admin_path(admin_admin), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
+                </div>
                   </td>
                 </tr>
               <% end %>

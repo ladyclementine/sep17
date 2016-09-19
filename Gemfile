@@ -41,7 +41,7 @@ gem 'hiredis', '~> 0.6.0'
 
 gem 'pagseguro-oficial', '2.5.0'
 
-gem 'nested_form'
+gem 'validates_timeliness', '~> 4.0'
 
 gem 'web-console', '~> 2.0', group: :development
 

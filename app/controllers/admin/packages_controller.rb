@@ -9,6 +9,7 @@ class Admin::PackagesController < Admin::BaseController
 
   # GET /packages/1
   def show
+    @package_users = @package.users
   end
 
   # GET /packages/new

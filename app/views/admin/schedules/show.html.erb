@@ -21,30 +21,27 @@
                   <%= @event.description %>
                 </p>
                 <p>
-                  <strong>Facilitador: </strong><%= @event.facilitator %>
+                  Facilitador: <%= @event.facilitator %>
                 </p>
                 <p>
-                  <strong>Valor: </strong><%= @event.price %>
+                  Valor: <%= @event.price %>
                 </p>
                 <p>
-                  <strong>Total de inscritos: </strong><%= @event.buyers.count %>
+                  Total de inscritos: <%= @event.buyers.count %>
                 </p>
                 <p>
-                  <strong>Total de vagas: </strong><%= @event.limit %>
+                  Total de vagas: <%= @event.limit %>
                 </p>
                 <p>
-                  <strong>Total de vagas restantes: </strong><%= @event.remaining %>
+                  Total de vagas restantes: <%= @event.remaining %>
                 </p>
                 <p>
-                  <strong>Horários:</strong>
+                  Horários:
                 </p>
-                <ul class="list-group">
+                <ul>
                   <% @event.schedules.each do |schedule| %>
-                    <li class="list-group-item">
-                      Início: <%= time_pt(schedule.start_time) %></br>
+                    <li>Início: <%= time_pt(schedule.start_time) %></br>
                       Fim: <%= time_pt(schedule.end_time) %>
-                      <%= link_to 'Deletar', admin_event_schedule_path(@event, schedule), method: :delete, class: 'badge badge-danger' %>
-                      <%= link_to 'Editar', edit_admin_event_schedule_path(@event, schedule), class: 'badge badge-primary' %>
                     </li>
                   <% end %>
                 </ul>
@@ -60,7 +57,7 @@
                   <ul class="list-group">
                     <% @event_users.each do |user|%>
                       <li class="list-group-item">
-                        <%= link_to 'Vizualizar', admin_user_path(user), class: 'badge badge-primary' %>
+                        <span class="badge badge-primary">14</span>
                         <%= user.name %>
                       </li>
                     <% end %>
@@ -73,7 +70,6 @@
       </div>
       <div class="panel-footer">
         <%= link_to 'Editar', edit_admin_event_path(@event), class: 'btn btn-primary waves-effect w-md waves-light m-b-5' %>
-        <%= link_to "Novo Horário", new_admin_event_schedule_path(@event), class:'btn btn-primary waves-effect w-md waves-light m-b-5' %>
         <%= link_to 'Todos os Eventos', admin_events_path, class: 'btn btn-primary waves-effect w-md waves-light m-b-5'%>
       </div>
     </div>
