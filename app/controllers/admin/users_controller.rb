@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :set_payment]
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/users
   def index
@@ -22,6 +22,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def set_payment
+    @admin_user = User.find(params[:user_id])
     if @admin_user.payment.update(method: params[:payment_method], status: params[:status])
       redirect_to admin_users_path, notice: 'Pagamento alterado com sucesso!'
     end
