@@ -1,5 +1,5 @@
 class Challenge::MemberController < ApplicationController
-  layout 'devise_layout'
+  layout 'devise'
   before_action :set_challenge_team
 
   def new_inscription

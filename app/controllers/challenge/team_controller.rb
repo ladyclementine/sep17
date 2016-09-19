@@ -1,8 +1,8 @@
 class Challenge::TeamController < ApplicationController
-  layout 'devise_layout'
+  layout 'devise'
 
-  def new_inscription 
-    @team = Challenge::Team.new()  
+  def new_inscription
+    @team = Challenge::Team.new()
   end
 
   def create_inscription
@@ -16,7 +16,7 @@ class Challenge::TeamController < ApplicationController
 
   protected
   def challenge_team_params
-    params.require(:challenge_team).permit(:name, :limit)
+    params.require(:challenge_team).permit(:name, :limit, :email)
   end
 
 end
