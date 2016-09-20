@@ -7,15 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Event.create(name:'Evento-teste1', description:'Esse é o evento teste 1', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,5,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste11', description:'Esse é o evento teste 11', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,5,10,30), end_time:DateTime.new(2016,6,9,13,30))
-Event.create(name:'Evento-teste2', description:'Esse é o evento teste 2', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,7,10,30), end_time:DateTime.new(2016,7,9,12,30))
-Event.create(name:'Evento-teste3', description:'Esse é o evento teste 3', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,5,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste4', description:'Esse é o evento teste 4', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,7,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste5', description:'Esse é o evento teste 5', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,8,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste6', description:'Esse é o evento teste 6', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,8,14,30), end_time:DateTime.new(2016,6,9,16,30))
-Event.create(name:'Evento-teste7', description:'Esse é o evento teste 7', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,10,30), end_time:DateTime.new(2016,6,9,12,30))
-Event.create(name:'Evento-teste8', description:'Esse é o evento teste 8', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,14,30), end_time:DateTime.new(2016,6,9,16,30))
+Event.create(name:'Evento-teste1', description:'Esse é o evento teste 1', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,5,10,30), end_time:DateTime.new(2016,9,5,12,30))
+Event.create(name:'Evento-teste11', description:'Esse é o evento teste 11', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,5,10,30), end_time:DateTime.new(2016,9,5,13,30))
+Event.create(name:'Evento-teste2', description:'Esse é o evento teste 2', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,7,10,30), end_time:DateTime.new(2016,9,7,12,30))
+Event.create(name:'Evento-teste3', description:'Esse é o evento teste 3', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,5,14,30), end_time:DateTime.new(2016,9,5,16,30))
+Event.create(name:'Evento-teste4', description:'Esse é o evento teste 4', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,7,14,30), end_time:DateTime.new(2016,9,7,16,30))
+Event.create(name:'Evento-teste5', description:'Esse é o evento teste 5', facilitator:'SET', kind:'mini-curso',limit:20, price:20).schedules.create(start_time:DateTime.new(2016,9,8,10,30), end_time:DateTime.new(2016,9,8,12,30))
+Event.create(name:'Evento-teste6', description:'Esse é o evento teste 6', facilitator:'SET', kind:'palestra',limit:20, price:45).schedules.create(start_time:DateTime.new(2016,9,8,14,30), end_time:DateTime.new(2016,9,8,16,30))
+Event.create(name:'Evento-teste7', description:'Esse é o evento teste 7', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,10,30), end_time:DateTime.new(2016,9,6,12,30))
+Event.create(name:'Evento-teste8', description:'Esse é o evento teste 8', facilitator:'SET', kind:'visita',limit:20, price:35).schedules.create(start_time:DateTime.new(2016,9,6,14,30), end_time:DateTime.new(2016,9,6,16,30))
 
 
 Package.create(title:'Ouro', description:'esse é o pacote ouro', limit:20, price:50, courses:4, lectures:3, visits:2)

@@ -33,29 +33,27 @@ class CartController < ProfileController
 
     if !@cart_events.empty?
       case payment_params[:method]
-      when 'Depósito bancário'
-        if @payment.save
-
-          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
-        else
-          render 'show', notice: 'Erro ao efetuar pagamento!'
-        end
-      when 'Em espécie(presencial)'
-        if @payment.save
-
-          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
-        else
-          render 'show', notice: 'Erro ao efetuar pagamento!'
-        end
-      when 'PagSeguro'
+      when @payment.accepted_payment_methods[0]
         @pag = pag_seguro(@total_price, @user)
         if @pag.errors.empty? && @payment.save
-
           redirect_to @pag.url
         else
           render 'show', notice: "Erro ao efetuar pagamento! #{pag.errors}"
         end
+      when @payment.accepted_payment_methods[1], @payment.accepted_payment_methods[2]
+        if @payment.save
+          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
+        else
+          render 'show', notice: 'Erro ao efetuar pagamento!'
+        end
+      when @payment.accepted_payment_methods[3]
+        if @payment.save
+          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
+        else
+          render 'show', notice: 'Erro ao efetuar pagamento!'
+        end
       end
+      @payment.pending
     else
       render 'show', notice: 'Seu carrinho está vazio!'
     end

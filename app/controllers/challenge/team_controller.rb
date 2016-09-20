@@ -16,7 +16,7 @@ class Challenge::TeamController < ApplicationController
 
   protected
   def challenge_team_params
-    params.require(:challenge_team).permit(:name, :limit, :email)
+    params.require(:challenge_team).permit(:name, :limit, :email, :payment_method)
   end
 
 end

@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 20160911024320) do
     t.float    "price"
     t.datetime "update_at"
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "status",     default: "pendente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
   create_table "purchases", force: :cascade do |t|
