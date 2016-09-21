@@ -3,7 +3,9 @@
   <div class="col-sm-12">
     <div class="card-box">
       <div class="row">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %><%= devise_error_messages! %><%= render 'notifications/errors' %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= render 'notifications/errors' %>
           <div class="form-group">
             <label class="control-label" >Nome</label>
             <%= f.text_field :name, autofocus: true, class:'form-control' %>

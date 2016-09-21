@@ -1,19 +1,81 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Facilitator:</strong>
-  <%= @event.facilitator %>
-</p>
-
-<%= link_to 'Edit', edit_admin_event_path(@event) %> |
-<%= link_to 'Back', admin_events_path %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-color panel-tabs panel-primary">
+      <div class="panel-heading">
+        <ul class="nav nav-pills pull-right">
+          <li class="active">
+            <a href="#info" data-toggle="tab" aria-expanded="true">Sobre</a>
+          </li>
+          <li class="">
+            <a href="#users" data-toggle="tab" aria-expanded="false">Inscritos</a>
+          </li>
+        </ul>
+        <h3 class="panel-title"><%= @event.name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div id="info" class="tab-pane fade in active">
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  <%= @event.description %>
+                </p>
+                <p>
+                  <strong>Facilitador: </strong><%= @event.facilitator %>
+                </p>
+                <p>
+                  <strong>Valor: </strong><%= @event.price %>
+                </p>
+                <p>
+                  <strong>Total de inscritos: </strong><%= @event.buyers.count %>
+                </p>
+                <p>
+                  <strong>Total de vagas: </strong><%= @event.limit %>
+                </p>
+                <p>
+                  <strong>Total de vagas restantes: </strong><%= @event.remaining %>
+                </p>
+                <p>
+                  <strong>Horários:</strong>
+                </p>
+                <ul class="list-group">
+                  <% @event.schedules.each do |schedule| %>
+                    <li class="list-group-item">
+                      Início: <%= time_pt(schedule.start_time) %></br>
+                      Fim: <%= time_pt(schedule.end_time) %>
+                      <%= link_to 'Deletar', admin_event_schedule_path(@event, schedule), method: :delete, class: 'badge badge-danger' %>
+                      <%= link_to 'Editar', edit_admin_event_schedule_path(@event, schedule), class: 'badge badge-primary' %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="users" class="tab-pane fade">
+            <div class="row">
+              <div class="col-md-12">
+                <% if  @event_users.empty? %>
+                  <p>Nenhum usuário inscrito</p>
+                <% else %>
+                  <ul class="list-group">
+                    <% @event_users.each do |user|%>
+                      <li class="list-group-item">
+                        <%= link_to 'Vizualizar', admin_user_path(user), class: 'badge badge-primary' %>
+                        <%= user.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Editar', edit_admin_event_path(@event), class: 'btn btn-primary waves-effect w-md waves-light m-b-5' %>
+        <%= link_to "Novo Horário", new_admin_event_schedule_path(@event), class:'btn btn-primary waves-effect w-md waves-light m-b-5' %>
+        <%= link_to 'Todos os Eventos', admin_events_path, class: 'btn btn-primary waves-effect w-md waves-light m-b-5'%>
+      </div>
+    </div>
+  </div><!-- end col -->
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= current_week[:name] %></title>
+ <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'nested_form' %>
+ <%= csrf_meta_tags %>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <div class="clearfix"></div>
+  <div class="wrapper-page">
+    <div class="text-center">
+      <a href="" class="logo"><span><%= current_week[:logo] %><span></span></span></a>
+      <h5 class="text-muted m-t-0 font-600"><%= current_week[:name] %></h5>
+    </div>
+    <div class="m-t-40 card-box">
+      <%= render 'notifications/errors' %>
+      <%= yield %>
+    </div>
+  </div>
+  </body>
+</html>

@@ -5,6 +5,7 @@ class ProfileController < ApplicationController
 
   def home
     @user_package = @user.package
+    @comments = Comment.all
   end
 
   protected
@@ -22,7 +23,7 @@ class ProfileController < ApplicationController
 
 
   def verify_cart_count    
-    package = Package.find(current_user.package_id)
+    package = @user.package
     count = package.event_kind_count(current_user)
     lectures =  package.lectures - count[:lectures] 
     courses = package.courses - count[:courses]

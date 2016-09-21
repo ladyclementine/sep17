@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
     get 'packages' => 'packages#index', as: :packages
     patch 'packages/add/:package_id' => 'packages#add_package', as: :add_package
-  
+
 
     post 'payment' => 'checkout#create', as: :payment
     get 'payment' => 'checkout#new'
@@ -71,16 +71,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     authenticated :admin do
-      resources :events
-      resources :packages 
+      resources :events do
+        resources :schedules, path: 'schedules'
+      end
+      resources :packages
       resources :users
+      resources :comments
       patch 'users/:user_id/change_payment' => 'users#set_payment', as: :change_user_payment
       patch 'users/:user_id/remove_from_event/:id' => 'users#remove_from_event', as: :remove_user_from_event
       patch 'users/:user_id/remove_from_all_events' => 'users#remove_from_all_events', as: :remove_user_from_all_events
       resources :admins
     end
 
-    root 'events#index'
+    root 'users#index'
   end
 
 end

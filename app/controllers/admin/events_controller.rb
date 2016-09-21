@@ -7,11 +7,13 @@ class Admin::EventsController < Admin::BaseController
 
   # GET /events/1
   def show
+    @event_users = @event.buyers
   end
 
   # GET /events/new
   def new
     @event = Event.new
+    @event.schedules.build
   end
 
   # GET /events/1/edit
@@ -21,7 +23,6 @@ class Admin::EventsController < Admin::BaseController
   # POST /events
   def create
     @event = Event.new(event_params)
-
     if @event.save
       redirect_to [:admin, @event], notice: 'Event was successfully created.'
     else
@@ -31,6 +32,7 @@ class Admin::EventsController < Admin::BaseController
 
   # PATCH/PUT /events/1
   def update
+    byebug
     if @event.update(event_params)
       redirect_to [:admin, @event], notice: 'Event was successfully updated.'
     else
@@ -52,6 +54,6 @@ class Admin::EventsController < Admin::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :description, :facilitator)
+      params.require(:event).permit(:name, :description, :facilitator, :limit, :price, :kind, schedules_attributes: [:id, :start_time, :end_time, :_destroy])
     end
 end

@@ -22,7 +22,9 @@
                             <th>Semester</th>
                             <th>Birthday</th>
                             <th>University</th>
-                            <th></th>
+                            <th>Metodo de Pagamento</th>
+                            <th>Status do Pagamento</th>
+                            <th data-orderable="false"></th>
             </tr>
           </thead>
           <tbody>
@@ -34,10 +36,14 @@
                             <td><%= admin_user.semester %></td>
                             <td><%= admin_user.birthday %></td>
                             <td><%= admin_user.university %></td>
-                            <td class="actions">
-                <%= link_to 'Show', admin_user_path(admin_user) %>
-                <%= link_to 'Edit', edit_admin_user_path(admin_user) %>
-                <%= link_to 'Destroy', admin_user_path(admin_user), method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <td><%= admin_user.payment.try(:method) %></td>
+                            <td><%= admin_user.payment.try(:status) %></td>
+                            <td class="actions pull-right">
+                <div class="btn-group m-b-10">
+                  <%= link_to 'Mostrar', admin_user_path(admin_user), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Editar', edit_admin_user_path(admin_user), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Deletar', admin_user_path(admin_user), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
+                </div>
               </td>
             </tr>
             <% end %>

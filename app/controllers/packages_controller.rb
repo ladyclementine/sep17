@@ -1,19 +1,17 @@
 class PackagesController < ProfileController
   before_action :set_package, only: [:add_package]
-  
-  def index 
+
+  def index
     @packages = Package.all
     @package_1 = Package.first
-    @user = current_user 
+    @user = current_user
   end
 
   def add_package
-    if @package.remaining != 0
-      if @user.update_attribute(:package_id, @package.id)
-        redirect_to :my_home, notice: 'Pacote escolhido com sucesso!' 
-      else
-        render :index
-      end
+    if @user.package = @package
+      redirect_to :my_home, notice: 'Pacote escolhido com sucesso!'
+    else
+      render :index
     end
   end
 

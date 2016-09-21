@@ -14,7 +14,7 @@ Devise.setup do |config|
   # with default "from" parameter.
 
 
-  config.mailer_sender = 'vica.escorcio@gmail.com'
+  config.mailer_sender = Rails.application.secrets.sender_email
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

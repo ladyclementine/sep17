@@ -1,15 +1,18 @@
-<h2>Enviar confimarção!</h2>
+<h4 class="text-uppercase text-center font-bold m-b-0">Enviar confimarção!</h4>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, html: {class: 'form-horizontal m-t-20'}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  <div class="form-group ">
+    <div class="col-xs-12">
+    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", placeholder: 'Email'%>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Reenviar instruções para o email acima!" %>
+  <div class="form-group text-center m-t-30">
+    <div class="col-xs-12">
+      <%= button_tag "Reenviar instruções para o email acima!", class: "btn btn-custom btn-bordred btn-block waves-effect waves-light"%>
+    </div>
   </div>
 <% end %>
 

@@ -30,18 +30,26 @@
       </div>
     </div>
     <div class="card-box">
-      <h4 class="header-title m-t-0 m-b-30"><i class="zmdi zmdi-info m-r-5"></i> Recados da <%= current_week[:sigla]%></h4>
-      <div class="comment">
-        <img src="assets/images/users/avatar-2.jpg" alt="" class="comment-avatar">
-        <div class="comment-body">
-          <div class="comment-text">
-            <div class="comment-header">
-              <a href="#" title="">Adam Jansen</a><span>about 2 minuts ago</span>
+      <h4 class="header-title m-t-0 m-b-30"><i class="zmdi zmdi-info m-r-5"></i>
+        Recados da <%= current_week[:sigla]%>
+      </h4>
+      <% if @comments.empty? %>
+        <p>Nenhum recado...</p>
+      <% else %>
+        <% @comments.each do |comment| %>
+          <div class="comment">
+            <%= image_tag('chat.png', class: 'comment-avatar') %>
+            <div class="comment-body">
+              <div class="comment-text">
+                <div class="comment-header">
+                  <a title=""><%= comment.title %></a><span><%= comment.posted_on %></span>
+                </div>
+                <%= comment.description %>
+              </div>
             </div>
-            Story based around the idea of time lapse, animation to post soon!
           </div>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
