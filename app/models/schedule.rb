@@ -7,10 +7,7 @@ class Schedule < ActiveRecord::Base
 
   def start_time_between
     begin
-      schedules = Schedule
-        .where.not(id: self.id)
-        .where('? BETWEEN start_time and end_time', self.start_time)
-      byebug
+      schedules = Schedule.where.not(id: self.id).where('? BETWEEN start_time and end_time', self.start_time)
       raise unless schedules.any?
       [schedules]
     rescue => e
@@ -20,9 +17,7 @@ class Schedule < ActiveRecord::Base
 
   def end_time_between
     begin
-      schedules = Schedule
-        .where.not(id: self.id)
-        .where('? BETWEEN start_time and end_time', self.end_time)
+      schedules = Schedule.where.not(id: self.id).where('? BETWEEN start_time and end_time', self.end_time)
       raise unless schedules.any?
       [schedules]
     rescue => e
