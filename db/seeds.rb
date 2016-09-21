@@ -22,8 +22,7 @@ Package.create(title:'Ouro', description:'esse é o pacote ouro', limit:20, pric
 Package.create(title:'Prata', description:'esse é o pacote prata', limit:20, price:40, courses:3, lectures:2, visits:1)
 Package.create(title:'Bronze', description:'esse é o pacote bronze', limit:20, price:30, courses:2, lectures:1, visits:0)
 
-@user = User.create(name: 'Rodrigo', email: 'rodrigo_tn@live.com', semester: 8, course: 'ENG COMP', university: 'UFC', birthday: '07-12-1994', password: '123456as')
-@user.confirm
+
 
 Admin.create(email: 'admin@semanas.com', password: 'admin123')
 #30.times do
