@@ -38,7 +38,7 @@ class CartController < ProfileController
         if @pag.errors.empty? && @payment.save
           redirect_to @pag.url
         else
-          render 'show', notice: "Erro ao efetuar pagamento! #{pag.errors}"
+          render 'show', notice: "Erro ao efetuar pagamento! #{@pag.errors}"
         end
       when @payment.accepted_payment_methods[1], @payment.accepted_payment_methods[2]
         if @payment.save
