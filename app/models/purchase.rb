@@ -21,8 +21,6 @@ class Purchase < ActiveRecord::Base
     self.event.schedules.each do |schedule|
       conflit_schedules << schedule.start_time_between
     end
-
-    byebug
     conflit_schedules.flatten & check_schedules.flatten
   end
 

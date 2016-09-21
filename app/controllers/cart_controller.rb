@@ -60,11 +60,12 @@ class CartController < ProfileController
   end
 
   def add
-    if Purchase.create(buyer_id: @user.id, event_id: params[:id])
+    @purchase = Purchase.new(buyer_id: @user.id, event_id: params[:id])
+    if @purchase.save
       $redis.sadd current_user_cart, params[:id]
       redirect_to :back
     else
-      redirect_to :back, notice:'Não há mais vagas disponíveis para este evento'
+      redirect_to :back, notice: @purchase.errors.full_messages.first || 'Não há mais vagas disponíveis para este evento'
     end
   end
 
