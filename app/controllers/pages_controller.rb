@@ -1,12 +1,6 @@
 class PagesController < ApplicationController
-  
+  layout 'guest'
 	def index
 	end
 
-  def show
-  end
-
-  def teams
-  end
-  
 end
