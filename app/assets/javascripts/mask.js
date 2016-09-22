@@ -4,7 +4,7 @@ $(document).ready(function() {
             D: { pattern: /[0-3]/ },
             d: { pattern: /[0-9]/ },
             M: { pattern: /[0-1]/ },
-            m: { pattern: /[0-9]/ }
+            m: { pattern: /[0-2]/ }
         }
     });
 
