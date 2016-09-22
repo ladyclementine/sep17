@@ -77,6 +77,7 @@ Rails.application.routes.draw do
       resources :packages
       resources :users
       resources :comments
+      resources :challenge_teams
       patch 'users/:user_id/change_payment' => 'users#set_payment', as: :change_user_payment
       patch 'users/:user_id/remove_from_event/:id' => 'users#remove_from_event', as: :remove_user_from_event
       patch 'users/:user_id/remove_from_all_events' => 'users#remove_from_all_events', as: :remove_user_from_all_events

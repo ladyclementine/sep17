@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box table-responsive">
+      <h4 class="header-title m-t-0 m-b-30">Competição - Times</h4>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="m-b-30">
+            <%= link_to(new_admin_challenge_team_path, class:'btn btn-primary waves-effect waves-light') do %>
+            Nova equipe <i class="fa fa-plus"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="responsive">
+        <table class="table table-striped" id="datatable">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email Responsável</th>
+              <th>Número de membros</th>
+              <th>Método de Pagamento</th>
+              <th data-orderable="false"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @admin_challenge_teams.each do |admin_challenge_team| %>
+            <tr>
+              <td><%= admin_challenge_team.name %></td>
+              <td><%= admin_challenge_team.email %></td>
+              <td><%= admin_challenge_team.limit %></td>
+              <td><%= admin_challenge_team.payment_method %></td>
+              <td class="actions pull-right">
+               <div class="btn-group m-b-10">
+                  <%= link_to 'Mostrar', admin_challenge_team_path(admin_challenge_team), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Editar', edit_admin_challenge_team_path(admin_challenge_team), class: 'btn btn-rounded btn-primary waves-effect' %>
+                  <%= link_to 'Deletar', admin_challenge_team_path(admin_challenge_team), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div><!-- end col -->
+  </div>
+</div>
