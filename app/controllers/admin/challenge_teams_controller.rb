@@ -8,7 +8,7 @@ class Admin::ChallengeTeamsController < Admin::BaseController
 
   # GET /admin/users/1
   def show
-    @challenge_team_members = @challenge_team.members
+    @challenge_team_members = @challenge_team.challenge_members
   end
 
   # GET /admin/users/new
