@@ -14,6 +14,7 @@
  *= require menu.less
  *= require responsive.less
  *= require pages.less
+ *= require custom-variables.less
  *= require plugins/buttons.bootstrap.min
  *= require plugins/fixedHeader.bootstrap.min
  *= require plugins/jquery.dataTables.min
@@ -34,4 +35,14 @@
 	z-index: 1;
 
 	background: transparent;
+}
+
+.wrapper-page .logo {
+  max-width: 210px;
+  max-height: 150px;
+}
+
+.topbar .topbar-left .logo {
+  max-width: 150px;
+  max-height: 100px;
 }

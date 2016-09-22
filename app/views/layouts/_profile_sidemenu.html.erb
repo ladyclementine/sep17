@@ -3,18 +3,13 @@
   <div class="sidebar-inner slimscrollleft">
     <!-- User -->
     <div class="user-box">
-      <div class="user-img">
-        <%= image_tag("users/avatar-1.jpg", class:"img-circle img-thumbnail img-responsive") %>
-        <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
-      </div>
-      <h5><a href="#"><%= @user.name %> </a> </h5>
+      <h5><a><%= @user.name %></a></h5>
       <ul class="list-inline">
         <li>
           <%= link_to edit_user_registration_path,title: "Opções de conta", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :get do %>
           <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
           <% end %>
         </li>
-        </li> 
         <li>
           <%= link_to destroy_user_session_path,title: "Sair", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :delete do %>
           <i class="zmdi zmdi-power  zmdi-hc-2x"></i>
