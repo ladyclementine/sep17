@@ -78,9 +78,9 @@
       <div class="pull-left">
         <h5 class="m-t-40"><b>Deseja alterar a forma de pagamento ?</b></h5>
         <div class="form-group m-b-0">
-          <button class="btn btn-primary waves-effect waves-light" type="submit">
+          <%= link_to require_change_payment_path, class: 'btn btn-primary waves-effect waves-light', method: :put  do %>
             Solicitar alteração
-          </button>
+          <% end %>
         </div>
       </div>
     </div>

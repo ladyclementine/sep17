@@ -1,39 +1,5 @@
 <html>
-<title><%= current_week[:name] %></title>
- <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
- <%= javascript_include_tag 'nested_form' %>
- <%= csrf_meta_tags %>
- <meta name="viewport" content="width=device-width, initial-scale=1">
-
-     <body>
-
-        <div class="account-pages"></div>
-        <div class="clearfix"></div>
-        <div class="wrapper-page">
-            <div class="text-center">
-                <a href="index.html" class="logo"><span>Admin<span>to</span></span></a>
-                <h5 class="text-muted m-t-0 font-600">Semana das engenharias</h5>
-            </div>
-        	<div class="m-t-40 card-box">
-                <div class="text-center">
-                    <h4 class="text-uppercase font-bold m-b-0">Email de confirmação </h4>
-                </div>
-                <div class="panel-body text-center">
-                    <img src="assets/images/mail_confirm.png" alt="img" class="thumb-lg m-t-20 center-block" />
-					<%=yield%>
-                </div>
-            </div>
-
-			
-
-        </div>
-        <!-- end wrapper page -->
-
-
-
-
-    
-
-	</body>
+  <body>
+    <%= yield %>
+  </body>
 </html>

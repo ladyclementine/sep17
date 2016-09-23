@@ -55,7 +55,13 @@ class CartController < ProfileController
       end
       @payment.pending
     else
-      render 'show', notice: 'Seu carrinho está vazio!'
+      render 'new', notice: 'Seu carrinho está vazio!'
+    end
+  end
+
+  def require_change_payment
+    if PaymentMailer.require_change(@user).deliver_now
+      redirect_to :cart, notice: 'Sua solicitação foi enviada, aguarde contato!'
     end
   end
 
