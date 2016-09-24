@@ -9,21 +9,25 @@
 <% end %>
 <div class="form-group ">
   <div class="col-xs-12">
-    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: 'Nome da equipe' %>
+    <%= f.label 'Nome' %>
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: 'Insira o nome de sua equipe' %>
   </div>
 </div>
 <div class="form-group ">
   <div class="col-xs-12">
-    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: 'Email do responsável' %>
+    <%= f.label 'Email do responsável' %>
+    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: 'Insira o email de contato' %>
   </div>
 </div>
 <div class="form-group ">
   <div class="col-xs-12">
+    <%= f.label 'Método de pagamento' %>
     <%= f.select(:payment_method, @team.accepted_payment_methods, {}, { class: 'form-control' }) %>
   </div>
 </div>
 <div class="form-group ">
   <div class="col-xs-12">
+    <%= f.label 'Número de membros' %>
     <%= f.number_field :limit, class: "form-control", placeholder: 'Número de membros' %>
   </div>
 </div>

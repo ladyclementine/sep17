@@ -17,12 +17,12 @@ class Challenge::MemberController < ApplicationController
       @member = @challenge_team.challenge_members.new(member.permit(:name, :email))
       if !@member.save
         @errors << @member.errors
-        byebug
       end
     end
 
     if @errors.empty?
       @pag = pag_seguro(100, @challenge_team)
+       ChallengeMailer.inscription(@challenge_team).deliver_now
       if @pag.errors.empty?
         redirect_to @pag.url
       else

@@ -1,0 +1,9 @@
+<p>Inscrição da equipe: <%= @team.name %></p>
+<p>Responsável: <%= @team.email %></p>
+<p>Método de pagamento: <%= @team.payment_method %></p>
+<h5>Equipe</h5>
+<ul>
+  <% @members.each do |member| %>
+    <li><%= member.name %> - <%= member.email %></li>
+  <% end %>
+</ul>
