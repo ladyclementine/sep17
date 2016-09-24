@@ -1,4 +1,5 @@
 class Admin::CommentsController < Admin::BaseController
+  include ApplicationHelper
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   # GET /events
   def index
@@ -21,8 +22,11 @@ class Admin::CommentsController < Admin::BaseController
   # POST /events
   def create
     @comment = Comment.new(comment_params)
-
+    byebug
     if @comment.save
+      User.all.each do |user|
+        NoticesMailer.send_notification(user, @comment, current_week).deliver_now
+      end
       redirect_to [:admin, @comment], notice: 'comment was successfully created.'
     else
       render :new
@@ -41,7 +45,7 @@ class Admin::CommentsController < Admin::BaseController
   # DELETE /events/1
   def destroy
     @comment.destroy
-    redirect_to admin_events_url, notice: 'comment was successfully destroyed.'
+    redirect_to admin_comments_url, notice: 'comment was successfully destroyed.'
   end
 
   private
