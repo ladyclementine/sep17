@@ -36,6 +36,10 @@ module SemanaDeTecnologia
       g.templates.unshift File::expand_path('../../templates', __FILE__)
     end
 
+    config.to_prepare do
+      Devise::Mailer.layout "mailer"
+    end
+
     ActionMailer::Base.smtp_settings = {
       :user_name => Rails.application.secrets.sendgrid_user,
       :password => Rails.application.secrets.sendgrid_password,
