@@ -7,7 +7,7 @@ class Challenge::Team < ActiveRecord::Base
   validate :validate_payment_method
 
   def accepted_payment_methods
-    ['PagSeguro', 'Deposito', 'Transferencia']
+    ['Deposito', 'Transferencia', 'Presencial']
   end
 
 

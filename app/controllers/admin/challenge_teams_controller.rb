@@ -1,5 +1,5 @@
 class Admin::ChallengeTeamsController < Admin::BaseController
-  before_action :set_challenge_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge_team, only: [:show, :edit, :update, :destroy, :confirm_payment]
 
   # GET /admin/users
   def index
@@ -42,6 +42,12 @@ class Admin::ChallengeTeamsController < Admin::BaseController
   def destroy
     @challenge_team.destroy
     redirect_to admin_challenge_teams_url, notice: 'Challenge::Team was successfully destroyed.'
+  end
+
+  # PATCH
+  def confirm_payment
+    ChallengeMailer.confirm_payment(@challenge_team).deliver_now
+    redirect_to :admin_challenge_teams
   end
 
   private
