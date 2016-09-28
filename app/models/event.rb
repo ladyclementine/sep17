@@ -101,10 +101,10 @@ class Event < ActiveRecord::Base
     total_price = 0
     partial_price = 0
     event_partial_price = 0
-    current_user.get_cart_events.each { |event| event_partial_price+= event.price }
+    current_user.get_cart_events.each { |event| event_partial_price += event.price }
     current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user) : partial_price = event_partial_price
     if current_user.package && current_user.package.package_fit?(current_user)
-      total_price = self.price + partial_price
+      total_price = current_user.package.price + partial_price
     else
       total_price = event_partial_price
     end
