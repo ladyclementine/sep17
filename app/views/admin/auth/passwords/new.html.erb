@@ -1,21 +1,22 @@
 
 <h4 class="text-uppercase text-center font-bold m-b-0">Esqueceu a senha ?</h4>
 
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal m-t-20'}, html: { method: :post }) do |f| %>
-<%= devise_error_messages! %>
-<div class="field">
-    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
-</div>
-<h6>Digite seu email para solicitar recuperação de senha</h6>
-<div class="form-group text-center m-t-30">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal m-t-20', method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-group">
     <div class="col-xs-12">
+      <%= f.label 'Digite seu email para solicitar recuperação de senha' %>
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+    </div>
+  </div>
+  <div class="form-group text-center m-t-30">
+      <div class="col-xs-12">
         <%= button_tag "Recuperar senha!", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", type:"submit"  %>
-    </div>
-</div>
-<div class="form-group m-t-30 m-b-0">
+      </div>
+  </div>
+  <div class="form-group m-t-30 m-b-0">
     <div class="col-sm-12">
-        <p class="text-muted"> <%= link_to "Log in", new_admin_session_path , class: "text-primary m-l-5" %></p>
+      <p class="text-muted"> <%= link_to "Entrar", new_admin_session_path , class: "text-primary m-l-5" %></p>
     </div>
-</div>
+  </div>
 <% end %>

@@ -10,8 +10,8 @@ class CartController < ProfileController
     @payment = Payment.new
     @time = Time.now
     @package = @user.package
-    @user_cart = @package.event_kind_count(current_user)
-    @cart_total = @package.cart_total_price(current_user)
+    @user_cart = Event.event_kind_count(current_user)
+    @cart_total = Event.cart_total_price(current_user)
   end
 
   def new
@@ -29,7 +29,7 @@ class CartController < ProfileController
     @payment = Payment.new(user_id: current_user.id)
     @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
-    @total_price = @user.package.cart_total_price(@user)
+    @total_price = Event.cart_total_price(@user)
 
     if !@cart_events.empty?
       case payment_params[:method]
@@ -55,7 +55,13 @@ class CartController < ProfileController
       end
       @payment.pending
     else
-      render 'show', notice: 'Seu carrinho está vazio!'
+      render 'new', notice: 'Seu carrinho está vazio!'
+    end
+  end
+
+  def require_change_payment
+    if PaymentMailer.require_change(@user).deliver_now
+      redirect_to :cart, notice: 'Sua solicitação foi enviada, aguarde contato!'
     end
   end
 
@@ -104,7 +110,7 @@ class CartController < ProfileController
     # @cart.each do |product|
     payment.items << {
       id: user.id,
-      description: "Pacote #{user.package.title}",
+      description: user.package ? "Pacote #{user.package.title}" : 'Compra fora do pacote',
       amount: value.to_f
     }
     # end

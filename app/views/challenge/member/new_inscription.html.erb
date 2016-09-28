@@ -6,7 +6,7 @@
       <%= @errors.first.full_messages.first %>
     </div>
   <% end %>
-  <% @challenge_team.limit.times do |index| %> 
+  <% @challenge_team.limit.times do |index| %>
     <%= fields_for "members[#{index}]", @members[index] do |m| %>
         <div class="row">
           <div class="form-group m-b-10">

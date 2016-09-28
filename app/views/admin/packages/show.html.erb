@@ -47,14 +47,36 @@
                 <% if  @package_users.empty? %>
                   <p>Nenhum usuário inscrito</p>
                 <% else %>
-                  <ul class="list-group">
-                    <% @package_users.each do |user|%>
-                      <li class="list-group-item">
-                        <%= link_to 'Vizualizar', admin_user_path(user), class: 'badge badge-primary' %>
-                        <%= user.name %>
-                      </li>
-                    <% end %>
-                  </ul>
+                  <div class="responsive">
+                    <table class="table table-striped" id="datatable">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Course</th>
+                          <th>Semester</th>
+                          <th>University</th>
+                          <th data-orderable="false"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @package_users.each do |package_user| %>
+                        <tr>
+                          <td><%= package_user.name %></td>
+                          <td><%= package_user.email %></td>
+                          <td><%= package_user.course %></td>
+                          <td><%= package_user.semester %></td>
+                          <td><%= package_user.university %></td>
+                          <td class="actions pull-right">
+                            <%= link_to admin_user_path(package_user), class: 'badge badge-primary' do %>
+                              <p>Vizualizar</p>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
                 <% end %>
               </div>
             </div>

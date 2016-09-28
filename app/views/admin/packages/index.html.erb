@@ -16,35 +16,41 @@
         <table class="table table-striped" id="datatable">
           <thead>
             <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Limit</th>
-                            <th>Cursos/Palestras/Visitas</th>
-                            <th>Price</th>
-                            <th data-orderable="false"></th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Limit</th>
+              <th>Cursos/Palestras/Visitas</th>
+              <th>Price</th>
+              <th data-orderable="false"></th>
             </tr>
           </thead>
           <tbody>
             <% @packages.each do |package| %>
             <tr>
-                            <td><%= package.title %></td>
-                            <td><%= package.description %></td>
-                            <td><%= package.limit %></td>
-                            <td><%= package.courses %>/<%= package.lectures %>/<%= package.visits %></td>
-                            <td><%= package.price %></td>
-                            <td class="actions pull-right">
-               <div class="btn-group m-b-10">
-                  <%= link_to 'Mostrar', admin_package_path(package), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Editar', edit_admin_package_path(package), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Deletar', admin_package_path(package), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
+              <td><%= package.title %></td>
+              <td><%= package.description %></td>
+              <td><%= package.limit %></td>
+              <td><%= package.courses %>/<%= package.lectures %>/<%= package.visits %></td>
+              <td><%= package.price %></td>
+              <td class="actions pull-right">
+                 <div class="btn-group m-b-10">
+                  <%= link_to admin_package_path(package), class: 'btn btn-primary btn-icon waves-effect' do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <%= link_to edit_admin_package_path(package), class: 'btn btn-primary btn-icon waves-effect' do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                  <%= link_to admin_package_path(package), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-icon waves-effect' do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
                 </div>
               </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-    </div><!-- end col -->
   </div>
+</div><!-- end col -->
+</div>
 </div>

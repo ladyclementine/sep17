@@ -57,14 +57,36 @@
                 <% if  @event_users.empty? %>
                   <p>Nenhum usuário inscrito</p>
                 <% else %>
-                  <ul class="list-group">
-                    <% @event_users.each do |user|%>
-                      <li class="list-group-item">
-                        <%= link_to 'Vizualizar', admin_user_path(user), class: 'badge badge-primary' %>
-                        <%= user.name %>
-                      </li>
-                    <% end %>
-                  </ul>
+                  <div class="responsive">
+                    <table class="table table-striped" id="datatable">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Course</th>
+                          <th>Semester</th>
+                          <th>University</th>
+                          <th data-orderable="false"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @event_users.each do |event_user| %>
+                        <tr>
+                          <td><%= event_user.name %></td>
+                          <td><%= event_user.email %></td>
+                          <td><%= event_user.course %></td>
+                          <td><%= event_user.semester %></td>
+                          <td><%= event_user.university %></td>
+                          <td class="actions pull-right">
+                            <%= link_to admin_user_path(event_user), class: 'badge badge-primary' do %>
+                              <p>Vizualizar</p>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
                 <% end %>
               </div>
             </div>
