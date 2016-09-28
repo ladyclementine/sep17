@@ -4,8 +4,11 @@
             <h1><%= current_week[:name] %></h1>
             <h3><%= current_week[:description] %></h3>
             <br>
-            <%= link_to challenge_new_team_inscription_path, class:'btn btn-dark btn-lg' do %>
-               Inscrição - Concurso de Planadores
+            <%= link_to new_user_registration_path, class:'btn btn-dark btn-lg' do %>
+               Inscreva-se
+            <% end %>
+            <%= link_to new_user_session_path, class:'btn btn-dark btn-lg' do %>
+               Entrar no Painel
             <% end %>
         </div>
     </header>
