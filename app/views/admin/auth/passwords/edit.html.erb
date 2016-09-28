@@ -13,8 +13,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
   </div>
 
   <div class="actions">
@@ -23,3 +22,35 @@
 <% end %>
 
 <%= render "admin/auth/shared/links" %>
+
+<h4 class="text-uppercase text-center font-bold m-b-0">Nova senha</h4>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'form-horizontal m-t-20', method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="form-group">
+    <div class="col-xs-12">
+      <%= f.label :password, "Nova senha" %><br />
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-12">
+      <%= f.label :password_confirmation, "Confirme sua senha" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group text-center m-t-30">
+      <div class="col-xs-12">
+        <%= button_tag "Alterar senha!", class:  "btn btn-custom btn-bordred btn-block waves-effect waves-light", type:"submit"  %>
+      </div>
+  </div>
+  <div class="form-group m-t-30 m-b-0">
+    <div class="col-sm-12">
+      <p class="text-muted"> <%= link_to "Entrar", new_admin_session_path , class: "text-primary m-l-5" %></p>
+    </div>
+  </div>
+<% end %>

@@ -16,8 +16,8 @@
         <table class="table table-striped" id="datatable">
           <thead>
             <tr>
-                            <th>Email</th>
-                            <th data-orderable="false"></th>
+              <th>Email</th>
+              <th data-orderable="false"></th>
             </tr>
           </thead>
           <tbody>
@@ -27,10 +27,16 @@
                   <td><%= admin_admin.email %></td>
                   <td class="actions pull-right">
                     <div class="btn-group m-b-10">
-                  <%= link_to 'Mostrar', admin_admin_path(admin_admin), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Editar', edit_admin_admin_path(admin_admin), class: 'btn btn-rounded btn-primary waves-effect' %>
-                  <%= link_to 'Deletar', admin_admin_path(admin_admin), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-rounded btn-danger waves-effect' %>
-                </div>
+                      <%= link_to admin_admin_path(admin_admin), class: 'btn btn-primary btn-icon waves-effect' do %>
+                        <i class="fa fa-eye"></i>
+                      <% end %>
+                      <%= link_to edit_admin_admin_path(admin_admin), class: 'btn btn-primary btn-icon waves-effect' do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                      <%= link_to admin_admin_path(admin_admin), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-icon waves-effect' do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                    </div>
                   </td>
                 </tr>
               <% end %>
@@ -39,6 +45,5 @@
         </table>
       </div>
     </div>
-    </div><!-- end col -->
-  </div>
+  </div><!-- end col -->
 </div>
