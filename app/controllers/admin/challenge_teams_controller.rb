@@ -46,8 +46,10 @@ class Admin::ChallengeTeamsController < Admin::BaseController
 
   # PATCH
   def confirm_payment
-    ChallengeMailer.confirm_payment(@challenge_team).deliver_now
-    redirect_to :admin_challenge_teams
+    if @challenge_team.update_attribute(:payment_status,true)
+      ChallengeMailer.confirm_payment(@challenge_team).deliver_now
+      redirect_to :admin_challenge_teams
+    end
   end
 
   private

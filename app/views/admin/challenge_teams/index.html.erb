@@ -11,6 +11,7 @@
               <th>Email Responsável</th>
               <th>Número de membros</th>
               <th>Método de Pagamento</th>
+              <th>Sttatus do Pagamento</th>
               <th data-orderable="false"></th>
             </tr>
           </thead>
@@ -21,6 +22,7 @@
               <td><%= admin_challenge_team.email %></td>
               <td><%= admin_challenge_team.limit %></td>
               <td><%= admin_challenge_team.payment_method %></td>
+              <td><%= payment_status admin_challenge_team.payment_status %></td>
               <td class="actions pull-right">
                <div class="btn-group m-b-10">
                   <%= link_to  admin_challenge_team_path(admin_challenge_team), class: 'btn btn-primary btn-icon waves-effect' do %>

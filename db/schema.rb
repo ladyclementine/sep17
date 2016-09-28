@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911024320) do
+ActiveRecord::Schema.define(version: 20160928003956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,12 +45,13 @@ ActiveRecord::Schema.define(version: 20160911024320) do
   add_index "challenge_members", ["email"], name: "index_challenge_members_on_email", unique: true, using: :btree
 
   create_table "challenge_teams", force: :cascade do |t|
-    t.string   "name",                        null: false
-    t.string   "email",                       null: false
-    t.string   "payment_method",              null: false
-    t.integer  "limit",          default: 10, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "name",                           null: false
+    t.string   "email",                          null: false
+    t.string   "payment_method",                 null: false
+    t.integer  "limit",          default: 10,    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "payment_status", default: false, null: false
   end
 
   add_index "challenge_teams", ["email"], name: "index_challenge_teams_on_email", using: :btree

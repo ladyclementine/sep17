@@ -26,4 +26,8 @@ module ApplicationHelper
   def time_pt(dt)
     dt.strftime("%d/%m/%Y às %H:%M")
   end
+
+  def payment_status(status)
+    status ? 'Pago' : 'Pendente'
+  end
 end
