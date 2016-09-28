@@ -19,7 +19,7 @@ class Package < ActiveRecord::Base
   end
 
   def package_fit?(current_user)
-    count = event_kind_count(current_user)
+    count = Event.event_kind_count(current_user)
     package = self
     if count[:lectures] >= package.lectures && count[:visits] >= package.visits && count[:courses] >= package.courses
      true
