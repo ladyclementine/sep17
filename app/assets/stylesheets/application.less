@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -42,9 +43,22 @@
   max-height: 150px;
 }
 
-.topbar .topbar-left .logo {
-  max-width: 150px;
-  max-height: 100px;
+@media (min-width: 768px) {
+  #wrapper .topbar .topbar-left .logo {
+    max-width: 150px;
+    max-height: 100px;
+  }
+  #wrapper.forced.enlarged .topbar .topbar-left .logo {
+    max-width: 70px;
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #wrapper .topbar .topbar-left .logo {
+    max-width: 70px;
+    max-height: 100px;
+  }
 }
 
 .wrapper-page {

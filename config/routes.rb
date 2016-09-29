@@ -24,11 +24,13 @@ Rails.application.routes.draw do
     put 'cart/add/:id', to: 'cart#add', as: :add_to
     put 'cart/remove/:id', to: 'cart#remove', as: :remove_from
     put 'cart/change_payment', to: 'cart#require_change_payment', as: :require_change_payment
+    delete 'cart/remove_payment', to: 'cart#remove_payment', as: :remove_payment
     post 'cart/checkout' => 'cart#create', as: :cart_checkout
 
 
     get 'packages' => 'packages#index', as: :packages
     patch 'packages/add/:package_id' => 'packages#add_package', as: :add_package
+    patch 'packages/remove/:package_id' => 'packages#remove_package', as: :remove_package
 
 
     post 'payment' => 'checkout#create', as: :payment

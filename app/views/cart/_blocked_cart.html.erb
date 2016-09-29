@@ -7,28 +7,47 @@
           <div class="pull-left">
             <h3 class="logo">Lista de compras</h3>
           </div>
-
         </div>
         <hr>
         <div class="row">
-          <div class="col-md-12">
-           <div class="pull-right ">
-                           <h4><br>
-                              <strong> Dados do comprador:</strong>
-                           </h4>
-                           <p><strong> Nome: </strong> <%= current_user.name%></p>
-                              <p class="m-t-10"><strong> Email: </strong> <%= current_user.email %></p>
-             </div>
-           <div class="pull-left ">
-                            <h4><br>
-                              <strong> Dados da compra:</strong>
-                           </h4>
-                              <p><strong> Data:<%= DateTime.now.strftime(" %d/%m/%Y -%H : %M") %> h</strong> </p>
-                              <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-pink"><%= current_user.payment.status %></span></p>
-
-                              <p class="m-t-10"><strong>Pacote inclui: </strong> <%=@package.lectures%> palestras + <%=@package.courses%> mini-cursos + <%= @package.visits %> visitas </p>
-                               <p class="m-t-10"><strong>Eventos adicionados: </strong> <%=@user_cart[:lectures]%> palestras  + <%=@user_cart[:courses]%> mini-cursos + <%=@user_cart[:visits]%> visitas </p>
-                           </div>
+          <div class="col-md-4">
+            <h4><br>
+              <strong> Dados do comprador:</strong>
+            </h4>
+            <p><strong> Nome: </strong>
+              <%= current_user.name%>
+            </p>
+            <p class="m-t-10"><strong> Email: </strong>
+              <%= current_user.email %>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h4><br>
+              <strong> Dados da compra:</strong>
+            </h4>
+            <p><strong> Data: <%= time_pt @user.payment.created_at %></strong> </p>
+            <p class="m-t-10"><strong> Status do pedido: </strong> <span class="label label-primary"><%= current_user.payment.status %></span></p>
+          </div>
+          <div class="col-md-4">
+            <% if @user.package %>
+              <br>
+              <p class="m-t-10">
+                <strong>Pacote inclui: </strong>
+                <%= @package.lectures%> palestras +
+                <%= @package.courses%> mini-cursos +
+                <%= @package.visits %> visitas
+              </p>
+              <p class="m-t-10">
+                <strong>Eventos adicionados: </strong>
+                <%= @user_cart[:lectures]%> palestras +
+                <%= @user_cart[:courses]%> mini-cursos +
+                <%= @user_cart[:visits]%> visitas
+              </p>
+            <% else %>
+              <h4><br>
+                <strong> Compra avulsa</strong>
+              </h4>
+            <% end %>
           </div>
           <!-- end col -->
         </div>
@@ -48,13 +67,21 @@
                 </thead>
                 <tbody>
                   <% @cart_events.each do |cart| %>
-                  <tr>
-                    <td><%=cart.name%></td>
-                    <td><%=cart.description%></td>
-                    <td><%=cart.kind %></td>
-                    <td><%= cart.price %></td>
-                  </tr>
-                  <%end%>
+                    <tr>
+                      <td>
+                        <%= cart.name %>
+                      </td>
+                      <td>
+                        <%= cart.description%>
+                      </td>
+                      <td>
+                        <%= cart.kind %>
+                      </td>
+                      <td>
+                        <%= cart.price %>
+                      </td>
+                    </tr>
+                    <%end%>
                 </tbody>
               </table>
             </div>
@@ -62,35 +89,35 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-
-<%= render_payment_form %>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
-         <p class="text-right"><b>Tipo de desconto:</b> <%= @package.title %> </p>
-
+            <%= render_payment_form %>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
+            <% if @user.package %>
+              <p class="text-right"><b>Tipo de desconto:</b>
+                <%= @package.title %>
+              </p>
+            <% else %>
+              <p class="text-right"><b>Compra sem desconto</b></p>
+            <% end %>
+            <hr>
+            <h3 class="text-right">Valor total: R$ <%=@cart_total%></h3>
+          </div>
+        </div>
         <hr>
-        <h3 class="text-right">R$ <%=@cart_total%></h3>
-      </div>
-    </div>
-
-    <hr>
-    <div class="hidden-print">
-      <div class="pull-left">
-        <h5 class="m-t-40"><b>Deseja alterar a forma de pagamento ?</b></h5>
-        <div class="form-group m-b-0">
-          <%= link_to require_change_payment_path, class: 'btn btn-primary waves-effect waves-light', method: :put  do %>
-            Solicitar alteração
-          <% end %>
+        <div class="hidden-print">
+          <div class="pull-left">
+            <h5 class="m-t-40"><b>Deseja alterar a forma de pagamento ?</b></h5>
+            <div class="form-group">
+              <%= link_to require_change_payment_path, class: 'btn btn-primary waves-effect waves-light', method: :put  do %>
+                Solicitar alteração
+              <% end %>
+              <%= link_to remove_payment_path, class: 'btn btn-primary waves-effect waves-light', method: :delete, data: { confirm: 'Tem certeza? Ao cancelar, você poderá perder sua vaga no pacote.' }  do %>
+                Cancelar compra
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
-
   </div>
 </div>
-</div>
-</div>
-<!-- ============================================================== -->
-<!-- End Right content here -->
-<!-- ============================================================== -->

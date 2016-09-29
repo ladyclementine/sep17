@@ -7,48 +7,45 @@
       <ul class="list-inline">
         <li>
           <%= link_to edit_user_registration_path,title: "Opções de conta", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :get do %>
-          <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
-          <% end %>
+            <i class="zmdi zmdi-settings  zmdi-hc-2x"></i>
+            <% end %>
         </li>
         <li>
           <%= link_to destroy_user_session_path,title: "Sair", class: 'has_bottom_tooltip', 'data-original-title' => 'Sair', method: :delete do %>
-          <i class="zmdi zmdi-power  zmdi-hc-2x"></i>
-          <% end %>
+            <i class="zmdi zmdi-power  zmdi-hc-2x"></i>
+            <% end %>
         </li>
       </ul>
     </div>
-
-  <!-- End User -->
-  <!--- Sidemenu -->
-  <div id="sidebar-menu">
-    <ul>
-      <li class="text-muted menu-title">Navegação</li>
-      <li>
-        <%= link_to authenticated_user_root_path, class: 'waves-effect' do %>
-        <i class="zmdi zmdi-home"></i>
-        <span>Início</span>
-        <% end -%>
-      </li>
-      <li>
-        <%= link_to events_path, class: 'waves-effect' do %>
-        <i class="zmdi zmdi-calendar"></i>
-        <span>Programação</span>
-        <% end -%>
-      </li>
-
-      <li>
-        <%= link_to packages_path, class: 'waves-effect' do %>
-        <i class="zmdi zmdi-collection-bookmark"></i>
-        <span>Pacotes disponíveis</span>
-        <% end -%>
-      </li>
-
-      <li>
-        <%= link_to cart_path, class: 'waves-effect' do %>
-        <i class="zmdi zmdi-shopping-cart"></i>
-        <span>Meu carrinho</span>
-        <% end -%>
-      </li>
+    <!-- End User -->
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <ul>
+        <li class="text-muted menu-title">Navegação</li>
+        <li>
+          <%= link_to authenticated_user_root_path, class: 'waves-effect' do %>
+            <i class="zmdi zmdi-home"></i>
+            <span>Início</span>
+            <% end -%>
+        </li>
+        <li>
+          <%= link_to events_path, class: 'waves-effect' do %>
+            <i class="zmdi zmdi-calendar"></i>
+            <span>Programação</span>
+            <% end -%>
+        </li>
+        <li>
+          <%= link_to packages_path, class: 'waves-effect' do %>
+            <i class="zmdi zmdi-collection-bookmark"></i>
+            <span>Pacotes disponíveis</span>
+            <% end -%>
+        </li>
+        <li>
+          <%= link_to cart_path, class: 'waves-effect' do %>
+            <i class="zmdi zmdi-shopping-cart"></i>
+            <span>Meu carrinho</span>
+            <% end -%>
+        </li>
     </div>
   </div>
 </div>

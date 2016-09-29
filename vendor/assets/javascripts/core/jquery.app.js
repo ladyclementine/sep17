@@ -190,14 +190,6 @@
                 $("body").addClass("mobile").removeClass("fixed-left");
             }
 
-            if (!$("#wrapper").hasClass("forced")) {
-                if (w > 990) {
-                    $("#wrapper").removeClass("enlarged");
-                } else {
-                    $("#wrapper").addClass("enlarged");
-                    $(".left ul").removeAttr("style");
-                }
-            }
             $('.slimscroller').niceScroll({ cursorcolor: '#ebeff2',cursorwidth:'8px', cursorborderradius: '5px'});
             $('.slimscrollleft').niceScroll({smoothscroll:false, cursorcolor: '#ebeff2',cursorwidth:'8px', cursorborderradius: '5px'});
         },

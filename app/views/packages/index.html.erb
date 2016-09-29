@@ -20,10 +20,9 @@
             </ul>
             <div class="text-center">
               <% if @user.package == package %>
-                <a class="btn btn-success btn-bordred btn-rounded waves-effect waves-light disabled">
-                  <span> Pacote já escolhido </span>
-                </a>
-
+                <%= link_to remove_package_path(package), class:  "btn btn-success btn-bordred btn-rounded waves-effect waves-light", method: :patch do %>
+                  <span> Pacote já escolhido - remover </span>
+                <% end %>
               <% elsif package.remaining == 0%>
                    <a class="btn btn-danger btn-bordred btn-rounded waves-effect waves-light disabled">
                   <span> Esse pacote não possui mais vagas </span>

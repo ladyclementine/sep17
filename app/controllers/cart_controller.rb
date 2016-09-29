@@ -26,10 +26,12 @@ class CartController < ProfileController
 
   def create
     cart_ids = $redis.smembers current_user_cart
-    @payment = Payment.new(user_id: current_user.id)
-    @payment.method = payment_params[:method]
     @cart_events = Event.find(cart_ids)
     @total_price = Event.cart_total_price(@user)
+
+    @payment = Payment.new(user_id: current_user.id)
+    @payment.method = payment_params[:method]
+    @payment.price = @total_price
 
     if !@cart_events.empty?
       case payment_params[:method]
@@ -42,12 +44,16 @@ class CartController < ProfileController
         end
       when @payment.accepted_payment_methods[1], @payment.accepted_payment_methods[2]
         if @payment.save
+          PaymentMailer.new_payment(@user, @payment).deliver_now
+          PaymentMailer.info(@user, @payment, current_week[:infos]).deliver_now
           redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
         end
       when @payment.accepted_payment_methods[3]
         if @payment.save
+          PaymentMailer.new_payment(@user, @payment).deliver_now
+          PaymentMailer.info(@user, @payment, current_week[:infos]).deliver_now
           redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
           render 'show', notice: 'Erro ao efetuar pagamento!'
@@ -62,6 +68,14 @@ class CartController < ProfileController
   def require_change_payment
     if PaymentMailer.require_change(@user).deliver_now
       redirect_to :cart, notice: 'Sua solicitação foi enviada, aguarde contato!'
+    end
+  end
+
+  def remove_payment
+    payment = @user.payment
+    if @user.payment.destroy
+      PaymentMailer.require_cancel(@user, payment).deliver_now
+      redirect_to :cart, notice: 'Compra cancelada com sucesso!'
     end
   end
 

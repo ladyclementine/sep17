@@ -2,15 +2,40 @@ module ApplicationHelper
   def current_week
     case Rails.application.secrets.week_id
     when "semana_test"
-      @week = { name: 'Semana em Teste', sigla: 'SeT', colors: { primary: '#871328', default: '#FFFFFF' }, logo: 'semana_test-logo.png', avatar: '' }
+      @week = {
+        name: 'Semana em Teste',
+        sigla: 'SeT',
+        colors: { primary: '#871328', default: '#FFFFFF' },
+        logo: 'semana_test-logo.png',
+        avatar: '',
+        infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' }
+      }
     when "stem"
-      @week = { name: 'Semana da Engenharia Mecânica', sigla: 'STEM', colors: [primary: '#871328'], logo: 'stem-logo.png', avatar: 'stem-avatar.png' }
+      @week = {
+        name: 'Semana de Tecnologia da Engenharia Mecânica',
+        sigla: 'STEM',
+        colors: [primary: '#871328'],
+        logo: 'stem-logo.png',
+        avatar: 'stem-avatar.png',
+        infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' }
+      }
     when "sec"
-      @week = { name: 'Semana da Engenharia Civil', sigla: 'SEC', colors: [base: '#FFFFFF'], logo: 'sec-logo.png' }
+      @week = {
+        name: 'Semana da Engenharia Civil',
+        sigla: 'SEC',
+        colors: [base: '#FFFFFF'],
+        logo: 'sec-logo.png',
+        infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' }
+      }
     when "setic"
-      @week = { name: 'Semana de Tecnologia e Inovação', sigla: 'Setic', colors: [base: '#FFFFFF'], logo: 'setic-logo.png' }
+      @week = {
+        name: 'Semana de Tecnologia e Inovação',
+        sigla: 'Setic', colors: [base: '#FFFFFF'],
+        logo: 'setic-logo.png',
+        infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' }
+      }
     else
-      @week = {}
+      @week = { infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' } }
     end
   end
 
