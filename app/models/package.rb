@@ -2,6 +2,7 @@ class Package < ActiveRecord::Base
 
   has_many :inscriptions
   has_many :users, through: :inscriptions
+  has_many :event_types
 
   def remaining
     self.limit - self.inscriptions.count
@@ -21,6 +22,7 @@ class Package < ActiveRecord::Base
   def package_fit?(current_user)
     count = Event.event_kind_count(current_user)
     package = self
+    count.each do |kind|
     if count[:lectures] >= package.lectures && count[:visits] >= package.visits && count[:courses] >= package.courses
      true
     else

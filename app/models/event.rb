@@ -10,18 +10,18 @@ class Event < ActiveRecord::Base
     self.limit - self.purchases.count
   end
 
-  def self.events_prices
-    lectures_price = self.find_by(kind:'palestra').price
-    courses_price = self.find_by(kind:'mini-curso').price
-    visits_price = self.find_by(kind:'visita').price
-    price = Array.new
-    price[0] = 0
-    price[1] = 0
-    price[2]=0
 
-    price[0] += lectures_price
-    price[1] += courses_price
-    price[2] += visits_price
+  def self.event_kinds
+     Event.uniq.pluck(:kind)
+  end
+
+
+  def self.event_prices
+    kinds = Event.event_kinds
+    price = Hash.new
+    kinds.each do |kind|
+      price[kind] = Event.find_by(kind:kind).price
+    end
 
     price
   end
@@ -86,13 +86,14 @@ class Event < ActiveRecord::Base
   def self.event_kind_count(current_user)
     events = current_user.get_cart_events
     count = Hash.new
-    count[:lectures] = 0
-    count[:courses] = 0
-    count[:visits] = 0
-    events.each do |event|
-      count[:lectures] +=1 if event.kind == 'palestra'
-      count[:courses] +=1 if event.kind == 'mini-curso'
-      count[:visits] +=1 if event.kind == 'visita'
+    kinds = Event.event_kinds
+    kinds.each do |kind|
+      count[kind] = 0
+      events.each do |event|
+        count[kind] +=1 if event.kind == kind
+      end
+
+     
     end
     count
   end
