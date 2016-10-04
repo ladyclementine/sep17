@@ -38,7 +38,9 @@ module ApplicationHelper
     #   @week = { infos: { conta: '2253-5', agencia: '42324-6', beneficiado: 'Rodrigo Teixeira noronha', banco: 'Banco do Brasil', local: 'Casa do Chico' } }
     # end
 
-    ENV["CONFIG_WEEK"]
+    config = YAML.load_file("#{Rails.root.to_s}/config/weeks.yml")
+
+    config[Rails.application.secrets.week_id].deep_symbolize_keys
   end
 
   def flash_class(level)

@@ -1,23 +1,37 @@
 default: &default
   name: Semana em Teste
+  email: admin@semanas.com
   sigla: SeT
   colors:
     primary: 87132
     default: FFFFFF
   logo: semana_test-logo.png
-  avatar:
   infos:
-    conta: 2253-5
-    agencia: 42324-6
-    beneficiado: Rodrigo Teixeira Noronha
-    banco: Banco do Brasil
-    local: Casa do Chico
+    conta: XXXX-X
+    agencia: XXXX-X
+    beneficiado: XXXXXXXXXXXXXXXXXXXXX
+    banco: XXXXXXXXXXXXXX
+    local: XXXXXXXXXXXXXX
 stem:
   <<: *default
+  name: Semana de Tecnologia da Engenharia Mecânica
+  sigla: STEM
+  colors:
+    primary: 87132
+    default: FFFFFF
+  logo: stem-logo.png
+  infos:
+    local: PET da Engenharia Mecânica
 setic:
   <<: *default
 sec:
   <<: *default
+  name: Semana de Engenharia Civil
+  sigla: SEC
+  colors:
+    primary: 87132
+    default: FFFFFF
+  logo: sec-logo.png
 sepro:
   <<: *default
 seq:
