@@ -1,0 +1,26 @@
+default: &default
+  name: Semana em Teste
+  sigla: SeT
+  colors:
+    primary: 87132
+    default: FFFFFF
+  logo: semana_test-logo.png
+  avatar:
+  infos:
+    conta: 2253-5
+    agencia: 42324-6
+    beneficiado: Rodrigo Teixeira Noronha
+    banco: Banco do Brasil
+    local: Casa do Chico
+stem:
+  <<: *default
+setic:
+  <<: *default
+sec:
+  <<: *default
+sepro:
+  <<: *default
+seq:
+  <<: *default
+sea:
+  <<: *default
