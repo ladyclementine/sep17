@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
 
 
   def self.event_kinds
-     Event.uniq.pluck(:kind)
+     EventType.uniq.pluck(:name)
   end
 
 
@@ -117,7 +117,7 @@ class Event < ActiveRecord::Base
     elsif self.kind == "mini-curso"
 
       "warning"
-     elsif self.kind == "visita"
+     else self.kind == "visita"
       "inverse"
     end
   end
