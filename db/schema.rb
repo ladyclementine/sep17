@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003152755) do
+ActiveRecord::Schema.define(version: 20161005164205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,15 +74,17 @@ ActiveRecord::Schema.define(version: 20161003152755) do
   add_index "event_types", ["package_id"], name: "index_event_types_on_package_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "name",                                              null: false
+    t.string   "name",                                                null: false
     t.text     "description"
     t.string   "facilitator"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "kind"
-    t.decimal  "price",       precision: 8, scale: 2, default: 0.0
-    t.integer  "limit",                               default: 0,   null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "price",         precision: 8, scale: 2, default: 0.0
+    t.integer  "limit",                                 default: 0,   null: false
+    t.integer  "event_type_id"
   end
+
+  add_index "events", ["event_type_id"], name: "index_events_on_event_type_id", using: :btree
 
   create_table "inscriptions", force: :cascade do |t|
     t.integer  "user_id",    null: false

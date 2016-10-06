@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, :reject_if => lambda { |a| a[:start_time].blank? || a[:end_time].blank? }, :allow_destroy => true
   has_many :purchases
   has_many :buyers, through: :purchases
-
+  belongs_to :event_type
   @@foo = 0
 
   def remaining
@@ -20,7 +20,8 @@ class Event < ActiveRecord::Base
     kinds = Event.event_kinds
     price = Hash.new
     kinds.each do |kind|
-      price[kind] = Event.find_by(kind:kind).price
+      event_id = EventType.find_by(name:kind) 
+      price[kind] = Event.find_by(event_type_id:event_id).price
     end
 
     price
@@ -90,7 +91,7 @@ class Event < ActiveRecord::Base
     kinds.each do |kind|
       count[kind] = 0
       events.each do |event|
-        count[kind] +=1 if event.kind == kind
+        count[kind] +=1 if event.event_type.name == kind
       end
 
      
@@ -102,8 +103,9 @@ class Event < ActiveRecord::Base
     total_price = 0
     partial_price = 0
     event_partial_price = 0
+    package_discount = current_user.package.package_discount(current_user)
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
-    current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user) : partial_price = event_partial_price
+    current_user.package ? partial_price = event_partial_price - package_discount : partial_price = event_partial_price
     if current_user.package && current_user.package.package_fit?(current_user)
       total_price = current_user.package.price + partial_price
     else
@@ -112,14 +114,9 @@ class Event < ActiveRecord::Base
   end
 
   def circleColor
-    if self.kind=="palestra"
-      "purple"
-    elsif self.kind == "mini-curso"
 
-      "warning"
-     else self.kind == "visita"
       "inverse"
-    end
+    
   end
 
   def sideAlt
