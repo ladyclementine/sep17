@@ -16,7 +16,8 @@ class Package < ActiveRecord::Base
 
     if package_fit?(current_user)
       package.event_types.each do |type|
-      total_discount += prices[type.name]*type.limit
+        total_discount += prices[type.name]*type.limit
+      end
     else
       total_discount = 0
     end
@@ -27,10 +28,9 @@ class Package < ActiveRecord::Base
     count = Event.event_kind_count(current_user)
     package = self
     counter = 0
-    package.event_types.each do |type|
-      name = type.name
-      if count[name] >= type.limit
-
+    package.packages_events_types.each do |package_event_type|
+      name = package_event_type.event_type.name
+      if count[name] >= package_event_type.limit
        counter +=1
       end
     end

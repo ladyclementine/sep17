@@ -3,11 +3,11 @@ class Event < ActiveRecord::Base
   has_many :purchases
   has_many :buyers, through: :purchases
   belongs_to :event_type
-  
+
   validates_presence_of :name, :limit, :price
   validates_numericality_of :price, greater_than_or_equal_to: 0
   validates_associated :schedules, :purchases
-  
+
   @@foo = 0
 
   def remaining
@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
     kinds = Event.event_kinds
     price = Hash.new
     kinds.each do |kind|
-      event_id = EventType.find_by(name: kind) 
+      event_id = EventType.find_by(name: kind)
       price[kind] = Event.find_by(event_type_id:event_id).price
     end
 
@@ -43,36 +43,36 @@ class Event < ActiveRecord::Base
   end
 
   def self.appointments
-    scheduleDay = Hash.new
+    schedule_day = Hash.new
     days = self.days
     events = self.all
     days.each do |day|
-      scheduleDay[day] = []
+      schedule_day[day] = []
       events.each do |event|
         event.schedules.each do |schedule|
-          scheduleDay[day] << schedule if schedule.start_time.to_date == day
-          scheduleDay[day].sort_by! {|obj| obj.start_time}
+          schedule_day[day] << schedule if schedule.start_time.to_date == day
+          schedule_day[day].sort_by! {|obj| obj.start_time}
         end
       end
     end
-    scheduleDay
+    schedule_day
   end
 
   def self.appointment(my_events)
-      scheduleDay = Hash.new
-      days = Event.days
-      events = my_events
+    schedule_day = Hash.new
+    days = Event.days
+    events = my_events
 
-      days.each do |day|
-        scheduleDay[day] = []
-        events.each do |event|
-          event.schedules.each do |schedule|
-            scheduleDay[day] << schedule if schedule.start_time.to_date == day
-            scheduleDay[day].sort_by! {|obj| obj.start_time}
-          end
+    days.each do |day|
+      schedule_day[day] = []
+      events.each do |event|
+        event.schedules.each do |schedule|
+          schedule_day[day] << schedule if schedule.start_time.to_date == day
+          schedule_day[day].sort_by! {|obj| obj.start_time}
         end
       end
-      scheduleDay
+    end
+    schedule_day
   end
    #retorna os horários em ordem
 
@@ -97,8 +97,6 @@ class Event < ActiveRecord::Base
       events.each do |event|
         count[kind] +=1 if event.kind == kind
       end
-
-     
     end
     count
   end

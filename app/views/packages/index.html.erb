@@ -14,11 +14,9 @@
               <div class="plan-duration">Vagas: <%= package.remaining %></div>
             </div>
             <ul class="plan-stats list-unstyled text-center">
-              <% package.event_types.each do |type|%>
-              <li> <%= type.name%> (<%=type.limit %>) </li>
+              <% package.packages_events_types.each do |package_type|%>
+                <li> <%= package_type.event_type.name %> (<%= package_type.limit %>) </li>
               <%end%>
-      
-             
             </ul>
             <div class="text-center">
               <% if @user.package == package %>
