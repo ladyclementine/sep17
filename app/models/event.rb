@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :event_type
 
   validates_presence_of :name, :limit, :price
-  validates_numericality_of :price, greater_than_or_equal_to: 0
+  validates_numericality_of :price, :limit, greater_than_or_equal_to: 0
   validates_associated :schedules, :purchases
 
   @@foo = 0
@@ -98,7 +98,7 @@ class Event < ActiveRecord::Base
         count[kind] +=1 if event.event_type.name == kind
       end
 
-     
+
     end
     count
   end
@@ -109,7 +109,7 @@ class Event < ActiveRecord::Base
     event_partial_price = 0
 
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
-    
+
     current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user)
     : partial_price = event_partial_price
 

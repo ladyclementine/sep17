@@ -30,7 +30,7 @@
              <% if @user.package %>
                 <p class="m-t-10"><strong>Pacote inclui: </strong>
                   <% @user.package.packages_events_types.each do |package_event_type| %>
-                    <%= package_event_type.limit %> <%= package_event_type.event_type.name.pluralize('pt-BR') %>,
+                    <%= package_event_type.limit %> <%= package_event_type.event_type.name.pluralize(package_event_type.limit) %>,
                   <% end %>
                 </p>
                 <p class="m-t-10"><strong>Eventos adicionados: </strong>
