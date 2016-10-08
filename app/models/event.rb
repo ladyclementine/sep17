@@ -1,8 +1,12 @@
 class Event < ActiveRecord::Base
-  has_many :schedules
-  accepts_nested_attributes_for :schedules, :reject_if => lambda { |a| a[:start_time].blank? || a[:end_time].blank? }, :allow_destroy => true
-  has_many :purchases
-  has_many :buyers, through: :purchases
+  has_many :schedules, dependent: :restrict_with_error
+  has_many :purchases, dependent: :restrict_with_error
+  has_many :buyers, through: :purchases, dependent: :restrict_with_error
+  belongs_to :event_type
+
+  validates_presence_of :name, :limit, :price
+  validates_numericality_of :price, :limit, greater_than_or_equal_to: 0
+  validates_associated :schedules, :purchases
 
   @@foo = 0
 
@@ -10,18 +14,19 @@ class Event < ActiveRecord::Base
     self.limit - self.purchases.count
   end
 
-  def self.events_prices
-    lectures_price = self.find_by(kind:'palestra').price
-    courses_price = self.find_by(kind:'mini-curso').price
-    visits_price = self.find_by(kind:'visita').price
-    price = Array.new
-    price[0] = 0
-    price[1] = 0
-    price[2]=0
 
-    price[0] += lectures_price
-    price[1] += courses_price
-    price[2] += visits_price
+  def self.event_kinds
+     EventType.uniq.pluck(:name)
+  end
+
+
+  def self.event_prices
+    kinds = Event.event_kinds
+    price = Hash.new
+    kinds.each do |kind|
+      event_id = EventType.find_by(name: kind)
+      price[kind] = Event.find_by(event_type_id:event_id).price
+    end
 
     price
   end
@@ -38,36 +43,36 @@ class Event < ActiveRecord::Base
   end
 
   def self.appointments
-    scheduleDay = Hash.new
+    schedule_day = Hash.new
     days = self.days
     events = self.all
     days.each do |day|
-      scheduleDay[day] = []
+      schedule_day[day] = []
       events.each do |event|
         event.schedules.each do |schedule|
-          scheduleDay[day] << schedule if schedule.start_time.to_date == day
-          scheduleDay[day].sort_by! {|obj| obj.start_time}
+          schedule_day[day] << schedule if schedule.start_time.to_date == day
+          schedule_day[day].sort_by! {|obj| obj.start_time}
         end
       end
     end
-    scheduleDay
+    schedule_day
   end
 
   def self.appointment(my_events)
-      scheduleDay = Hash.new
-      days = Event.days
-      events = my_events
+    schedule_day = Hash.new
+    days = Event.days
+    events = my_events
 
-      days.each do |day|
-        scheduleDay[day] = []
-        events.each do |event|
-          event.schedules.each do |schedule|
-            scheduleDay[day] << schedule if schedule.start_time.to_date == day
-            scheduleDay[day].sort_by! {|obj| obj.start_time}
-          end
+    days.each do |day|
+      schedule_day[day] = []
+      events.each do |event|
+        event.schedules.each do |schedule|
+          schedule_day[day] << schedule if schedule.start_time.to_date == day
+          schedule_day[day].sort_by! {|obj| obj.start_time}
         end
       end
-      scheduleDay
+    end
+    schedule_day
   end
    #retorna os horários em ordem
 
@@ -86,13 +91,14 @@ class Event < ActiveRecord::Base
   def self.event_kind_count(current_user)
     events = current_user.get_cart_events
     count = Hash.new
-    count[:lectures] = 0
-    count[:courses] = 0
-    count[:visits] = 0
-    events.each do |event|
-      count[:lectures] +=1 if event.kind == 'palestra'
-      count[:courses] +=1 if event.kind == 'mini-curso'
-      count[:visits] +=1 if event.kind == 'visita'
+    kinds = Event.event_kinds
+    kinds.each do |kind|
+      count[kind] = 0
+      events.each do |event|
+        count[kind] +=1 if event.event_type.name == kind
+      end
+
+
     end
     count
   end
@@ -101,8 +107,12 @@ class Event < ActiveRecord::Base
     total_price = 0
     partial_price = 0
     event_partial_price = 0
+
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
-    current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user) : partial_price = event_partial_price
+
+    current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user)
+    : partial_price = event_partial_price
+
     if current_user.package && current_user.package.package_fit?(current_user)
       total_price = current_user.package.price + partial_price
     else
@@ -111,14 +121,7 @@ class Event < ActiveRecord::Base
   end
 
   def circleColor
-    if self.kind=="palestra"
-      "purple"
-    elsif self.kind == "mini-curso"
-
-      "warning"
-     elsif self.kind == "visita"
-      "inverse"
-    end
+    "inverse"
   end
 
   def sideAlt

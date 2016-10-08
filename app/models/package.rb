@@ -1,7 +1,9 @@
 class Package < ActiveRecord::Base
 
-  has_many :inscriptions
-  has_many :users, through: :inscriptions
+  has_many :inscriptions, dependent: :restrict_with_error
+  has_many :packages_events_types, dependent: :restrict_with_error
+  has_many :users, through: :inscriptions, dependent: :restrict_with_error
+  has_many :event_types, through: :packages_events_types, dependent: :restrict_with_error
 
   def remaining
     self.limit - self.inscriptions.count
@@ -9,22 +11,34 @@ class Package < ActiveRecord::Base
 
   def package_discount(current_user)
     package = self
-    prices = Event.events_prices
+    prices = Event.event_prices
     total_discount = 0
+
     if package_fit?(current_user)
-      total_discount = prices[0]*package.lectures + prices[1]*package.courses + prices[2]*package.visits
+      package.packages_events_types.each do |package_event_type|
+        total_discount += prices[package_event_type.event_type.name]*package_event_type.limit
+      end
     else
       total_discount = 0
     end
+    total_discount
   end
 
   def package_fit?(current_user)
     count = Event.event_kind_count(current_user)
     package = self
-    if count[:lectures] >= package.lectures && count[:visits] >= package.visits && count[:courses] >= package.courses
-     true
+    counter = 0
+    package.packages_events_types.each do |package_event_type|
+      name = package_event_type.event_type.name
+      if count[name] >= package_event_type.limit
+       counter +=1
+      end
+    end
+
+    if counter == package.event_types.count
+      true
     else
-     false
+      false
     end
   end
 end

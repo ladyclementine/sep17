@@ -13,7 +13,6 @@ class Admin::EventsController < Admin::BaseController
   # GET /events/new
   def new
     @event = Event.new
-    @event.schedules.build
   end
 
   # GET /events/1/edit
@@ -32,7 +31,6 @@ class Admin::EventsController < Admin::BaseController
 
   # PATCH/PUT /events/1
   def update
-    byebug
     if @event.update(event_params)
       redirect_to [:admin, @event], notice: 'Event was successfully updated.'
     else
@@ -42,8 +40,11 @@ class Admin::EventsController < Admin::BaseController
 
   # DELETE /events/1
   def destroy
-    @event.destroy
-    redirect_to admin_events_url, notice: 'Event was successfully destroyed.'
+    if @event.destroy
+      redirect_to admin_events_url, notice: 'Event was successfully destroyed.'
+    else
+      redirect_to admin_events_url, notice: @event.errors.full_messages[0]
+    end
   end
 
   private
@@ -54,6 +55,6 @@ class Admin::EventsController < Admin::BaseController
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :description, :facilitator, :limit, :price, :kind, schedules_attributes: [:id, :start_time, :end_time, :_destroy])
+      params.require(:event).permit(:name, :description, :facilitator, :limit, :price, :event_type_id)
     end
 end
