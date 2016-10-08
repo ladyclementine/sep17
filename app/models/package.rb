@@ -15,8 +15,8 @@ class Package < ActiveRecord::Base
     total_discount = 0
 
     if package_fit?(current_user)
-      package.event_types.each do |type|
-        total_discount += prices[type.name]*type.limit
+      package.packages_events_types.each do |package_event_type|
+        total_discount += prices[package_event_type.event_type.name]*package_event_type.limit
       end
     else
       total_discount = 0

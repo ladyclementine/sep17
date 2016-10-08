@@ -95,8 +95,10 @@ class Event < ActiveRecord::Base
     kinds.each do |kind|
       count[kind] = 0
       events.each do |event|
-        count[kind] +=1 if event.kind == kind
+        count[kind] +=1 if event.event_type.name == kind
       end
+
+     
     end
     count
   end
@@ -105,9 +107,12 @@ class Event < ActiveRecord::Base
     total_price = 0
     partial_price = 0
     event_partial_price = 0
-    package_discount = current_user.package.package_discount(current_user)
+
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
-    current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user) : partial_price = event_partial_price
+    
+    current_user.package ? partial_price = event_partial_price - current_user.package.package_discount(current_user)
+    : partial_price = event_partial_price
+
     if current_user.package && current_user.package.package_fit?(current_user)
       total_price = current_user.package.price + partial_price
     else
@@ -116,7 +121,7 @@ class Event < ActiveRecord::Base
   end
 
   def circleColor
-      "inverse"
+    "inverse"
   end
 
   def sideAlt
