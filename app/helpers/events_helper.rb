@@ -1,7 +1,7 @@
 module EventsHelper
   def event_types_to_array
     event_types_array = [
-      ['Selecione']
+      ['Selecione', nil]
     ]
 
     EventType.all.each do |event_type|

@@ -36,7 +36,8 @@
     <%= f.label :schedules %>
     <input type="" name="" class="form-control" disabled placeholder="Para editar os horários, salve o evento">
   </div>
-  <div class="form-group text-right m-b-0">
-    <%= button_tag "Save event", type:'submit', class:'btn btn-primary waves-effect waves-light' %>
+  <div class="row form-group m-b-0">
+    <%= link_to 'Novo tipo de evento', new_admin_event_type_path, class:'btn btn-primary waves-effect waves-light pull-left' %>
+    <%= button_tag action_text, type:'submit', class:'btn btn-primary waves-effect waves-light pull-right' %>
   </div>
 <% end %>

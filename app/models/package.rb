@@ -1,9 +1,9 @@
 class Package < ActiveRecord::Base
 
-  has_many :inscriptions
-  has_many :packages_events_types
-  has_many :users, through: :inscriptions
-  has_many :event_types, through: :packages_events_types
+  has_many :inscriptions, dependent: :restrict_with_error
+  has_many :packages_events_types, dependent: :restrict_with_error
+  has_many :users, through: :inscriptions, dependent: :restrict_with_error
+  has_many :event_types, through: :packages_events_types, dependent: :restrict_with_error
 
   def remaining
     self.limit - self.inscriptions.count
