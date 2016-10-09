@@ -46,4 +46,15 @@ module ApplicationHelper
   def action_text custom_controller_path = controller.controller_name
     "Salvar #{human_model custom_controller_path}"
   end
+
+  def sizes_to_array
+    sizes_array = [
+      ['Selecione', nil],
+      ['PP'],
+      ['P'],
+      ['M'],
+      ['G'],
+      ['GG']
+    ]
+  end
 end

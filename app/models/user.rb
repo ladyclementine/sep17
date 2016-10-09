@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }, on: :create
+  validates :cpf, presence: true, length: {is: 11}
+  validates :rg, presence: true
+  validates :size, presence: true, length: {minimum: 1}
 
   # before_save :set_package
 
