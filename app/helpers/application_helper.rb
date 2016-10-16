@@ -25,11 +25,11 @@ module ApplicationHelper
     if %w( teams members ).include? custom_controller_path
       custom_controller_path = "challenge/#{custom_controller_path}"
     end
-    plural = custom_controller_path.classify.constantize.model_name.human count: 2
+    custom_controller_path.classify.constantize.model_name.human count: 2
   end
 
   def human_model custom_controller_path = controller_path
-    singular = custom_controller_path.classify.constantize.model_name.human
+    custom_controller_path.classify.constantize.model_name.human
   end
 
   def titulo_pagina custom_controller_path = controller.controller_name

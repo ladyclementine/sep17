@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  has_many :schedules, dependent: :restrict_with_error
+  has_many :schedules, dependent: :destroy
   has_many :purchases, dependent: :restrict_with_error
   has_many :buyers, through: :purchases, dependent: :restrict_with_error
   belongs_to :event_type
