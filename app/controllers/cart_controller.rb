@@ -83,6 +83,7 @@ class CartController < ProfileController
   def add
     @purchase = Purchase.new(buyer_id: @user.id, event_id: params[:id])
     if @purchase.save
+      $redis.sadd current_user_cart, params[:id]
       redirect_to :back
     else
       redirect_to :back, notice: @purchase.errors.full_messages.first || 'Não há mais vagas disponíveis para este evento'
@@ -91,6 +92,7 @@ class CartController < ProfileController
 
   def remove
     Purchase.delete_purchases(current_user, params[:id])
+     $redis.srem current_user_cart, params[:id]
     redirect_to :back
   end
 

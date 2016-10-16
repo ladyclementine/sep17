@@ -35,7 +35,7 @@ class Admin::PackagesController < Admin::BaseController
 
   # PATCH/PUT /packages/1
   def update
-    if @package.update(package_params)
+    if @package.update(package_event_type_params)
       redirect_to [:admin, @package], notice: 'Package was successfully updated.'
     else
       render :edit, notice: @package.errors.full_messages[0]

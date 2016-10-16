@@ -3,6 +3,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :buyer, class_name: 'User'
 
   validate :validate_limit, :validate_event_schedules
+  
+  validates_uniqueness_of :buyer_id, scope: [:event_id]
 
   def self.delete_purchases(current_user, id_event)
   	self.destroy_all(buyer_id:current_user.id, event_id:id_event)
