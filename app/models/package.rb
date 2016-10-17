@@ -1,7 +1,7 @@
 class Package < ActiveRecord::Base
 
   has_many :inscriptions, dependent: :restrict_with_error
-  has_many :packages_events_types, dependent: :restrict_with_error
+  has_many :packages_events_types, dependent: :destroy
   has_many :users, through: :inscriptions, dependent: :restrict_with_error
   has_many :event_types, through: :packages_events_types, dependent: :restrict_with_error
 

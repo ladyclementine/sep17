@@ -1,5 +1,4 @@
 class Admin::PackagesController < Admin::BaseController
-  #before_action :set_current_week
   before_action :set_package, only: [:show, :edit, :update, :destroy]
 
   # GET /packages
@@ -35,7 +34,7 @@ class Admin::PackagesController < Admin::BaseController
 
   # PATCH/PUT /packages/1
   def update
-    if @package.update(package_event_type_params)
+    if @package.update(package_params)
       redirect_to [:admin, @package], notice: 'Package was successfully updated.'
     else
       render :edit, notice: @package.errors.full_messages[0]
@@ -55,6 +54,10 @@ class Admin::PackagesController < Admin::BaseController
     # Use callbacks to share common setup or constraints between actions.
     def set_package
       @package = Package.find(params[:id])
+    end
+    
+    def package_params
+      params.require(:package).permit(:title, :description, :limit, :price)
     end
 
     def package_event_type_params
