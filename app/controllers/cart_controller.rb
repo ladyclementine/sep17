@@ -36,7 +36,7 @@ class CartController < ProfileController
       case payment_params[:method]
       when @payment.accepted_payment_methods[0]
         @pag = pag_seguro(@total_price, @user)
-        byebug
+        
 
         if @pag.errors.empty? && @payment.save
           redirect_to @pag.url
@@ -129,7 +129,7 @@ class CartController < ProfileController
       amount: value.to_f
     }
     # end
-    byebug
+  
     response = payment.register
   end
 
