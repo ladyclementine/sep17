@@ -14,13 +14,13 @@ class Package < ActiveRecord::Base
     prices = Event.event_prices
     total_discount = 0
 
-    if package_fit?(current_user)
+    
       package.packages_events_types.each do |package_event_type|
         total_discount += prices[package_event_type.event_type.name]*package_event_type.limit
       end
-    else
-      total_discount = 0
-    end
+  
+    
+    
     total_discount
   end
 
