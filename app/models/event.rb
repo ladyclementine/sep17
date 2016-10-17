@@ -25,7 +25,13 @@ class Event < ActiveRecord::Base
     price = Hash.new
     kinds.each do |kind|
       event_id = EventType.find_by(name: kind)
-      price[kind] = Event.find_by(event_type_id:event_id).price
+    
+      if !Event.find_by(event_type_id:event_id).nil? 
+         price[kind] = Event.find_by(event_type_id:event_id).price 
+      else
+        price[kind] = 0
+      end
+
     end
 
     price
@@ -111,12 +117,14 @@ class Event < ActiveRecord::Base
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
 
     if current_user.package  
-      if current_user.package.package_fit?(current_user)
+        if current_user.package.package_discount(current_user)!=0
          partial_price = event_partial_price - current_user.package.package_discount(current_user)
          total_price = current_user.package.price + partial_price
-      else
-        total_price = current_user.package.price + partial_price
-      end
+         
+        else
+          total_price  = current_user.package.price
+        end
+      
 
     else
       total_price = event_partial_price
