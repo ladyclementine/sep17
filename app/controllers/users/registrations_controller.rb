@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout 'profile_layout', only: [:edit, :update]
 
   before_filter :configure_sign_up_params, only: [:create]
-  before_filter  :configure_account_update_params
+  before_filter  :configure_account_update_params, only: [:edit, :update]
   # GET /resource/sign_up
    # def new
    #   super
@@ -60,6 +60,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+   def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :course, :semester, :birthday, :university])
