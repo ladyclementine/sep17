@@ -18,13 +18,9 @@ class User < ActiveRecord::Base
   validates :university, presence: true, length: { maximum: 70 }
   validates :semester, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_CPF_REGEX = /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }, on: :create
-  validates :cpf, presence: true, length: {is: 11}
-  validates :rg, presence: true
-  validates :size, presence: true, length: {minimum: 1}
-
-  # before_save :set_package
 
   def cart_count
     $redis.scard "cart#{id}"
