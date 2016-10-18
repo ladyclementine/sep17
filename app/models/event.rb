@@ -24,10 +24,11 @@ class Event < ActiveRecord::Base
     kinds = Event.event_kinds
     price = Hash.new
     kinds.each do |kind|
-      event_id = EventType.find_by(name: kind)
-    
-      if !Event.find_by(event_type_id:event_id).nil? 
-         price[kind] = Event.find_by(event_type_id:event_id).price 
+      event_id = EventType.find_by(name:kind)
+      events = Event.where("price != 0")
+      
+      if !events.find_by(event_type_id:event_id).nil? 
+         price[kind] = events.find_by(event_type_id:event_id).price 
       else
         price[kind] = 0
       end
