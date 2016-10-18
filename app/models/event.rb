@@ -101,7 +101,7 @@ class Event < ActiveRecord::Base
     kinds.each do |kind|
       count[kind] = 0
       events.each do |event|
-        count[kind] +=1 if event.event_type.name == kind
+        count[kind] +=1 if event.event_type.name == kind && event.price != 0
       end
 
 
