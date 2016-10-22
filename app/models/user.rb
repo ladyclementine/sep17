@@ -23,12 +23,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, on: :create
 
   def cart_count
-    $redis.scard "cart#{id}"
+    self.events.count
   end
 
   def get_cart_events
-    cart_ids = $redis.smembers "cart#{id}"
-    Event.find(cart_ids)
+   self.events
   end
 
   def purchase_cart_events!

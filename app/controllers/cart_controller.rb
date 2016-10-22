@@ -14,8 +14,8 @@ class CartController < ProfileController
   end
 
   def new
-    cart_ids = $redis.smembers current_user_cart
-    @cart_events = Event.find(cart_ids)
+    
+    @cart_events = User.events
     @events = Event.all
     @eventsDays = Event.days
     @scheduleHash = Event.appointments
@@ -24,8 +24,8 @@ class CartController < ProfileController
 
 
   def create
-    cart_ids = $redis.smembers current_user_cart
-    @cart_events = Event.find(cart_ids)
+    
+    @cart_events = @user.events
     @total_price = Event.cart_total_price(@user)
 
     @payment = Payment.new(user_id: current_user.id)
@@ -75,7 +75,7 @@ class CartController < ProfileController
   def add
     @purchase = Purchase.new(buyer_id: @user.id, event_id: params[:id])
     if @purchase.save
-      $redis.sadd current_user_cart, params[:id]
+      
       redirect_to :back
     else
       redirect_to :back, notice: @purchase.errors.full_messages.first || 'Não há mais vagas disponíveis para este evento'
@@ -84,7 +84,7 @@ class CartController < ProfileController
 
   def remove
     Purchase.delete_purchases(current_user, params[:id])
-     $redis.srem current_user_cart, params[:id]
+     
     redirect_to :back
   end
 
