@@ -45,4 +45,8 @@ class Payment < ActiveRecord::Base
   def validate_payment_status
     errors.add("Status do pagamento", "é inválido.") unless payment_status_is_valid?
   end
+
+  def validate_purcharses
+    user = self.user
+  end
 end

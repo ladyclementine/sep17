@@ -26,15 +26,12 @@ class Event < ActiveRecord::Base
     kinds.each do |kind|
       event_id = EventType.find_by(name:kind)
       events = Event.where("price != 0")
-      
-      if !events.find_by(event_type_id:event_id).nil? 
-         price[kind] = events.find_by(event_type_id:event_id).price 
+      if !events.find_by(event_type_id:event_id).nil?
+         price[kind] = events.find_by(event_type_id: event_id).price
       else
         price[kind] = 0
       end
-
     end
-
     price
   end
 
@@ -104,8 +101,6 @@ class Event < ActiveRecord::Base
       events.each do |event|
         count[kind] +=1 if event.event_type.name == kind && event.price != 0
       end
-
-
     end
     count
   end
@@ -117,13 +112,10 @@ class Event < ActiveRecord::Base
 
     current_user.get_cart_events.each { |event| event_partial_price += event.price }
 
-    if current_user.package  
-        
-         partial_price = event_partial_price - current_user.package.package_discount(current_user)
-         partial = current_user.package.plus(current_user)
-         total_price = current_user.package.price + partial
-      
-
+    if current_user.package
+      partial_price = event_partial_price - current_user.package.package_discount(current_user)
+      partial = current_user.package.plus(current_user)
+      total_price = current_user.package.price + partial
     else
       total_price = event_partial_price
     end
@@ -135,7 +127,7 @@ class Event < ActiveRecord::Base
   end
 
   def sideAlt
-  @@foo +=1
+    @@foo +=1
     if @@foo%2==0
       "timeline-item alt"
     else

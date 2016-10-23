@@ -35,6 +35,7 @@ class Package < ActiveRecord::Base
   end
 
   def package_fit?(current_user)
+    byebug
     count = Event.event_kind_count(current_user)
     package = self
     counter = 0

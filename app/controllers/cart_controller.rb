@@ -13,18 +13,7 @@ class CartController < ProfileController
     @cart_total = Event.cart_total_price(current_user)
   end
 
-  def new
-    
-    @cart_events = User.events
-    @events = Event.all
-    @eventsDays = Event.days
-    @scheduleHash = Event.appointments
-    @number = 0
-  end
-
-
   def create
-    
     @cart_events = @user.events
     @total_price = Event.cart_total_price(@user)
 
@@ -36,8 +25,6 @@ class CartController < ProfileController
       case payment_params[:method]
       when @payment.accepted_payment_methods[0]
         @pag = pag_seguro(@total_price, @user)
-
-
         if @pag.errors.empty? && @payment.save
           redirect_to @pag.url
         else
@@ -75,7 +62,6 @@ class CartController < ProfileController
   def add
     @purchase = Purchase.new(buyer_id: @user.id, event_id: params[:id])
     if @purchase.save
-      
       redirect_to :back
     else
       redirect_to :back, notice: @purchase.errors.full_messages.first || 'Não há mais vagas disponíveis para este evento'
@@ -84,7 +70,7 @@ class CartController < ProfileController
 
   def remove
     Purchase.delete_purchases(current_user, params[:id])
-     
+
     redirect_to :back
   end
 
