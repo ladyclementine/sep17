@@ -9,8 +9,8 @@ class CartController < ProfileController
     @payment = Payment.new
     @time = Time.now
     @package = @user.package
-    @user_cart = Event.event_kind_count(current_user)
-    @cart_total = Event.cart_total_price(current_user)
+    @user_cart = @user.events_kind_count
+    @cart_total = Event.cart_total_price(@user)
   end
 
   def create
@@ -28,7 +28,7 @@ class CartController < ProfileController
         if @pag.errors.empty? && @payment.save
           redirect_to @pag.url
         else
-          render 'show', notice: "Erro ao efetuar pagamento! #{@pag.errors}"
+          redirect_to cart_path, notice: "Erro ao efetuar pagamento! #{@payment.errors.full_messages.first}"
         end
       when @payment.accepted_payment_methods[1], @payment.accepted_payment_methods[2]
         if @payment.save
@@ -36,20 +36,20 @@ class CartController < ProfileController
           PaymentMailer.info(@user, @payment, current_week[:infos]).deliver_now
           redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
         else
-          render 'show', notice: 'Erro ao efetuar pagamento!'
+          redirect_to cart_path, notice: "Erro ao efetuar pagamento! #{@payment.errors.full_messages.first}"
         end
       when @payment.accepted_payment_methods[3]
         if @payment.save
           PaymentMailer.new_payment(@user, @payment).deliver_now
           PaymentMailer.info(@user, @payment, current_week[:infos]).deliver_now
-          redirect_to :my_home, notice: 'Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento.'
+          redirect_to :my_home, notice: "Compra finalizada com sucesso! Verifique a informações para efetuar o pagamento."
         else
-          render 'show', notice: 'Erro ao efetuar pagamento!'
+          redirect_to cart_path, notice: "Erro ao efetuar pagamento! #{@payment.errors.full_messages.first}"
         end
       end
       @payment.pending
     else
-      render :show, notice: 'Seu carrinho está vazio!'
+      redirect_to cart_path, notice: 'Erro ao efetuar pagamento! Seu carrinho está vazio!'
     end
   end
 

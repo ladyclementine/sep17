@@ -92,19 +92,6 @@ class Event < ActiveRecord::Base
     timetables
   end
 
-  def self.event_kind_count(current_user)
-    events = current_user.get_cart_events
-    count = Hash.new
-    kinds = Event.event_kinds
-    kinds.each do |kind|
-      count[kind] = 0
-      events.each do |event|
-        count[kind] +=1 if event.event_type.name == kind && event.price != 0
-      end
-    end
-    count
-  end
-
   def self.cart_total_price(current_user)
     total_price = 0
     partial_price = 0

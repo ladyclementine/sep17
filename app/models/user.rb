@@ -51,6 +51,37 @@ class User < ActiveRecord::Base
     self.try(:package).nil?
   end
 
+  def events_kind_count
+    events = self.events
+    count = Hash.new
+    kinds = Event.event_kinds
+    kinds.each do |kind|
+      count[kind] = 0
+      events.each do |event|
+        count[kind] +=1 if event.event_type.name == kind && event.price != 0
+      end
+    end
+    count
+  end
+
+  def package_fit?
+    count = self.events_kind_count
+    package = self.package
+    counter = 0
+    package.packages_events_types.each do |package_event_type|
+      name = package_event_type.event_type.name
+      if count[name] >= package_event_type.limit
+       counter +=1
+      end
+    end
+
+    if counter == package.event_types.count
+      true
+    else
+      false
+    end
+  end
+
   private
   def set_package
     flag = false

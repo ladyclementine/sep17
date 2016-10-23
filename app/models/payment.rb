@@ -1,8 +1,8 @@
 class Payment < ActiveRecord::Base
 	belongs_to :user
 
-  validate :validate_payment_method
-  validate :validate_payment_status
+  validate :validate_payment_method, :validate_payment_status
+  validate :validate_purcharses, if: :have_package?
 
   before_validation :waiting, on: :create
 
@@ -47,6 +47,10 @@ class Payment < ActiveRecord::Base
   end
 
   def validate_purcharses
-    user = self.user
+    errors.add("Seu pacote", "não está completo.") unless self.user.package_fit?
+  end
+
+  def have_package?
+    self.user.package.nil? ? false : true
   end
 end
