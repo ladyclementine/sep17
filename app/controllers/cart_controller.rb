@@ -23,8 +23,13 @@ class CartController < ProfileController
     if !@cart_events.empty?
       case payment_params[:method]
       when @payment.accepted_payment_methods[0]
-        @pag = pag_seguro(@total_price, @user)
-        if @pag.errors.empty? && @payment.save
+
+        result = Payment.transaction do
+          @pag = pag_seguro(@total_price, @user)
+          @payment.save
+        end
+
+        if result
           redirect_to @pag.url
         else
           redirect_to cart_path, notice: "Erro ao efetuar pagamento! #{@payment.errors.full_messages.first}"
