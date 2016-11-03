@@ -58,6 +58,7 @@ pt-BR:
         course: "Curso"
         university: "Universidade"
         birthday: "Data de nascimento"
+        size: "Tamanho da Camisa"
         password: "Senha"
         password_confirmation: "Confirmação de senha"
       challenge/team:

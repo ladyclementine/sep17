@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group ">
                   <%= f.label :birthday, "Aniversário"   %>
-                    <%= f.text_field :birthday, autofocus: true, class: " date form-control" %>
+                    <%= to_date_field f, resource, :birthday, { autofocus: true, class: "date form-control" } %>
                 </div>
                 <div class="form-group ">
                   <%= f.label :course, "Curso"  %>
@@ -25,6 +25,10 @@
                 <div class="form-group ">
                   <%= f.label :univesity, "Universidade"  %>
                     <%= f.text_field :university, autofocus: true, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :size, "Tamanho da blusa"   %><br />
+                  <%= f.select :size, options_for_select(sizes_to_array, selected: resource.size), {}, class: 'form-control' %>
                 </div>
                 <div class="form-group ">
                   <%= f.label :semester, "Semestre"  %>

@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   validates :course, presence: true, length: { maximum: 60 }
   validates :university, presence: true, length: { maximum: 70 }
   validates :semester, presence: true
+  validates :size, presence: true, length: { minimum: 1 }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }, on: :create

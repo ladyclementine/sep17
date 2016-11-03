@@ -14,6 +14,7 @@
           <p class="text-muted"><strong>Semestre :</strong> <span class="m-l-15"><%= @admin_user.semester %></span></p>
           <p class="text-muted"><strong>Data de Nascimento :</strong> <span class="m-l-15"><%= @admin_user.birthday %></span></p>
           <p class="text-muted"><strong>Instituição de Ensino :</strong> <span class="m-l-15"><%= @admin_user.university %></span></p>
+          <p class="text-muted"><strong>Tamanho da camisa :</strong> <span class="m-l-15"><%= @admin_user.size %></span></p>
         </div>
 
       </div>
@@ -44,7 +45,7 @@
   <div class="col-md-6">
     <div class="card-box">
       <h4 class="header-title m-t-0 m-b-30">Informações do Pacote</h4>
-      
+
         <% if !@package.nil? %>
           <ul class="list-group m-b-0 user-list">
             <li class="list-group-item user-list-item">
